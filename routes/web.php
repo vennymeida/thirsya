@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,13 @@ use App\Http\Controllers\BerandaController;
 // Route::get('/', function () {
 //     return view('beranda.index');
 // });
+Route::get('/login', function () {
+  return view('auth/login');
+});
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Auth::routes();
+
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/admin', 'AdminController@index');

@@ -54,10 +54,21 @@
 						<nav class="main-menu">
 							<ul>
 								<li class="current-list-item"><a href="#" method="post">Home</a></li>
-								<li><a href="#" method="post">About</a></li>
-								<li><a href="#" method="post">Contact</a></li>
-								<li><a href="#" method="post">Shop</a>
-								</li>
+									<li><a href="#" method="post">About</a></li>
+									<li><a href="#" method="post">Contact</a></li>
+									<li><a href="#" method="post">Shop</a></li>
+
+									@if (Route::has('login'))
+											<li class="nav-item">
+												<a class="nav-link" href="/login">{{ __('Login') }}</a>
+											</li>
+										@endif
+										@if (Route::has('register'))
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+											</li>
+										@endif
+
 								<li>
 									<div class="header-icons">
 										<a class="shopping-cart" href="#" method="post"><i class="fas fa-shopping-cart"></i></a>
