@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +24,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/admin', 'AdminController@index');
 //Route::get('/user', 'UserController@index');
-Route::get('/admin', [UserController::class, 'index']);
-Route::get('/user', [AdminController::class, 'index']);
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index']);
