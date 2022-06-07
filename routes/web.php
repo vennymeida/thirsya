@@ -29,7 +29,8 @@ Route::get('/login', function () {
 Auth::routes();
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 
-
+//Route edit profil admin
+Route::post('update-profile-info',[AdminController::class, 'updateInfo'])->name('adminUpdateInfo');
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/admin', 'AdminController@index');

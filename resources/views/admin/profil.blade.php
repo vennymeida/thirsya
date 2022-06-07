@@ -13,7 +13,8 @@
               <div class="author">
                 <a href="#">
                   <img class="avatar border-gray" src="../assets/img/logo-small.png" alt="...">
-                    <h5 class="title">Chet Faker</h5>
+                    <h5 class="profile-username text-center">{{Auth::user()->name}}</h5>
+                    <p class="text-muted text-center">Admin</p>
                 </a>
               </div>
             </div>
@@ -26,7 +27,7 @@
                 <h5 class="card-title">Edit Profile</h5>
               </div>
               <div class="card-body">
-                <form>
+                <form method="POST" action="{{ route('adminUpdateInfo') }}">
                   <div class="row">
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
@@ -37,13 +38,13 @@
                       <div class="col-md-3 px-1">
                         <div class="form-group">
                           <label>Name</label>
-                          <input type="text" class="form-control" placeholder="Username" value="michael23">
+                          <input type="text" class="form-control" placeholder="Username" value="{{Auth::user()->name}}">
                         </div>
                       </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" placeholder="Email" value="{{Auth::user()->email}}">
                       </div>
                     </div>
                   </div>
@@ -51,13 +52,13 @@
                       <div class="col-md-6 pr-1">
                         <div class="form-group">
                           <label>Username</label>
-                          <input type="text" class="form-control" placeholder="Company" value="Chet">
+                          <input type="text" class="form-control" placeholder="Company" value="{{Auth::user()->username}}">
                         </div>
                       </div>
                       <div class="col-md-6 pl-1">
                         <div class="form-group">
                           <label>Password</label>
-                          <input type="password" class="form-control" placeholder="Last Name" value="Faker">
+                          <input type="password" class="form-control" placeholder="Password" value="{{Auth::user()->password}}">
                         </div>
                       </div>
                     </div>
