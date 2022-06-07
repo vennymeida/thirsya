@@ -24,4 +24,6 @@ class UserController extends Controller
     public function dashboardU(){
         return view('user.dashboardU');
     }
+
+    
 }

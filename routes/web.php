@@ -25,6 +25,7 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/login', function () {
   return view('auth/login');
 });
+
 Auth::routes();
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 
@@ -36,6 +37,7 @@ Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 // Route::get('/home', [HomeController::class, 'index']);
 Route::get('/dashboardU', [UserController::class, 'dashboardU'])->name('user');
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin');
+Route::get('/profil', [AdminController::class, 'profil'])->name('Adminprofil');
 
 
 // Route::get('admin', function () { return view('admin'); })->middleware('checkRole:admin');

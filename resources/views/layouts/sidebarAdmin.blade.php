@@ -24,9 +24,9 @@
             </a>
           </li>
           <li>
-            <a href="./user.blade.php">
+            <a href="./profil">
               <i class="nc-icon nc-single-02"></i>
-              <p>User Profile</p>
+              <p>Admin Profile</p>
             </a>
           </li>
           <li>
