@@ -37,5 +37,6 @@ Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/dashboardU', [UserController::class, 'dashboardU'])->name('user');
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin');
 
+
 // Route::get('admin', function () { return view('admin'); })->middleware('checkRole:admin');
 // Route::get('user', function () { return view('user'); })->middleware(['checkRole:user,admin']);
