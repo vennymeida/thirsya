@@ -21,7 +21,7 @@ Coded by www.creative-tim.com
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Paper Dashboard 2 by Creative Tim
+    Dashboard
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -40,12 +40,12 @@ Coded by www.creative-tim.com
       <div class="logo">
         <a href="https://www.creative-tim.com" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="../assets/img/logo-small.png">
+            <img src="../assets/img/WaroenkQu.png">
           </div>
           <!-- <p>CT</p> -->
         </a>
         <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+          WaroenkQu
           <!-- <div class="logo-image-big">
             <img src="../assets/img/logo-big.png">
           </div> -->
@@ -60,24 +60,6 @@ Coded by www.creative-tim.com
             </a>
           </li>
           <li>
-            <a href="./icons.blade.php">
-              <i class="nc-icon nc-diamond"></i>
-              <p>Icons</p>
-            </a>
-          </li>
-          <li>
-            <a href="./map.blade.php">
-              <i class="nc-icon nc-pin-3"></i>
-              <p>Maps</p>
-            </a>
-          </li>
-          <li>
-            <a href="./notifications.blade.php">
-              <i class="nc-icon nc-bell-55"></i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <li>
             <a href="./user.blade.php">
               <i class="nc-icon nc-single-02"></i>
               <p>User Profile</p>
@@ -86,19 +68,19 @@ Coded by www.creative-tim.com
           <li>
             <a href="./tables.blade.php">
               <i class="nc-icon nc-tile-56"></i>
-              <p>Table List</p>
+              <p>List Barang</p>
             </a>
           </li>
           <li>
-            <a href="./typography.html">
-              <i class="nc-icon nc-caps-small"></i>
-              <p>Typography</p>
+            <a href="./tables.blade.php">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>List Pembeli</p>
             </a>
           </li>
-          <li class="active-pro">
-            <a href="./upgrade.blade.php">
-              <i class="nc-icon nc-spaceship"></i>
-              <p>Upgrade to PRO</p>
+          <li>
+            <a href="./tables.blade.php">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>List Transaksi</p>
             </a>
           </li>
         </ul>
@@ -116,7 +98,7 @@ Coded by www.creative-tim.com
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">Paper Dashboard 2</a>
+            <a class="navbar-brand" href="javascript:;">Dashboard Admin</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -137,13 +119,13 @@ Coded by www.creative-tim.com
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link btn-magnify" href="javascript:;">
-                  <i class="nc-icon nc-layout-11"></i>
+                <i class="nc-icon nc-cart-simple"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
+                    <span class="d-lg-none d-md-block">Keranjang</span>
                   </p>
                 </a>
               </li>
-              <li class="nav-item btn-rotate dropdown">
+              <!-- <li class="nav-item btn-rotate dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="nc-icon nc-bell-55"></i>
                   <p>
@@ -163,7 +145,7 @@ Coded by www.creative-tim.com
                     <span class="d-lg-none d-md-block">Account</span>
                   </p>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -171,7 +153,7 @@ Coded by www.creative-tim.com
       <!-- End Navbar -->
       <div class="content">
         <div class="row">
-          <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="card card-stats">
               <div class="card-body ">
                 <div class="row">
@@ -182,8 +164,8 @@ Coded by www.creative-tim.com
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Capacity</p>
-                      <p class="card-title">150GB<p>
+                      <p class="card-category">Barang</p>
+                      <p class="card-title">-<p>
                     </div>
                   </div>
                 </div>
@@ -197,7 +179,7 @@ Coded by www.creative-tim.com
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="card card-stats">
               <div class="card-body ">
                 <div class="row">
@@ -208,8 +190,8 @@ Coded by www.creative-tim.com
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Revenue</p>
-                      <p class="card-title">$ 1,345<p>
+                      <p class="card-category">Transaksi</p>
+                      <p class="card-title">-<p>
                     </div>
                   </div>
                 </div>
@@ -223,19 +205,19 @@ Coded by www.creative-tim.com
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="card card-stats">
               <div class="card-body ">
                 <div class="row">
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-vector text-danger"></i>
+                      <i class="nc-icon nc-circle-10 text-danger"></i>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="numbers">
-                      <p class="card-category">Errors</p>
-                      <p class="card-title">23<p>
+                      <p class="card-category">Pelanggan</p>
+                      <p class="card-title">-<p>
                     </div>
                   </div>
                 </div>
@@ -249,7 +231,7 @@ Coded by www.creative-tim.com
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
+          <!-- <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
               <div class="card-body ">
                 <div class="row">
@@ -265,18 +247,18 @@ Coded by www.creative-tim.com
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> 
               <div class="card-footer ">
                 <hr>
                 <div class="stats">
                   <i class="fa fa-refresh"></i>
                   Update now
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header ">
@@ -318,8 +300,8 @@ Coded by www.creative-tim.com
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-8">
+          </div> -->
+          <!-- <div class="col-md-8">
             <div class="card card-chart">
               <div class="card-header">
                 <h5 class="card-title">NASDAQ: AAPL</h5>
@@ -338,7 +320,7 @@ Coded by www.creative-tim.com
                   <i class="fa fa-check"></i> Data information certified
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -347,18 +329,18 @@ Coded by www.creative-tim.com
           <div class="row">
             <nav class="footer-nav">
               <ul>
-                <li><a href="https://www.creative-tim.com" target="_blank">Creative Tim</a></li>
-                <li><a href="https://www.creative-tim.com/blog" target="_blank">Blog</a></li>
-                <li><a href="https://www.creative-tim.com/license" target="_blank">Licenses</a></li>
+                <li><a href="https://www.creative-tim.com" target="_blank">WaroenkQu</a></li>
+                <!-- <li><a href="https://www.creative-tim.com/blog" target="_blank">Blog</a></li>
+                <li><a href="https://www.creative-tim.com/license" target="_blank">Licenses</a></li> -->
               </ul>
             </nav>
-            <div class="credits ml-auto">
+            <!-- <div class="credits ml-auto">
               <span class="copyright">
                 © <script>
                   document.write(new Date().getFullYear())
                 </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
               </span>
-            </div>
+            </div> -->
           </div>
         </div>
       </footer>
