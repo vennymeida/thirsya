@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +25,17 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/login', function () {
   return view('auth/login');
 });
-
-Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Auth::routes();
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+
 
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/admin', 'AdminController@index');
 //Route::get('/user', 'UserController@index');
-Route::get('/user', [UserController::class, 'index']);
-Route::get('/admin', [AdminController::class, 'index']);
+// Route::get('/home', [HomeController::class, 'index']);
+Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/index', [AdminController::class, 'index'])->name('admin');
+
+Route::get('admin', function () { return view('admin'); })->middleware('checkRole:admin');
+Route::get('user', function () { return view('user'); })->middleware(['checkRole:user,admin']);

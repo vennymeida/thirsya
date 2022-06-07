@@ -13,6 +13,7 @@ class UserController extends Controller
 
     public function index()
     {
+        // if (request()->user()->hasRole('usr')) {
         if (request()->user()->hasRole('user')) {
             return view('user.index');
         } else {
