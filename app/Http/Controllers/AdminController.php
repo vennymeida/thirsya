@@ -15,9 +15,13 @@ class AdminController extends Controller
     {
         // if (request()->user()->hasRole('adm')) {
         if (request()->user()->hasRole('admin')) {
-            return view('admin.index');
+            return view('admin.dashboard');
         } else {
             return redirect('/');
         } 
+    }
+
+    public function dashboard(){
+        return view('admin.dashboard');
     }
 }

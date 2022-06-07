@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -53,15 +53,16 @@ class LoginController extends Controller
 //         return '/user/index';
 //     }       
 // }
-//     public function redirectTo (){
-//     if (auth()->user()->hasRole('user')) {
-//         return route('user');
-//     }
+    public function redirectTo (){
 
-//     if (auth()->user()->hasRole('admin')){
-//         return route('admin');
-//     }
-// }
+    if (auth()->user()->hasRole('user')){
+        return '/dashboardU';
+    }
+
+    if (auth()->user()->hasRole('admin')){
+        return '/dashboard';
+    }
+}
 
 
         // protected function redirectTo(){

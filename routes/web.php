@@ -34,8 +34,8 @@ Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 //Route::get('/admin', 'AdminController@index');
 //Route::get('/user', 'UserController@index');
 // Route::get('/home', [HomeController::class, 'index']);
-Route::get('/user', [UserController::class, 'index'])->name('user');
-Route::get('/index', [AdminController::class, 'index'])->name('admin');
+Route::get('/dashboardU', [UserController::class, 'dashboardU'])->name('user');
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin');
 
-Route::get('admin', function () { return view('admin'); })->middleware('checkRole:admin');
-Route::get('user', function () { return view('user'); })->middleware(['checkRole:user,admin']);
+// Route::get('admin', function () { return view('admin'); })->middleware('checkRole:admin');
+// Route::get('user', function () { return view('user'); })->middleware(['checkRole:user,admin']);

@@ -39,11 +39,11 @@ class HomeController extends Controller
     {
   
         if ($request->user()->hasRole('user')) {
-            return response()->view('user.index');
+            return response()->view('user.dashboardU');
         }
 
         else if($request->user()->hasRole('admin')){
-            return response()->view('admin.index');
+            return response()->view('admin.dashboard');
         }
 
         else

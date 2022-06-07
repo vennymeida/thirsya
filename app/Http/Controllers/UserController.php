@@ -15,9 +15,13 @@ class UserController extends Controller
     {
         // if (request()->user()->hasRole('usr')) {
         if (request()->user()->hasRole('user')) {
-            return view('user.index');
+            return view('user.dashboardU');
         } else {
             return redirect('/');
         } 
+    }
+
+    public function dashboardU(){
+        return view('user.dashboardU');
     }
 }
