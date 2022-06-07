@@ -17,32 +17,32 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
-            <a href="./dashboard">
+          <li class=" nav-item {{ set_active('admin') }}">
+            <a class="nav-link" href="{{ route('admin') }}">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li>
-            <a href="./profil">
+          <li class=" nav-item {{ set_active('Adminprofil') }}">
+            <a class="nav-link" href="{{ route('Adminprofil') }}">
               <i class="nc-icon nc-single-02"></i>
               <p>Admin Profile</p>
             </a>
           </li>
-          <li>
-            <a href="./tables.blade.php">
+          <li class=" nav-item ">
+            <a class="nav-link" href="./tables.blade.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>List Barang</p>
             </a>
           </li>
-          <li>
-            <a href="./tables.blade.php">
+          <li class=" nav-item ">
+            <a class="nav-link" href="./tables.blade.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>List Pembeli</p>
             </a>
           </li>
-          <li>
-            <a href="./tables.blade.php">
+          <li class=" nav-item ">
+            <a class="nav-link" href="./tables.blade.php">
               <i class="nc-icon nc-tile-56"></i>
               <p>List Transaksi</p>
             </a>
