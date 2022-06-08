@@ -45,7 +45,10 @@ Route::group(['middleware' => 'auth'], function () {
   
   Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin');
   Route::get('/profil', [AdminController::class, 'profil'])->name('Adminprofil');
-  Route::patch('/profil/update', [ProfilController::class, 'update'])->name('profil.update');
+  // Route::patch('/profil/update', [ProfilController::class, 'update'])->name('profil.update');
+  Route::get('/barang', [AdminController::class, 'barang'])->name('Adminbarang');
+  Route::get('/pembeli', [AdminController::class, 'pembeli'])->name('Adminpembeli');
+  Route::get('/transaksi', [AdminController::class, 'transaksi'])->name('Admintransaksi');
 });
 
 

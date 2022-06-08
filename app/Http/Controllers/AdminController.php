@@ -28,4 +28,16 @@ class AdminController extends Controller
     public function profil(){
         return view('admin.profil');
     }
+
+    public function barang(){
+        return view('admin.barang');
+    }
+
+    public function pembeli(){
+        return view('admin.pembeli');
+    }
+
+    public function transaksi(){
+        return view('admin.transaksi');
+    }
 }

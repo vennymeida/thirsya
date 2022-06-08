@@ -29,20 +29,20 @@
               <p>Admin Profile</p>
             </a>
           </li>
-          <li class=" nav-item ">
-            <a class="nav-link" href="./tables.blade.php">
+          <li class=" nav-item {{ set_active('Adminbarang') }}">
+            <a class="nav-link" href="{{ route('Adminbarang') }}">
               <i class="nc-icon nc-tile-56"></i>
               <p>List Barang</p>
             </a>
           </li>
-          <li class=" nav-item ">
-            <a class="nav-link" href="./tables.blade.php">
+          <li class=" nav-item {{ set_active('Adminpembeli') }}">
+            <a class="nav-link" href="{{ route('Adminpembeli') }}">
               <i class="nc-icon nc-tile-56"></i>
               <p>List Pembeli</p>
             </a>
           </li>
-          <li class=" nav-item ">
-            <a class="nav-link" href="./tables.blade.php">
+          <li class=" nav-item {{ set_active('Admintransaksi') }}">
+            <a class="nav-link" href="{{ route('Admintransaksi') }}">
               <i class="nc-icon nc-tile-56"></i>
               <p>List Transaksi</p>
             </a>
