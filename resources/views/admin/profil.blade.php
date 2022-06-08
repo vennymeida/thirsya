@@ -27,7 +27,7 @@
                 <h5 class="card-title">Edit Profile</h5>
               </div>
               <div class="card-body">
-                <form method="POST" action="{{ route('adminUpdateInfo') }}">
+                <form method="post" action="{{ route('profil.update') }}">@method('patch') @csrf
                   <div class="row">
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
