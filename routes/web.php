@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\Auth\LoginController;
 
 
@@ -41,12 +42,14 @@ Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/dashboardU', [UserController::class, 'dashboardU'])->name('user');
 
 Route::group(['middleware' => 'auth'], function () {
-  Route::resource('profil', ProfilController::class);
+  // Route::resource('profil', ProfilController::class);
+  Route::resource('barang',  BarangController::class);
   
   Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin');
   Route::get('/profil', [AdminController::class, 'profil'])->name('Adminprofil');
   // Route::patch('/profil/update', [ProfilController::class, 'update'])->name('profil.update');
-  Route::get('/barang', [AdminController::class, 'barang'])->name('Adminbarang');
+  // Route::get('/barang', [BarangController::class, 'index'])->name('Adminbarang');
+  // Route::get('/barang', [BarangController::class, 'create']);
   Route::get('/pembeli', [AdminController::class, 'pembeli'])->name('Adminpembeli');
   Route::get('/transaksi', [AdminController::class, 'transaksi'])->name('Admintransaksi');
 });

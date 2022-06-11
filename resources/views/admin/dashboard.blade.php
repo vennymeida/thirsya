@@ -1,6 +1,6 @@
 @extends('layouts.layoutAdmin')
 @include('layouts.sidebarAdmin')
-@include('layouts/navbarAdmin')
+@include('layouts.navbarAdmin')
 @section('content')
 
       <div class="content">

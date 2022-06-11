@@ -29,8 +29,8 @@
               <p>Admin Profile</p>
             </a>
           </li>
-          <li class=" nav-item {{ set_active('Adminbarang') }}">
-            <a class="nav-link" href="{{ route('Adminbarang') }}">
+          <li class=" nav-item {{ set_active('barang') }}">
+            <a class="nav-link" href='\barang'>
               <i class="nc-icon nc-tile-56"></i>
               <p>List Barang</p>
             </a>
