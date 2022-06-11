@@ -105,9 +105,10 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nama_barang)
     {
-        //
+        $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
+        return view('admin.editB',['barangs'=>$barangs]);   
     }
 
     /**
@@ -117,9 +118,40 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nama_barang)
     {
-        //
+         //melakukan validasi data
+         $request->validate([
+            'nama_barang' => 'required',
+            'harga' => 'required',
+            'stok' => 'required',
+            'keterangan' => 'required',
+            'foto'=> 'required',
+        ]);
+
+        $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
+        $barangs->nama_barang = $request->get('nama_barang');
+        $barangs->harga = $request->get('harga');
+        $barangs->stok = $request->get('stok');
+        $barangs->keterangan = $request->get('keterangan');
+        
+        if ($barangs->foto && file_exists(storage_path('app/public/'. $barangs->foto))) {
+            Storage::delete('public/'. $barangs->foto);
+        }
+
+          $image_name = '';
+        if ($request->file('foto')) {
+        $image_name = $request->file('foto')->store('images', 'public');
+    }
+        $barangs->foto = $image_name;
+        $barangs->save();
+
+        
+       
+        
+        //jika data berhasil diupdate, akan kembali ke halaman utama
+        return redirect()->route('barang.index')
+            ->with('success', 'Barang Berhasil Diupdate');
     }
 
     /**
