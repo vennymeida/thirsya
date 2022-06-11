@@ -35,7 +35,7 @@
                     <td><img style="width: 80px; height: 80px; overflow: hidden" class="rounded-circle" src="{{asset('storage/'.$brg->foto)}}"></td>
                     <td>
                       <form action="#" method="POST">
-                        <a class="btn btn-info btn-sm" href="#">Show</a>
+                        <a class="btn btn-info btn-sm" href="{{ route('barang.show',$brg->nama_barang) }}">Show</a>
                         <a class="btn btn-primary btn-sm" href="#">Edit</a>
                           @csrf
                           @method('DELETE')
