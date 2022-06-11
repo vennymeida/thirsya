@@ -34,12 +34,12 @@
                     <td>{{ $brg ->keterangan }}</td>
                     <td><img style="width: 80px; height: 80px; overflow: hidden" class="rounded-circle" src="{{asset('storage/'.$brg->foto)}}"></td>
                     <td>
-                      <form action="#" method="POST">
+                      <form action="{{ route('barang.destroy',['barang'=>$brg->nama_barang]) }}" method="POST">
                         <a class="btn btn-info btn-sm" href="{{ route('barang.show',$brg->nama_barang) }}">Show</a>
                         <a class="btn btn-primary btn-sm" href="#">Edit</a>
                           @csrf
                           @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah {{$brg->nama_barang}} akan dihapus?')">Delete</button>
                          
                       </form> 
                     </td>
