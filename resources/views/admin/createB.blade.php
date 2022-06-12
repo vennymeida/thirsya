@@ -4,7 +4,7 @@
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center align-items-center">
-        <div class="card" style="width: 24rem;">
+        <div class="card" style="width: 24rem; margin-top: 50px;">
             <div class="card-header">
             Tambah Barang
             </div>
@@ -15,7 +15,10 @@
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
-                        @endforeach
+              
+              
+              
+                            @endforeach
                     </ul>
                 </div>
                 @endif

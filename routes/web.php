@@ -7,6 +7,7 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\Auth\LoginController;
 
 
@@ -44,6 +45,8 @@ Route::get('/dashboardU', [UserController::class, 'dashboardU'])->name('user');
 Route::group(['middleware' => 'auth'], function () {
   // Route::resource('profil', ProfilController::class);
   Route::resource('barang',  BarangController::class);
+  Route::resource('transaksi',  TransaksiController::class);
+  Route::resource('pembeli',  PembeliController::class);
   
   Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin');
   Route::get('/profil', [AdminController::class, 'profil'])->name('Adminprofil');
@@ -51,7 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
   // Route::get('/barang', [BarangController::class, 'index'])->name('Adminbarang');
   // Route::get('/barang', [BarangController::class, 'create']);
   Route::get('/pembeli', [AdminController::class, 'pembeli'])->name('Adminpembeli');
-  Route::get('/transaksi', [AdminController::class, 'transaksi'])->name('Admintransaksi');
+  // Route::get('/transaksi', [AdminController::class, 'transaksi'])->name('Admintransaksi');
+  Route::get('/transaksi/cetak_pdf', [TransaksiController::class, 'cetak_transaksi'])->name('cetak_transaksi');
 });
 
 
