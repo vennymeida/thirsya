@@ -33,8 +33,8 @@
                     <td>{{ $pem ->email }}</td>
                     <td>{{ $pem ->password }}</td>
                     <td>
-                      <form action="{{ route('pembeli.destroy',['pembeli'=>$pem->nama_pembeli]) }}" method="POST">
-                      <a class="btn btn-primary btn-sm" href="{{ route('pembeli.edit',$trn->id) }}">Edit</a>
+                      <form action="#" method="POST">
+                      <a class="btn btn-primary btn-sm" href="#">Edit</a>
                           @csrf
                           @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah {{$pem->nama_barang}} akan dihapus?')">Delete</button>
@@ -49,7 +49,6 @@
               </div>
             </div>
   </div>
-  </div>
-  </div>
+
   {{$paginate-> links()}}
 @endsection

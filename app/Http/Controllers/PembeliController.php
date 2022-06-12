@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class PembeliController extends Controller
 {
@@ -14,8 +17,8 @@ class PembeliController extends Controller
     public function index()
     {
         if (request()->user()->hasRole('admin')) {
-            $users = Pembeli::all();
-            $paginate = Pembeli::orderBy('id', 'asc')->paginate(3);
+            $users = User::all();
+            $paginate = User::orderBy('id', 'asc')->paginate(3);
            return view('admin.pembeli', ['users' => $users ,'paginate'=>$paginate]);
         } else {
             return redirect('/');

@@ -35,14 +35,14 @@
               <p>List Barang</p>
             </a>
           </li>
-          <li class=" nav-item {{ set_active('Adminpembeli') }}">
-            <a class="nav-link" href="{{ route('Adminpembeli') }}">
+          <li class=" nav-item {{ set_active('pembeli') }}">
+            <a class="nav-link" href="\pembeli">
               <i class="nc-icon nc-tile-56"></i>
               <p>List Pembeli</p>
             </a>
           </li>
-          <li class=" nav-item {{ set_active('Admintransaksi') }}">
-            <a class="nav-link" href="{{ route('Admintransaksi') }}">
+          <li class=" nav-item {{ set_active('transaksi') }}">
+            <a class="nav-link" href="\transaksi">
               <i class="nc-icon nc-tile-56"></i>
               <p>List Transaksi</p>
             </a>
