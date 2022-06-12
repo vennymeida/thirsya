@@ -7,7 +7,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title"> Table Pembeli</h4>
+            <h4 class="card-title"> Table User</h4>
            
           </div>
             <div class="card-body">
@@ -33,11 +33,11 @@
                     <td>{{ $pem ->email }}</td>
                     <td>{{ $pem ->password }}</td>
                     <td>
-                      <form action="#" method="POST">
-                      <a class="btn btn-primary btn-sm" href="#">Edit</a>
+                      <form action="{{ route('pembeli.destroy',['pembeli'=>$pem->username]) }}" method="POST">
+                      <a class="btn btn-primary btn-sm" href="{{ route('pembeli.edit',$pem->username) }}">Edit</a>
                           @csrf
                           @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah {{$pem->nama_barang}} akan dihapus?')">Delete</button>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah {{$pem->username}} akan dihapus?')">Delete</button>
                       </form> 
                     </td>
                     </tr>

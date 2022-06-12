@@ -21,7 +21,7 @@
         </ul>
     </div>
  @endif
- <form method="post" action="{{ route('pembeli.update', $Pembeli->username }}" enctype="multipart/form-data" id="myForm">
+ <form method="post" action="{{ route('pembeli.update', $users->username) }}" enctype="multipart/form-data" id="myForm">
  @csrf
  @method('PUT')
  <div class="form-group">

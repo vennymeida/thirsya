@@ -38,7 +38,7 @@
           <li class=" nav-item {{ set_active('pembeli') }}">
             <a class="nav-link" href="\pembeli">
               <i class="nc-icon nc-tile-56"></i>
-              <p>List Pembeli</p>
+              <p>List User</p>
             </a>
           </li>
           <li class=" nav-item {{ set_active('transaksi') }}">

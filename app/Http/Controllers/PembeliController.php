@@ -54,7 +54,7 @@ class PembeliController extends Controller
      */
     public function show($id)
     {
-        $users = Pembeli::all()->where('id', $id)->first();
+        $users = User::all()->where('id', $id)->first();
         return view('admin.detailP',['users'=>$users]);
     }
 
@@ -66,7 +66,7 @@ class PembeliController extends Controller
      */
     public function edit($id)
     {
-        $users = Pembeli::all()->where('id', $id)->first();
+        $users = User::all()->where('id', $id)->first();
         return view('admin.editP',['users'=>$users]);
     }
 
