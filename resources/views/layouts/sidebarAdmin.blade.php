@@ -29,6 +29,12 @@
               <p>Admin Profile</p>
             </a>
           </li>
+          <li class=" nav-item {{ set_active('kategori') }}">
+            <a class="nav-link" href='\kategori'>
+              <i class="nc-icon nc-tile-56"></i>
+              <p>List Kategori</p>
+            </a>
+          </li>
           <li class=" nav-item {{ set_active('barang') }}">
             <a class="nav-link" href='\barang'>
               <i class="nc-icon nc-tile-56"></i>
