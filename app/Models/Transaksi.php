@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaksi extends Model
 {
     use HasFactory;
-
+    protected $table = 'transaksi';
     protected $primaryKey = 'id'; // Memanggil isi DB Dengan primarykey
     /**
     * The attributes that are mass assignable.

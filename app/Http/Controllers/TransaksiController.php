@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
+use App\Models\Barang;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use PDF;
@@ -19,7 +21,7 @@ class TransaksiController extends Controller
     {
         if (request()->user()->hasRole('admin')) {
             $transaksi = Transaksi::all();
-            $paginate = Transaksi::orderBy('id', 'asc')->paginate(10);
+            $paginate = Transaksi::orderBy('id', 'asc')->paginate(3);
            return view('admin.transaksi', ['transaksi' => $transaksi ,'paginate'=>$paginate]);
         } else {
             return redirect('/');
