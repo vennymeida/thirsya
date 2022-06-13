@@ -40,13 +40,14 @@
                 <div class="form-group">
                     <label for="stok">Stok</label>
                     <input type="stok" name="stok" class="form-control" id="stok" ariadescribedby="stok" >
+                    </div>
                 <div class="form-group">
                     <label for="keterangan">keterangan</label>
                     <input type="keterangan" name="keterangan" class="form-control" id="keterangan" ariadescribedby="keterangan" >
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto</label> 
-                    <input type="file" name="foto" class="form-control" id="foto" aria-describedby="foto"> 
+                    <input type="file" name="foto" class="form-control" id="foto" aria-describedby="foto" style="opacity:1;position:relative;!important"> 
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>

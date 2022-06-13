@@ -183,8 +183,9 @@ class BarangController extends Controller
         //$produk = Barang::with('kategori')->limit(6)->latest()->get()>paginate(3);
        
   
-        $paginate = Barang::paginate();
+     
         $barang_query = Barang::with('kategori')->where('kategori_id', $id);
+        $paginate = $barang_query->paginate(3);
         $barangs = $barang_query->get();
         $kategori = Kategori::all();
 

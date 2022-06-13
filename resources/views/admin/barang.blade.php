@@ -11,6 +11,7 @@
            
           </div>
             <div class="card-body">
+            <a class="btn btn-danger btn-sm" href="{{ route('barang.index') }}">Refresh</a>
             <a class="btn btn-warning btn-sm" href="{{ route('barang.create') }}">Tambah</a> 
 
             @foreach($kategori as $item)
