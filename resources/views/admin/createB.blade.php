@@ -22,6 +22,14 @@
                 <form method="post" action="{{ route('barang.store') }}" enctype="multipart/form-data" id="myForm">
                 @csrf
                 <div class="form-group">
+                        <label for="Kategori">Kategori</label>
+                        <select class="form-control" name="Kategori">
+                            @foreach($kategoris as $ktg)
+                                <option value="{{$ktg->id}}" >{{$ktg->nama}} </option>
+                            @endforeach
+                        </select>
+                    </div>
+                <div class="form-group">
                     <label for="nama_barang">Nama Barang</label>
                     <input type="text" name="nama_barang" class="form-control" id="nama_barang" aria-describedby="nama_barang" >
                 </div>

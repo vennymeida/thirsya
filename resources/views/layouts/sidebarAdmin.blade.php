@@ -35,7 +35,7 @@
               <p>List Kategori</p>
             </a>
           </li>
-          <li class=" nav-item {{ set_active('barang') }}">
+          <li class=" nav-item {{ set_active('barangs') }}">
             <a class="nav-link" href='\barang'>
               <i class="nc-icon nc-tile-56"></i>
               <p>List Barang</p>

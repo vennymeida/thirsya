@@ -12,10 +12,16 @@
           </div>
             <div class="card-body">
             <a class="btn btn-warning btn-sm" href="{{ route('barang.create') }}">Tambah</a> 
+
+            @foreach($kategori as $item)
+                <a href="{{ route('list.withCategory', $item->id)}}" class="btn btn-primary btn-sm">{{$item->nama}}</a>
+            @endforeach
+       
               <div class="table-responsive">
                 <table class="table">
                   <thead class="text-primary">
                     <tr>
+                        <th>Kategori</th>
                         <th>Nama Barang</th>
                         <th>Harga</th>
                         <th>Stok</th>
@@ -28,6 +34,7 @@
                     
                     @foreach ($paginate as $brg)
                     <tr>
+                    <td>{{ $brg ->Kategori -> nama}}</td>
                     <td>{{ $brg ->nama_barang }}</td>
                     <td>{{ $brg ->harga }}</td>
                     <td>{{ $brg ->stok }}</td>

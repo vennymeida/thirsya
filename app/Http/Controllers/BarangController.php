@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Barang;
+use App\Models\Kategori;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
@@ -16,14 +17,15 @@ class BarangController extends Controller
      */
     public function index()
     {
-        
-         if (request()->user()->hasRole('admin')) {
-            $barangs = Barang::all();
-            $paginate = Barang::orderBy('id', 'asc')->paginate(3);
-           return view('admin.barang', ['barangs' => $barangs ,'paginate'=>$paginate]);
-        } else {
-            return redirect('/');
-        } 
+    if (request()->user()->hasRole('admin')) {
+        $barangs = Barang::all();
+        $paginate = Barang::orderBy('id', 'asc')->paginate(3);
+        $listbarang = Barang::with('kategori')->latest()->paginate(8);
+        $kategori = Kategori::paginate(3);
+       return view('admin.barang', ['barangs' => $barangs ,'paginate'=>$paginate, 'kategori' => $kategori]);
+    } else {
+        return redirect('/');
+    }
     }
 
     /**
@@ -31,10 +33,16 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function create()
+    // {
+    //     $barangs = Barang::all();
+    //     return view('admin.createB',['barang' => $barangs]);
+    // }
+
     public function create()
     {
-        $barangs = Barang::all();
-        return view('admin.createB',['barang' => $barangs]);
+        $kategoris = Kategori::all();
+        return view('admin.createB',['kategoris' => $kategoris]);
     }
 
     /**
@@ -47,35 +55,36 @@ class BarangController extends Controller
     {
        //melakukan validasi data
        $request->validate([
+        'Kategori' => 'required',
         'nama_barang' => 'required',
         'harga' => 'required',
         'stok' => 'required',
         'keterangan' => 'required',
         'foto'=> 'required',
     ]);
-        // 'JenisKelamin'=> 'required',
-        // 'Email'=> 'required',
-        // 'Alamat'=> 'required',
-        // 'TanggalLahir'=> 'required',
+       
         $image_name = '';
     if ($request->file('foto')) {
         $image_name = $request->file('foto')->store('images', 'public');
     }
     //fungsi eloquent untuk menambah data
+    $kategoris = new Kategori;
     $barangs= new Barang;
+    $kategoris -> id = $request->get('Kategori');
+    $barangs->kategori()->associate($kategoris);
+    
     $barangs->nama_barang = $request->get('nama_barang');
     $barangs->harga = $request->get('harga');
     $barangs->stok = $request->get('stok');
     $barangs->keterangan = $request->get('keterangan');
     $barangs->foto = $image_name;
-    $barangs->save();
+    // $barangs->save();
     
-    // $kelas = new Kelas;
-    // $kelas->id = $request->get('Kelas');
+    
     
     //Fungsi eloquent untuk menambah data dengan relasi belongsTo
-    // $barang->kelas()->associate($kelas);
-    // $barang->save();
+    
+    $barangs->save();
 
 
     // Mahasiswa::create($request->all());
@@ -166,4 +175,25 @@ class BarangController extends Controller
         $barangs->delete($barangs);
         return redirect()->route('barang.index');
     }
+
+    public function listBarangKategori($nama_barang)
+    {
+        // $barangs = Barang::where('kategori_id', $id)->with('kategori')->latest()->paginate(8);
+        // $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
+        $barangs = Barang::where('kategori_id', $nama_barang)->with('kategori')->latest()->paginate(8);
+        $paginate = Barang::orderBy('id', 'asc')->paginate(3);
+        $kategori = Kategori::paginate(3);
+        return view('admin.barang', ['barangs' => $barangs, 'paginate'=>$paginate, 'kategori' => $kategori]);
+    }
+    // public function listBarangKategori(Request $request, $nama_barang)
+    // {
+    //     // $barangs = Barang::where('kategori_id', $id)->with('kategori')->latest()->paginate(8);
+    //     // $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
+        
+    //     $kategoris = Barang::where('nama_barang', $nama_barang)->get();
+    //     $paginate = Kategori::paginate(3);
+    //     return view('admin.barang', ['kategoris' => $kategoris, 'paginate'=>$paginate, 'nama_barang' => $nama_barang ]);
+    // }
+
+   
 }

@@ -21,6 +21,7 @@ class CreateBarangsTable extends Migration
             $table->string('keterangan');
             $table->string('foto');
             $table->timestamps();
+            
         });
     }
 

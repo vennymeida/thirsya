@@ -11,10 +11,15 @@ use App\Models\Kategori;
 class Kategori extends Model
 {
     use HasFactory;
-    protected $table = 'kategori';
+    
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'nama'
     ];
+
+    public function barang()
+    {
+        return $this->hasMany(Barang::class);
+    }
 }
