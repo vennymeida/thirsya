@@ -32,7 +32,7 @@
                   </thead>
                   <tbody>
                     
-                    @foreach ($paginate as $brg)
+                    @foreach ($barangs as $brg)
                     <tr>
                     <td>{{ $brg ->Kategori -> nama}}</td>
                     <td>{{ $brg ->nama_barang }}</td>
@@ -59,5 +59,5 @@
             </div>
   </div>
 
-  {{$paginate-> links()}}
+  {{$paginate->links()}}
 @endsection

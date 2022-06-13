@@ -18,10 +18,10 @@ class BarangController extends Controller
     public function index()
     {
     if (request()->user()->hasRole('admin')) {
-        $barangs = Barang::all();
-        $paginate = Barang::orderBy('id', 'asc')->paginate(3);
-        $listbarang = Barang::with('kategori')->latest()->paginate(8);
-        $kategori = Kategori::paginate(3);
+        $barangs = Barang::paginate(3)->all();
+        $paginate = Barang::paginate(3);
+        // $listbarang = Barang::with('kategori')->latest()->paginate(3);
+        $kategori = Kategori::all();
        return view('admin.barang', ['barangs' => $barangs ,'paginate'=>$paginate, 'kategori' => $kategori]);
     } else {
         return redirect('/');
@@ -79,8 +79,6 @@ class BarangController extends Controller
     $barangs->keterangan = $request->get('keterangan');
     $barangs->foto = $image_name;
     // $barangs->save();
-    
-    
     
     //Fungsi eloquent untuk menambah data dengan relasi belongsTo
     
@@ -176,14 +174,24 @@ class BarangController extends Controller
         return redirect()->route('barang.index');
     }
 
-    public function listBarangKategori($nama_barang)
+    public function listBarangKategori($id)
     {
+        DB::enableQueryLog();
+      
         // $barangs = Barang::where('kategori_id', $id)->with('kategori')->latest()->paginate(8);
         // $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
-        $barangs = Barang::where('kategori_id', $nama_barang)->with('kategori')->latest()->paginate(8);
-        $paginate = Barang::orderBy('id', 'asc')->paginate(3);
-        $kategori = Kategori::paginate(3);
-        return view('admin.barang', ['barangs' => $barangs, 'paginate'=>$paginate, 'kategori' => $kategori]);
+        //$produk = Barang::with('kategori')->limit(6)->latest()->get()>paginate(3);
+       
+  
+        $paginate = Barang::paginate();
+        $barang_query = Barang::with('kategori')->where('kategori_id', $id);
+        $barangs = $barang_query->get();
+        $kategori = Kategori::all();
+
+        //return view('admin.barang', compact('barangs', 'kategori'));
+   
+      
+        return view('admin.barang', ['barangs' => $barangs, 'paginate' => $paginate, 'kategori' => $kategori]);
     }
     // public function listBarangKategori(Request $request, $nama_barang)
     // {

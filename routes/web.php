@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::resource('transaksi',  TransaksiController::class);
   Route::resource('pembeli',  PembeliController::class);
   Route::resource('kategori',  KategoriController::class);
-  Route::get('barang/kategori/{nama_barang}', [BarangController::class, 'listBarangKategori'])->name('list.withCategory');
+  Route::get('barang/kategori/{id}', [BarangController::class, 'listBarangKategori'])->name('list.withCategory');
   Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin');
   Route::get('/profil', [AdminController::class, 'profil'])->name('Adminprofil');
   // Route::patch('/profil/update', [ProfilController::class, 'update'])->name('profil.update');
