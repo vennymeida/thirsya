@@ -106,6 +106,14 @@ class PembeliController extends Controller
         return view('admin.barang', ['role_users' => $role_users, 'paginate' => $paginate, 'role' => $role]);
     }
 
+    public function getUserFilter(Request $request, $role)
+    {
+        $data = Role_Users::where('role_id', $role)->get();
+        $roleNih = $role;
+
+        return view('admin.pembeli', compact('data', 'roleNih'));
+    }
+
     public function searchUser(Request $request)
     {
         $keyword = $request->searchUser;

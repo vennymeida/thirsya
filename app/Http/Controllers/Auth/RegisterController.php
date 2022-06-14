@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -42,6 +42,9 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function redirectTo (){
+            return '/beranda';
+        }
     /**
      * Get a validator for an incoming registration request.
      *

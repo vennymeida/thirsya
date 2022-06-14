@@ -1,24 +1,36 @@
 @extends('layouts.layoutBerandaUser')
 @section('content')
-<!-- products -->
-	<div class="product-section mt-150 mb-150">
+<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
-
-			
-			@foreach($barangs as $brg)
-			<div class="row product-lists">
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="shop/{{$brg->id}}"><img src="{{asset('storage/'.$brg->foto)}}" alt=""></a>
-						</div>
-						<h3>{{$brg->nama_barang }}</h3>
-						<p class="product-price"> {{$brg->harga }} </p>
-						<a href="add-to-cart/{{$brg->id}}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Ngalamware</p>
+						<h1>Shop</h1>
 					</div>
 				</div>
 			</div>
-			@endforeach
+		</div>
+	</div>
+<!-- products -->
+	<div class="product-section mt-100 mb-50">
+		<div class="container">
+			
+			<div class="row product-lists justify-content">
+				@foreach($barangs as $brg)
+					<div class="col-md-3 mb-10 text-center strawberry ">
+						<div class="single-product-item card shadow p-4 mb-5 bg-white" style="width: 295px; text-decoration:none; color:black; border-radius: 50px;">
+							<div class="product-image">
+								<a href="shop/{{$brg->id}}"><img src="{{asset('storage/'.$brg->foto)}}" class="card-img-top" height="175px" alt=""></a>
+							</div>
+							<h3>{{$brg->nama_barang }}</h3>
+							<p class="product-price">Rp. {{$brg->harga }} </p>
+							<a href="add-to-cart/{{$brg->id}}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						</div>
+					</div>
+				@endforeach
+			</div>
+			
 
 			
 		</div>

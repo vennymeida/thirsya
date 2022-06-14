@@ -55,7 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('barang/kategori/{id}', [BarangController::class, 'listBarangKategori'])->name('list.withCategory');
   Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin');
   Route::get('/profil', [AdminController::class, 'profil'])->name('Adminprofil');
-  Route::get('barang/role/{id}', [PembeliController::class, 'listUserRole'])->name('list.role');
+  Route::get('pembeli/role/{id}', [PembeliController::class, 'listUserRole'])->name('list.role');
+  // Route::get('userfilter/{id}', [PembeliController::class, 'getUserFilter'])->name('pembeli.filter');
   // Route::patch('/profil/update', [ProfilController::class, 'update'])->name('profil.update');
   // Route::get('/barang', [BarangController::class, 'index'])->name('Adminbarang');
   // Route::get('/barang', [BarangController::class, 'create']);
@@ -68,6 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
 
   Route::group(['middleware' => 'auth'], function () {
     Route::resource('shop',  ShopController::class);
+    Route::resource('user',  UserController::class);
   });
 });
 
