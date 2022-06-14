@@ -25,7 +25,12 @@
 							</div>
 							<h3>{{$brg->nama_barang }}</h3>
 							<p class="product-price">Rp. {{$brg->harga }} </p>
-							<a href="add-to-cart/{{$brg->id}}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+							<form method="post" action="{{ url('add-to-cart') }}/{{ $brg->id }}" >
+                                            @csrf
+												<input type="text" name="jumlah_pesan" class="form-control" required="">
+                                                <button type="submit" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                                            </form>
+							
 						</div>
 					</div>
 				@endforeach

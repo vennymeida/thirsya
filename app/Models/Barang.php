@@ -28,4 +28,9 @@ class Barang extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
+
+    public function cart() 
+	{
+	     return $this->hasMany('App\Cart','barang_id', 'id');
+	}
 }

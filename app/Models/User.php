@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
     return $this->roles()->where('name', $role)->count() == 1;
     }
+
+    public function pesanan() 
+    {
+         return $this->hasMany(Pesanan::class,'user_id', 'id');
+    }
 }

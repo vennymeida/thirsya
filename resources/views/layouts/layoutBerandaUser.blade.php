@@ -67,7 +67,7 @@
 														</form></li>
 								<li>
 									<div class="header-icons">
-										<a class="shopping-cart" href="#" method="post"><i class="fas fa-shopping-cart"></i></a>
+										<a class="shopping-cart" href="/cart" method="post"><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
 							</ul>

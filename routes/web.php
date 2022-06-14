@@ -70,6 +70,10 @@ Route::group(['middleware' => 'auth'], function () {
   Route::group(['middleware' => 'auth'], function () {
     Route::resource('shop',  ShopController::class);
     Route::resource('user',  UserController::class);
+    Route::get('shop/{id}',[ShopController::class,'index']);
+    Route::post('add-to-cart/{id}',[ShopController::class,'pesan']);
+    Route::get('cart',[ShopController::class,'check_out']);
+    Route::delete('cart/{id}', [ShopController::class,'delete']);
   });
 });
 
