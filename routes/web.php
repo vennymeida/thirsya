@@ -64,6 +64,10 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/searchBarang', [BarangController::class, 'searchBarang'])->name('searchBarang');
   Route::get('/search', [KategoriController::class, 'search'])->name('search');
   Route::get('/searchUser', [PembeliController::class, 'searchUser'])->name('searchUser');
+
+  Route::group(['middleware' => 'auth'], function () {
+    
+  });
 });
 
 
