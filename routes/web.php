@@ -11,6 +11,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\PembeliController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Auth\LoginController;
 
 
@@ -66,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/searchUser', [PembeliController::class, 'searchUser'])->name('searchUser');
 
   Route::group(['middleware' => 'auth'], function () {
-    
+    Route::resource('shop',  ShopController::class);
   });
 });
 

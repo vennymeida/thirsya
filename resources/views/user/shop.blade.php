@@ -5,22 +5,20 @@
 		<div class="container">
 
 			
-			@forelse($products as $prod)
+			@foreach($barangs as $brg)
 			<div class="row product-lists">
 				<div class="col-lg-4 col-md-6 text-center strawberry">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="product/{{$prod->id}}"><img src="{{ asset('img/for db/'.$prod->filepath) }}" alt=""></a>
+							<a href="shop/{{$brg->id}}"><img src="{{asset('storage/'.$brg->foto)}}" alt=""></a>
 						</div>
-						<h3>{{ $prod->name }}</h3>
-						<p class="product-price"> {{ $prod->price }} </p>
-						<a href="add-to-cart/{{$prod->id}}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<h3>{{$brg->nama_barang }}</h3>
+						<p class="product-price"> {{$brg->harga }} </p>
+						<a href="add-to-cart/{{$brg->id}}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
 				</div>
 			</div>
-			@empty
-			<p>Empty</p>
-			@endforelse
+			@endforeach
 
 			
 		</div>
