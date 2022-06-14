@@ -40,7 +40,7 @@
         </div>
         <div class="form-group">
             <label for="foto">File</label>
-            <input type="file" name="foto" class="form-control" value="{{ $barangs->foto}}" id="foto" ariadescribedby="foto" >
+            <input type="file" name="foto" class="form-control" id="foto" aria-describedby="foto" style="opacity:1;position:relative;!important">
             <img style="width: 100%" src="{{ asset('./storage/'. $barangs->foto) }}" alt="">
           </div>
        
