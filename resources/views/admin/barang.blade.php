@@ -8,8 +8,16 @@
         <div class="card">
           <div class="card-header">
             <h4 class="card-title"> Table Barang</h4>
-           
+            <form class="form" method="get" action="{{ route('searchBarang') }}">
+              <div class="form-group w-100 mb-3">
+                  <input type="text" name="searchBarang" class="form-control w-80 d-inline" id="searchBarang" placeholder="Search Barang...">
+              </div>
+          </form>
+          @if ($message = Session::get('success'))
+          <div class="alert alert-success">
+              <p>{{ $message }}</p>
           </div>
+          @endif
             <div class="card-body">
             <a class="btn btn-danger btn-sm" href="{{ route('barang.index') }}">Refresh</a>
             <a class="btn btn-warning btn-sm" href="{{ route('barang.create') }}">Tambah</a> 

@@ -14,13 +14,13 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        if (request()->user()->hasRole('admin')) {
-            $kategoris = Kategori::all();
-            $paginate = Kategori::orderBy('id', 'asc')->paginate(3);
-           return view('admin.kategori', ['kategoris' => $kategoris ,'paginate'=>$paginate]);
-        } else {
-            return redirect('/');
-        }
+            if (request()->user()->hasRole('admin')) {
+                $kategoris = Kategori::all();
+                $paginate = Kategori::orderBy('id', 'asc')->paginate(3);
+            return view('admin.kategori', ['kategoris' => $kategoris ,'paginate'=>$paginate]);
+            } else {
+                return redirect('/');
+            }
     }
 
     /**
@@ -118,5 +118,12 @@ class KategoriController extends Controller
         $kategoris = Kategori::all()->where('nama', $nama)->first();
         $kategoris->delete($kategoris);
         return redirect()->route('kategori.index');
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $paginate = Kategori::where('nama', 'like', '%' . request('search') . '%')->paginate(3);
+        return view('admin.kategori', ['paginate'=>$paginate]);
     }
 }

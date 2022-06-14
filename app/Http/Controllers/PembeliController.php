@@ -105,4 +105,11 @@ class PembeliController extends Controller
 
         return view('admin.barang', ['role_users' => $role_users, 'paginate' => $paginate, 'role' => $role]);
     }
+
+    public function searchUser(Request $request)
+    {
+        $keyword = $request->searchUser;
+        $paginate = User::where('username', 'like', '%' . request('searchUser') . '%')->paginate(3);
+        return view('admin.pembeli', ['paginate'=>$paginate]);
+    }
 }

@@ -204,5 +204,13 @@ class BarangController extends Controller
     //     return view('admin.barang', ['kategoris' => $kategoris, 'paginate'=>$paginate, 'nama_barang' => $nama_barang ]);
     // }
 
+    public function searchBarang(Request $request)
+    {
+        $keyword = $request->searchBarang;
+        $paginate = Barang::where('nama_barang', 'like', '%' . request('searchBarang') . '%')->paginate(3);
+        $kategori = Kategori::where('nama', 'like', "%" . $keyword . "%")->paginate(3);
+        // return view('admin.kategori', compact('paginate'))->with('i', (request()->input('page', 1) - 1) * 3);
+        return view('admin.barang', ['paginate'=>$paginate]);
+    }
    
 }

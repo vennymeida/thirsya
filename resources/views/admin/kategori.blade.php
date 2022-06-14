@@ -8,8 +8,17 @@
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title"> Tabel Kategori Produk </h4>
+            <form class="form" method="get" action="{{ route('search') }}">
+              <div class="form-group w-100 mb-3">
+                  <input type="text" name="search" class="form-control w-80 d-inline" id="search" placeholder="Search Kategori...">
               </div>
-           
+          </form>
+          @if ($message = Session::get('success'))
+          <div class="alert alert-success">
+              <p>{{ $message }}</p>
+          </div>
+          @endif
+              </div>
               <div class="card-body">
               <a class="btn btn-warning btn-sm" href="{{ route('kategori.create') }}">Tambah</a> 
                 <div class="table-responsive">
