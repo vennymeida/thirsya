@@ -72,8 +72,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('user',  UserController::class);
     Route::get('shop/{id}',[ShopController::class,'index']);
     Route::post('add-to-cart/{id}',[ShopController::class,'pesan']);
-    Route::get('cart',[ShopController::class,'check_out']);
+    Route::get('cart',[ShopController::class,'cart']);
     Route::delete('cart/{id}', [ShopController::class,'delete']);
+    Route::get('checkout',[ShopController::class,'checkoutAmount'])->name('checkout');
   });
 });
 

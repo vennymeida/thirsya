@@ -76,7 +76,7 @@
 							</tbody>
 						</table>
 						<div class="cart-buttons">
-							<a href="#" class="boxed-btn black">Check Out</a>
+							<a href="{{route('checkout')}}" class="boxed-btn black">Check Out</a>
 						</div>
 					</div>
 				</div>

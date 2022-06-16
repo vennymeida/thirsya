@@ -9,6 +9,7 @@ use App\Models\Pesanan;
 use Auth;
 // use Alert;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
@@ -82,7 +83,7 @@ class ShopController extends Controller
 
     }
 
-    public function check_out()
+    public function cart()
     {
         $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
  	    $cart = [];
@@ -94,6 +95,20 @@ class ShopController extends Controller
         
         return view('user.cart', compact('pesanans', 'cart'));
     }
+
+    public function checkoutAmount(){
+        $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $cart = [];
+       if(!empty($pesanans))
+       {
+           $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();
+
+       }
+
+        return view('user.checkout', ['cart' => $cart, 'pesanans' => $pesanans]);
+
+    }
+
 
     public function delete($id)
     {
@@ -110,6 +125,7 @@ class ShopController extends Controller
         return redirect('cart');
     }
 
+    
     // public function konfirmasi()
     // {
     //     $user = User::where('id', Auth::user()->id)->first();

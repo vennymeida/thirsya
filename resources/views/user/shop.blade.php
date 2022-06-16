@@ -5,7 +5,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<p>Ngalamware</p>
+						<p>WaroenkQu</p>
 						<h1>Shop</h1>
 					</div>
 				</div>
@@ -27,8 +27,12 @@
 							<p class="product-price">Rp. {{$brg->harga }} </p>
 							<form method="post" action="{{ url('add-to-cart') }}/{{ $brg->id }}" >
                                             @csrf
-												<input type="text" name="jumlah_pesan" class="form-control" required="">
-                                                <button type="submit" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+												<input type="text" name="jumlah_pesan" class="form-control" required="" style="border-radius: 50px;">
+												<br>
+												<a><button type="submit" class="cart-btn" style="ont-family: 'Poppins', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border-radius: 50px;border-width: 0px;"><i class="fas fa-shopping-cart " 
+												>
+											</i> Add to Cart</button></a>
+                                                
                                             </form>
 							
 						</div>
