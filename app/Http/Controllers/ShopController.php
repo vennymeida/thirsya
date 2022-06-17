@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Cart;
 use App\Models\Pesanan;
+use App\Models\AlamatPengiriman;
 use Auth;
 // use Alert;
 use Carbon\Carbon;
@@ -99,13 +100,14 @@ class ShopController extends Controller
     public function checkoutAmount(){
         $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
         $cart = [];
+        $alamatpengiriman = AlamatPengiriman::where('user_id', Auth::user()->id)->orderBy('status', 'DESC')->get();
        if(!empty($pesanans))
        {
            $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();
 
        }
 
-        return view('user.checkout', ['cart' => $cart, 'pesanans' => $pesanans]);
+        return view('user.checkout', ['cart' => $cart, 'pesanans' => $pesanans, 'alamatpengiriman' => $alamatpengiriman]);
 
     }
 

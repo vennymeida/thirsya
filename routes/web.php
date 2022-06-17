@@ -13,6 +13,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AlamatPengirimanController;
 
 
 
@@ -75,6 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cart',[ShopController::class,'cart']);
     Route::delete('cart/{id}', [ShopController::class,'delete']);
     Route::get('checkout',[ShopController::class,'checkoutAmount'])->name('checkout');
+    Route::resource('alamat-pengiriman', AlamatPengirimanController::class);
   });
 });
 
