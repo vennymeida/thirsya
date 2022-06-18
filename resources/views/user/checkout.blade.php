@@ -42,7 +42,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($alamatpengiriman->isEmpty())
+                                    @if (empty($alamatpengiriman))
                                     <tr>
                                         <td colspan="4">Data alamat pengiriman masih kosong</td>
                                     </tr>

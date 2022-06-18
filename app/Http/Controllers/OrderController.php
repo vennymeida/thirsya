@@ -8,6 +8,7 @@ use App\Models\Barang;
 use App\Models\Cart;
 use App\Models\AlamatPengiriman;
 use Auth;
+use PDF;
 
 use function App\Helpers\uploadFile;
 
@@ -168,8 +169,10 @@ class OrderController extends Controller
 
     public function cetak($id)
     {
-        $data = CartDetail::where('cart_id', $id)->first();
-        $pdf = PDF::loadview('lp.cetak', ['data' => $data])->setPaper('a4', 'landscape');
+        $data = Pesanan::where('id_pesanans', $id)->first();
+        $barangs =$data->cart;
+        //dd($data->cart[0]->barang);
+        $pdf = PDF::loadview('user.cetak', ['data' => $data])->setPaper('a4', 'potrait');
         return $pdf->stream();
     }
 }

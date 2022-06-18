@@ -24,11 +24,15 @@ class Pesanan extends Model
 
     public function user()
 	{
-		return $this->belongsTo('App\Models\User','user_id', 'id');
+		return $this->belongsTo('App\Models\User','user_id');
 	}
 
 	public function cart() 
 	{
 		 return $this->hasMany('App\Models\Cart','pesanan_id', 'id_pesanans');
+	}
+	public function barang() 
+	{
+		return $this->cart->barang;
 	}
 }

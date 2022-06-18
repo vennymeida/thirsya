@@ -82,6 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('upload/{id}', [OrderController::class, 'showUpload'])->name('showupload');
     Route::post('upload', [OrderController::class, 'uploadBukti'])->name('uploadBukti');
     Route::resource('order',  OrderController::class);
+    Route::get('cetak/{id}', [OrderController::class, 'cetak'])->name('order.cetak');
   });
 });
 

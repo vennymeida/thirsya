@@ -94,7 +94,7 @@ class ShopController extends Controller
             $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();
            
         }else{
-            //return back()->with('error', 'Keranjang Kosong');
+            return back()->with('error', 'Keranjang Kosong');
         }
         
         return view('user.cart', compact('pesanans', 'cart'));
@@ -106,7 +106,7 @@ class ShopController extends Controller
         $lastid_pesanans=Pesanan::orderBy('id_pesanans','desc')->first();
         //$create_pesanans=Pesanan::
        //dd($lastid_pesanans);
-        $alamatpengiriman = AlamatPengiriman::join('pesanans','pesanans.user_id','=','alamat_pengiriman.user_id')->where('pesanans.user_id', Auth::user()->id)->orderBy('status_cart', 'DESC')->get();
+        $alamatpengiriman = AlamatPengiriman::where('user_id', Auth::user()->id)->orderBy('status', 'DESC')->get();
 
        if(!empty($pesanans))
        {

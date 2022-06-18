@@ -29,8 +29,8 @@
                                 <!-- <th>Gambar Produk</th>
                                 <th>Nama Produk</th>
                                 <th>Qty</th>
-                                <th>Subtotal</th> 
-                                <th>Alamat Pengiriman</th>-->
+                                <th>Subtotal</th> -->
+                                <th>Cetak</th>
                                 <th>Status</th>
                                 <th>TOTAL</th> 
                             </tr>
@@ -56,7 +56,9 @@
                                     {{$order->id_pesanans}}
                                 </td>
                           
-                                
+                                <td>
+                                    <a type="submit" href="{{route('order.cetak', $order->id_pesanans)}}" >Cetak</a>
+                                </td>
                                 <td class="py-2 font-weight-bold ">
                                 
                                     @if ($order->bukti_pesanan == "")

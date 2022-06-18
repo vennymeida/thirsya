@@ -10,6 +10,7 @@ class Barang extends Model
     use HasFactory;
 
      // Eloquent akan membuat model mahasiswa menyimpan record di tabel mahasiswa
+     protected $table = 'barangs';
     protected $primaryKey = 'id'; // Memanggil isi DB Dengan primarykey
     /**
     * The attributes that are mass assignable.
@@ -31,6 +32,6 @@ class Barang extends Model
 
     public function cart() 
 	{
-	     return $this->hasMany('App\Cart','barang_id', 'id');
+	     return $this->hasMany('App\Models\Cart','barang_id', 'id');
 	}
 }
