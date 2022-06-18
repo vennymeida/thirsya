@@ -170,9 +170,9 @@ class OrderController extends Controller
     public function cetak($id)
     {
         $data = Pesanan::where('id_pesanans', $id)->first();
-        $barangs =$data->cart;
+        $barangs = $data->cart;
         //dd($data->cart[0]->barang);
-        $pdf = PDF::loadview('user.cetak', ['data' => $data])->setPaper('a4', 'potrait');
+        $pdf = PDF::loadview('user.cetak', ['data' => $data, 'barangs'=>$barangs])->setPaper('a4', 'potrait');
         return $pdf->stream();
     }
 }

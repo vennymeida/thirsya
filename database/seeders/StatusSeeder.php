@@ -21,5 +21,9 @@ class StatusSeeder extends Seeder
         DB::table('status')->insert([
             'nama_status' => 'Sudah Terbayar', 
         ]);
+
+        DB::table('status')->insert([
+            'nama_status' => 'Belum Checkout', 
+        ]);
     }
 }

@@ -130,15 +130,11 @@
             <tr class="heading">
                 <td>Nama Pemesan</td>
                 <td>Email Pemesan</td>
-                <td>Kontak</td>
-                <td>Alamat</td>
-                <td>Status Pembayaran</td>
+
             </tr>
 
             <tr class="invoice">
-                <td>
-                {{ $data->user->name}}
-                </td>
+                <td>{{ $data->user->name}}</td>
                 <td>{{ $data->user->email}}</td>
                
             </tr>
@@ -146,40 +142,39 @@
             <tr><td></td></tr>
             <tr><td></td></tr>
             <tr><td><b>Data Barang</td></tr>
+            <td>No Invoice</td>
+            <td><span style="font-weight: bold;">#{{$data->id_pesanans}}</span></td>
             <tr class="heading">
-            <th class="product-image">Product Image</th>
-									<th class="product-name">Nama Barang</th>
-                                    <th class="product-name">Harga Satuan</th>
-									<th class="product-price">Quantitas</th>
-                                    <th class="product-total">Harga Total</th>
+            
+									<td>Nama Barang</td>
+                                    <td>Harga Satuan</td>
+									<td>Quantitas</td>
+                                    <td>Harga Total</td>
             </tr>
 
            
 
             <tr class="invoice">
-                <td>
-                    <span style="font-weight: bold;">#{{$data->id_pesanans}}</span>
-                    
-                   
-                </td>
-                <td>
-                <img src="{{asset('storage/'.$data->cart[0]->barang->foto)}}" width="100" height="65" alt="...">
-                </td>
-                <td>{{ $data->cart[0]->barang->nama_barang }}</td>
-                <td>Rp {{ number_format($data->cart[0]->Barang->harga) }}</td>
-                <td>{{ $data->cart[0]->jumlah }}</td>
-                <td>Rp. {{ number_format($data->cart[0]->jumlah_harga) }}</td>
+            
+                
+                @foreach($barangs as $dt)
+                <td>{{ $dt->barang->nama_barang }}</td>
+                <td>Rp {{ number_format($dt->barang->harga) }}</td>
+                <td>{{ $dt->jumlah }}</td>
+                <td>Rp. {{ number_format($dt->jumlah_harga) }}</td>
             </tr>
+            @endforeach
             @php
-           
+            
             @endphp
 
             <tr class="total heading">
+            <td style="font-weight: bold">TOTAL</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td style="font-weight: bold">TOTAL</td>
-                <td style="font-weight: bold"></td>
+                
+                
+                <td style="font-weight: bold">Rp. {{ number_format($data->jumlah_harga, 0, ',', '.')}}</td>
             </tr>
         </table>
     </div>
