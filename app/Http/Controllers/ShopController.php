@@ -36,14 +36,14 @@ class ShopController extends Controller
     	}
 
     	//cek validasi
-    	$cek_pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',0)->first();
+    	$cek_pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
     	//simpan ke database pesanan
     	if(empty($cek_pesanan))
     	{
     		$pesanans = new Pesanan;
 	    	$pesanans->user_id = Auth::user()->id;
 	    	$pesanans->tanggal = $tanggal;
-	    	$pesanans->status_cart = 0;
+	    	$pesanans->status_cart = 3;
 	    	$pesanans->jumlah_harga = 0;
             $pesanans->kode = mt_rand(100, 999);
 	    	$pesanans->save();
@@ -51,10 +51,11 @@ class ShopController extends Controller
     	
 
     	//simpan ke database pesanan detail
-    	$pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',0)->first();
+    	$pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
 
     	//cek pesanan detail
-    	$cek_pesanan_detail = Cart::where('barang_id', $barangs->id)->where('pesanan_id', $pesanan_baru->id_pesanans)->first();
+    	$cek_pesanan_detail = Cart::where('barang_id', $barangs->id)
+        ->where('pesanan_id', $pesanan_baru->id_pesanans)->first();
     	if(empty($cek_pesanan_detail))
     	{
     		$cart = new Cart;
@@ -75,7 +76,7 @@ class ShopController extends Controller
     	}
 
     	//jumlah total
-    	$pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',0)->first();
+    	$pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
     	$pesanans->jumlah_harga = $pesanans->jumlah_harga+$barangs->harga*$request->jumlah_pesan;
     	$pesanans->update();
     	
@@ -86,19 +87,21 @@ class ShopController extends Controller
 
     public function cart()
     {
-        $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',0)->first();
+        $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
  	    $cart = [];
         if(!empty($pesanans))
         {
             $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();
-
+           
+        }else{
+            //return back()->with('error', 'Keranjang Kosong');
         }
         
         return view('user.cart', compact('pesanans', 'cart'));
     }
 
     public function checkoutAmount(){
-        $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',0)->first();
+        $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
         $cart = [];
         $lastid_pesanans=Pesanan::orderBy('id_pesanans','desc')->first();
         //$create_pesanans=Pesanan::
@@ -110,11 +113,29 @@ class ShopController extends Controller
            $cart = Cart::where('pesanans_id', $pesanans->id_pesanans)->get();
            $checkout_barang = Cart::where('pesanans_id',NULL);
            $checkout_barang->update( ['pesanans_id'=>($lastid_pesanans->id_pesanans)] );
+           $update_pesanan = Pesanan::where('id_pesanans', $pesanans->id_pesanans);
+           $update_pesanan->update([
+            "status_cart" => "1"
+           ]);
 
        }
       
         return view('user.checkout', ['cart' => $cart, 'pesanans' => $pesanans, 'alamatpengiriman' => $alamatpengiriman]);
 
+    }
+
+    public function placeorderPesanan()
+    {
+        $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
+ 	    $cart = [];
+        $orders = Pesanan::join('status','status.id','=','pesanans.status_cart')->orderBy('id_pesanans','desc')->get();
+        if(!empty($pesanans))
+        {
+            $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();
+
+        }
+        //dd($orders);
+        return view('user.order', ['cart' => $cart, 'pesanans' => $pesanans, 'orders' => $orders]);
     }
 
     public function delete($id)

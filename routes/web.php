@@ -14,6 +14,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AlamatPengirimanController;
+use App\Http\Controllers\OrderController;
 
 
 
@@ -77,6 +78,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('cart/{id}', [ShopController::class,'delete']);
     Route::get('checkout',[ShopController::class,'checkoutAmount'])->name('checkout');
     Route::resource('alamat-pengiriman', AlamatPengirimanController::class);
+    Route::get('placeorder',[ShopController::class,'placeorderPesanan'])->name('placeorder');
+    Route::get('upload/{id}', [OrderController::class, 'showUpload'])->name('showupload');
+    Route::post('upload', [OrderController::class, 'uploadBukti'])->name('uploadBukti');
+    Route::resource('order',  OrderController::class);
   });
 });
 

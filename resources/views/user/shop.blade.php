@@ -24,10 +24,16 @@
 								<a href="shop/{{$brg->id}}"><img src="{{asset('storage/'.$brg->foto)}}" class="card-img-top" height="175px" alt=""></a>
 							</div>
 							<h3>{{$brg->nama_barang }}</h3>
+							<h5>Stok : {{$brg->stok }}</h3>
 							<p class="product-price">Rp. {{$brg->harga }} </p>
 							<form method="post" action="{{ url('add-to-cart') }}/{{ $brg->id }}" >
                                             @csrf
-												<input type="text" name="jumlah_pesan" class="form-control" required="" style="border-radius: 50px;">
+											@if($brg->stok == 0)
+												<input type="text" name="jumlah_pesan" class="form-control is-invalid" required="" style="border-radius: 50px;"disabled>
+												@else
+												<input type="text" name="jumlah_pesan" class="form-control" required="" style="border-radius: 50px;" >
+
+												@endif
 												<br>
 												<a><button type="submit" class="cart-btn" style="ont-family: 'Poppins', sans-serif;display: inline-block;background-color: #F28123;color: #fff;padding: 10px 20px;border-radius: 50px;border-width: 0px;"><i class="fas fa-shopping-cart " 
 												>

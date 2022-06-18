@@ -55,7 +55,7 @@
 							<ul>
 								<li class="current-list-item"><a href="{{route('user.index')}}" method="post">Home</a></li>
 									<li><a href="#" method="post">About</a></li>
-									<li><a href="#" method="post">Contact</a></li>
+									<li><a href="{{route('order.index')}}" method="post">Order</a></li>
 									<li><a href="{{route('shop.index')}}" method="post">Shop</a></li>
 									<li><a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
