@@ -14,7 +14,7 @@ class AddToPesanansTable extends Migration
     public function up()
     {
         Schema::table('pesanans', function (Blueprint $table) {
-            $table->unsignedBigInteger('cart_id')->unsigned();
+            $table->unsignedBigInteger('cart_id')->unsigned()->nullable();
             $table->unsignedBigInteger('alamat_pengiriman_id')->unsigned()->nullable();
             $table->foreign('cart_id')->references('id_cart')->on('cart');
         });
