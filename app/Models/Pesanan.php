@@ -11,11 +11,11 @@ class Pesanan extends Model
 	protected $primaryKey = 'id_pesanans';
     public function user()
 	{
-		return $this->belongsTo('App\User','user_id', 'id');
+		return $this->belongsTo('App\Models\User','user_id', 'id');
 	}
 
 	public function cart() 
 	{
-		 return $this->hasMany('App\Cart','pesanan_id', 'id_pesanans');
+		 return $this->hasMany('App\Models\Cart','pesanan_id', 'id_pesanans');
 	}
 }

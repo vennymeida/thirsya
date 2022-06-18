@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AlamatPengirimanRequest;
 use App\Models\AlamatPengiriman;
 use App\Models\Cart;
-use App\Models\Pesanans;
+use App\Models\Pesanan;
 use Auth;
 
 class AlamatPengirimanController extends Controller
@@ -51,16 +51,16 @@ class AlamatPengirimanController extends Controller
             'user_id' => Auth::user()->id,
             'status' => 1
         ])->first();
-        $Pesanans = Pesanans::where([
+        $Pesanans = Pesanan::where([
             'user_id' => Auth::user()->id,
             'status_cart' => "cart"
         ])->first();
         if ($alamatutama) {
-            CartDetail::where('cart_id', $cart->id)->update([
+            Pesanan::where('cart_id', $alamatutama->id)->update([
                 'alamat_pengiriman_id' => $alamatutama->id
             ]);
         } else {
-            CartDetail::where('cart_id', $cart->id)->update([
+            Pesanan::where('cart_id', $cart->id)->update([
                 'alamat_pengiriman_id' => null
             ]);
         }
