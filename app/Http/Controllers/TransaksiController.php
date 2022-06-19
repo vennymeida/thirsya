@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Transaksi;
+use App\Models\Pesanan;
 use App\Models\Barang;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -20,9 +20,10 @@ class TransaksiController extends Controller
     public function index()
     {
         if (request()->user()->hasRole('admin')) {
-            $transaksi = Transaksi::all();
-            $paginate = Transaksi::orderBy('id', 'asc')->paginate(3);
-           return view('admin.transaksi', ['transaksi' => $transaksi ,'paginate'=>$paginate]);
+            $pesanans = Pesanan::all();
+            $paginate = Pesanan::orderBy('id_pesanans', 'asc')->paginate(5);
+            //dd( $pesanans[0]->status_pesanan);
+           return view('admin.transaksi', ['pesanans' => $pesanans ,'paginate'=>$paginate]);
         } else {
             return redirect('/');
         }
@@ -59,8 +60,8 @@ class TransaksiController extends Controller
      */
     public function show($id)
     {
-        $transaksi = Transaksi::all()->where('id', $id)->first();
-        return view('admin.detailT',['transaksi'=>$transaksi]);
+        $pesanans = Pesanan::all()->where('id_pesanans', $id)->first();
+        return view('admin.detailBukti',['pesanans'=>$pesanans]);
     }
 
     /**
@@ -84,9 +85,34 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $status_cart = Pesanan::where('id_pesanans', $id)->first()->status_cart;
+      
+        if($status_cart == 2){
+            $pesanans = Pesanan::where('id_pesanans', $id)
+            ->update([
+                'status_cart' => '1'
+            ]
+            );
+        }else{
+            $pesanans = Pesanan::where('id_pesanans', $id)
+            ->update([
+                'status_cart' => '2'
+            ]
+            );
+        }
+    
+        return back();
     }
-
+    public function update_belum_bayar(Request $request, $id)
+    {
+  
+        $pesanans = Pesanan::where('id_pesanans', $id)
+        ->update([
+            'status_cart' => '1'
+        ]
+        );
+        return back();
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -95,7 +121,9 @@ class TransaksiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pesanans = Pesanan::all()->where('id_pesanans', $id)->first();
+        $pesanans->delete($pesanans);
+        return redirect()->route('admin.transaksi');
     }
 
     // public function cetak_pdf()

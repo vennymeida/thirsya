@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\StatusCart;
 
 class Pesanan extends Model
 {
@@ -24,7 +25,7 @@ class Pesanan extends Model
 
     public function user()
 	{
-		return $this->belongsTo('App\Models\User','user_id');
+		return $this->belongsTo('App\Models\User','user_id','id');
 	}
 
 	public function cart() 
@@ -39,5 +40,10 @@ class Pesanan extends Model
 	public function alamat_pengiriman()
 	{
 		return $this->belongsTo('App\Models\AlamatPengiriman','alamat_pengiriman_id');
+	}
+
+	public function status_pesanan() 
+	{
+		 return $this->belongsTo('App\Models\StatusCart','status_cart','id');
 	}
 }
