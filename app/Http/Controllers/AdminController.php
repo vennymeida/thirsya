@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Pesanan;
+use App\Models\Barang;
 
 class AdminController extends Controller
 {
@@ -14,12 +17,18 @@ class AdminController extends Controller
     public function index()
     {
         // if (request()->user()->hasRole('adm')) {
-        if (request()->user()->hasRole('admin')) {
+        // if (request()->user()->hasRole('admin')) {
             
-           return view('admin.dashboard');
-        } else {
-            return redirect('/');
-        } 
+        //    return view('admin.dashboard');
+        // } else {
+        //     return redirect('/');
+        // } 
+        $data = [
+            'userCount' => User::all()->count(),
+            'produkCount' => Barang::count(),
+            'orderCount' => Pesanan::count(),
+        ];
+            return view ('admin.dashboard',compact('data'));
     }
 
     public function dashboard(){

@@ -35,9 +35,5 @@ class Barang extends Model
 	     return $this->hasMany('App\Models\Cart','barang_id', 'id');
 	}
     
-    public function countBarang() 
-	{
-	     return Barang::count(); 
-	}
 
 }

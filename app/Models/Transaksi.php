@@ -37,8 +37,4 @@ class Transaksi extends Model
         return $this->belongsTo(Users::class);
     }
 
-    public function countTransaksi() 
-	{
-	     return Transaksi::count(); 
-	}
 }

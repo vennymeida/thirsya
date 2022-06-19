@@ -153,4 +153,6 @@ class PembeliController extends Controller
         $paginate = User::where('username', 'like', '%' . request('searchUser') . '%')->paginate(3);
         return view('admin.pembeli', ['paginate'=>$paginate]);
     }
+
+   
 }

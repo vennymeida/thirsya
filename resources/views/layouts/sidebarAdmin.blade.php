@@ -18,7 +18,7 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class=" nav-item">
-            <a class="nav-link" href="{{ route('admin') }}">
+            <a class="nav-link" href="\dashboard">
               <i class="nc-icon nc-bank"></i>
               <p>Dashboard</p>
             </a>

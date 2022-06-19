@@ -55,7 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
   Route::resource('pembeli',  PembeliController::class);
   Route::resource('kategori',  KategoriController::class);
   Route::get('barang/kategori/{id}', [BarangController::class, 'listBarangKategori'])->name('list.withCategory');
-  Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin');
+  //Route::get('/dashboard', [AdminController::class,'dashboard'])->name('admin');
+  Route::resource('dashboard', AdminController::class);
   Route::get('/profil', [AdminController::class, 'profil'])->name('Adminprofil');
   Route::post('/doupdate', [ProfilController::class, 'doupdate'])->name('doUpdateProfil');
   Route::get('pembeli/role/{id}', [PembeliController::class, 'listUserRole'])->name('list.role');
