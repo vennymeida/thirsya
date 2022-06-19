@@ -25,4 +25,9 @@ class AlamatPengiriman extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function pesanan()
+	{
+		return $this->belongsTo('App\Models\Pesanan','alamat_pengiriman_id');
+	}
 }

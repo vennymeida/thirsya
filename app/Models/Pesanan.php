@@ -35,4 +35,9 @@ class Pesanan extends Model
 	{
 		return $this->cart->barang;
 	}
+
+	public function alamat_pengiriman()
+	{
+		return $this->belongsTo('App\Models\AlamatPengiriman','alamat_pengiriman_id');
+	}
 }

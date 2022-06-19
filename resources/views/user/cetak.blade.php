@@ -176,6 +176,45 @@
                 
                 <td style="font-weight: bold">Rp. {{ number_format($data->jumlah_harga, 0, ',', '.')}}</td>
             </tr>
+
+            <tr><td><b>Data Alamat</td></tr>
+            <tr>
+                                        <th>Nama Penerima</th>
+                                        <th>Alamat</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                   
+                                    
+                                
+                                    <tr>
+                                        <td>
+                                            <span class="font-weight-bold">
+                                                {{$data->alamat_pengiriman->nama_penerima}}
+                                            </span>
+                                            <br>
+                                            <span>No. HP :
+                                                {{$data->alamat_pengiriman->no_tlp}}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {{$data->alamat_pengiriman->alamat}},
+                                            <br>
+                                            {{$data->alamat_pengiriman->kelurahan}} - {{$data->alamat_pengiriman->kecamatan}} - {{$data->alamat_pengiriman->kota}} - {{$data->alamat_pengiriman->provinsi}}
+                                            <br>
+                                            <span>
+                                                Kodepos :
+                                                {{$data->alamat_pengiriman->kodepos}}
+                                            </span>
+                                        </td>
+                                        <td>
+                                        {{$data->alamat_pengiriman->status}}
+                                          
+                                        </td>
+                                        
+                                    </tr>
+                                   
+                                  
         </table>
     </div>
 </body>

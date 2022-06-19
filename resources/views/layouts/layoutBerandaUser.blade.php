@@ -139,5 +139,15 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+        var APP_URL = "{!! url('/') !!}";
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+    </script>
+    @yield('script')
 </html>
 	<!-- end copyright -->

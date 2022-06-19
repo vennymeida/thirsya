@@ -171,7 +171,7 @@ class OrderController extends Controller
     {
         $data = Pesanan::where('id_pesanans', $id)->first();
         $barangs = $data->cart;
-        //dd($data->cart[0]->barang);
+        //dd($data->alamat_pengiriman);
         $pdf = PDF::loadview('user.cetak', ['data' => $data, 'barangs'=>$barangs])->setPaper('a4', 'potrait');
         return $pdf->stream();
     }

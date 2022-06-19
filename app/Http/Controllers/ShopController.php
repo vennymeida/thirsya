@@ -88,7 +88,7 @@ class ShopController extends Controller
     public function cart()
     {
         $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
- 	    $cart = [];
+ 	    $cart1 = [];
         if(!empty($pesanans))
         {
             $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();
@@ -113,10 +113,7 @@ class ShopController extends Controller
            $cart = Cart::where('pesanans_id', $pesanans->id_pesanans)->get();
            $checkout_barang = Cart::where('pesanans_id',NULL);
            $checkout_barang->update( ['pesanans_id'=>($lastid_pesanans->id_pesanans)] );
-           $update_pesanan = Pesanan::where('id_pesanans', $pesanans->id_pesanans);
-           $update_pesanan->update([
-            "status_cart" => "1"
-           ]);
+  
 
        }
       
@@ -132,7 +129,12 @@ class ShopController extends Controller
         if(!empty($pesanans))
         {
             $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();
-
+            $update_pesanan = Pesanan::where('id_pesanans', $pesanans->id_pesanans);
+            $alamat_id = AlamatPengiriman::where('user_id', Auth::user()->id)->where('status', '1')->first();
+            $update_pesanan->update([
+             "status_cart" => "1",
+             "alamat_pengiriman_id" => $alamat_id->id
+            ]);
         }
         //dd($orders);
         return view('user.order', ['cart' => $cart, 'pesanans' => $pesanans, 'orders' => $orders]);

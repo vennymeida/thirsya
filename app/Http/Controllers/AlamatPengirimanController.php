@@ -34,9 +34,11 @@ class AlamatPengirimanController extends Controller
      */
     public function store(AlamatPengirimanRequest $request)
     {
+
         $payload = $request->only(['nama_penerima', 'no_tlp', 'alamat', 'kelurahan', 'kecamatan', 'kota', 'provinsi', 'kodepos']);
         $payload['user_id'] = Auth::user()->id;
         $status = $request->status;
+        
         if ($status == 1) {
             AlamatPengiriman::where([
                 'user_id' => Auth::user()->id,
@@ -64,7 +66,7 @@ class AlamatPengirimanController extends Controller
                 'alamat_pengiriman_id' => null
             ]);
         }
-
+        
         return back()->with('success', 'Alamat pengiriman berhasil disimpan');
     }
 
@@ -88,7 +90,8 @@ class AlamatPengirimanController extends Controller
     public function edit($id)
     {
         $data = AlamatPengiriman::findOrFail($id);
-        return response()->json(['success' => true, 'html' => view('lp.edit-alamat', compact('data'))->render()], 200);
+     
+        return response()->json(['success' => true, 'html' => view('user.edit-alamat', compact('data'))->render()], 200);
     }
 
     /**
@@ -117,19 +120,20 @@ class AlamatPengirimanController extends Controller
             'user_id' => Auth::user()->id,
             'status' => 1
         ])->first();
-        $cart = Cart::where([
+        $Pesanans = Pesanan::where([
             'user_id' => Auth::user()->id,
-            'status_cart' => "cart"
+            'status_cart' => "3"
         ])->first();
         if ($alamatutama) {
-            CartDetail::where([
-                'cart_id' => $cart->id,
+            Pesanan::where([
+                'id_pesanans' => $Pesanans->id_pesanans,
             ])->update([
                 'alamat_pengiriman_id' => $alamatutama->id
             ]);
         } else {
-            CartDetail::where([
-                'cart_id' => $cart->id,
+            Pesanan::where([
+                'id_pesanans' => $Pesanans->id_pesanans,
+
             ])->update([
                 'alamat_pengiriman_id' => null
             ]);
@@ -149,32 +153,41 @@ class AlamatPengirimanController extends Controller
             'user_id' => Auth::user()->id,
             'status' => 1
         ])->first();
-        $cart = Cart::where([
+        $Pesanans = Pesanan::where([
             'user_id' => Auth::user()->id,
-            'status_cart' => "cart"
+            'status_cart' => "3"
         ])->first();
         if ($alamatutama) {
-            CartDetail::where([
-                'cart_id' => $cart->id,
-                'alamat_pengiriman_id' => $id
+            Pesanan::where([
+                'id_pesanans' => $Pesanans->id_pesanans,
             ])->update([
                 'alamat_pengiriman_id' => $alamatutama->id
             ]);
         }
-        $alamat = AlamatPengiriman::findOrFail($id);
-        $cartcheckout = Cart::where([
+       
+      
+
+        if($Pesanans->alamat_pengiriman_id == $id){
+            return response()->json(['success' => false, 'msg' => 'Alamat pengiriman tidak dapat dihapus. Karena masih dalam proses order lain.'], 500);
+        }else{
+            $alamat = AlamatPengiriman::findOrFail($id);
+            $alamat->delete();
+            return response()->json(['success' => true], 200);
+
+        }
+
+        /*
+          $Alamat_Pesanan = Pesanan::where([
             'user_id' => Auth::user()->id,
-            'status_cart' => "checkout"
+            'status_cart' => "3"
         ])->get();
-        foreach ($cartcheckout as $val) {
+        foreach ($Pesanan as $val) {
             foreach ($val->detail as $item) {
                 if ($item->alamat_pengiriman_id == $alamat->id) {
-                    return response()->json(['success' => false, 'msg' => 'Alamat pengiriman tidak dapat dihapus. Karena masih dalam proses order lain.'], 500);
                 }
             }
-        }
-        $alamat->delete();
+        }*/
+        
 
-        return response()->json(['success' => true], 200);
     }
 }
