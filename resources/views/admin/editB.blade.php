@@ -38,16 +38,26 @@
             <label for="stok">keterangan</label>
             <input type="keterangan" name="keterangan" class="form-control" id="keterangan" value="{{ $barangs->keterangan }}" aria-describedby="keterangan" >
         </div>
-        <div class="form-group">
-            <label for="foto">File</label>
-            <input type="file" name="foto" class="form-control" id="foto" aria-describedby="foto" style="opacity:1;position:relative;!important">
+        <br><label><input type="checkbox" name="checkfield" id="g01-01"  onchange="doalert(this)" /> Ubah Gambar</label>
+        <div class="form-group" id='gambar'>
+            <label for="foto">File</label><br>
+            <input type="file" name="foto" value="{{ asset('./storage/'. $barangs->foto) }}" class="form-control" id="foto" aria-describedby="foto" style="opacity:1;position:relative;!important">
             <img style="width: 100%" src="{{ asset('./storage/'. $barangs->foto) }}" alt="">
           </div>
        
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <br><button type="submit" class="btn btn-primary">Submit</button>
         </form>
         </div>
         </div>
     </div>
 </div>
+<script>
+    function doalert(checkboxElem) {
+  if (checkboxElem.checked) {
+    $("#gambar").show();
+  } else {   
+    $("#gambar").hide();
+  }
+}
+  </script>
 @endsection

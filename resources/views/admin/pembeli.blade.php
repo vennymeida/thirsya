@@ -39,12 +39,12 @@
                     <td>{{ $pem ->email }}</td>
                     <td>{{ $pem ->password }}</td>
                     <td>
-                      <form action="{{ route('pembeli.destroy',['pembeli'=>$pem->username]) }}" method="POST">
-                      <a class="btn btn-primary btn-sm" href="{{ route('pembeli.edit',$pem->username) }}">Edit</a>
+                      <!-- <form action="{{ route('pembeli.destroy',['pembeli'=>$pem->username]) }}" method="POST"> -->
+                      <a class="btn btn-primary btn-sm" href="{{ route('pembeli.edit',$pem->id) }}">Edit</a>
                           @csrf
                           @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah {{$pem->username}} akan dihapus?')">Delete</button>
-                      </form> 
+                      <!-- </form>  -->
                     </td>
                     </tr>
                     @endforeach

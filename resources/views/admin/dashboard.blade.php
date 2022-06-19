@@ -17,7 +17,7 @@
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Barang</p>
-                      <p class="card-title">-<p>
+                      <p class="card-title">{{ App\Models\Barang::countBarang()}}<p>
                     </div>
                   </div>
                 </div>
@@ -43,7 +43,7 @@
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Transaksi</p>
-                      <p class="card-title">-<p>
+                      <p class="card-title">{{ App\Models\Transaksi::countTransaksi()}}<p>
                     </div>
                   </div>
                 </div>
@@ -69,7 +69,7 @@
                   <div class="col-7 col-md-8">
                     <div class="numbers">
                       <p class="card-category">Pelanggan</p>
-                      <p class="card-title">-<p>
+                      <p class="card-title">{{ App\Models\User::countUser()}}<p>
                     </div>
                   </div>
                 </div>

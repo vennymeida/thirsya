@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\Role;
 use App\Models\User;
 use App\Http\Request\UpdateProfileRequest;
+use Illuminate\Support\Facades\Hash;
 
 
 class ProfilController extends Controller
@@ -73,6 +74,26 @@ class ProfilController extends Controller
      * @param  UpdateProfileRequest $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    
+    public function doupdate(Request $request)
+    {
+        //   echo print_r($request->post()); 
+        // exit;
+        $request->validate([
+            'username' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $users = User::all()->where('id', $request->post('id'))->first();
+        $users->username= $request->post('username');
+        $users->name = $request->post('name');
+        $users->email = $request->post('email');
+        $users->password = Hash::make($request->post('password'));
+        $users->save();
+        return redirect()->route('Adminprofil');
+    }
     public function update(UpdateProfileRequest $request)
     {
         $request->user()->update(
@@ -81,7 +102,6 @@ class ProfilController extends Controller
     
         return redirect()->route('profil/update');
     }
-
     /**
      * Remove the specified resource from storage.
      *

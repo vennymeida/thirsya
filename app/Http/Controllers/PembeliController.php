@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class PembeliController extends Controller
 {
@@ -68,6 +69,7 @@ class PembeliController extends Controller
      */
     public function edit($id)
     {
+        // echo $id;
         $users = User::all()->where('id', $id)->first();
         return view('admin.editP',['users'=>$users]);
     }
@@ -81,7 +83,38 @@ class PembeliController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // echo print_r($request->post()); 
+        // exit;
+        $request->validate([
+            'username' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $users = User::all()->where('id', $id)->first();
+        $users->username= $request->post('username');
+        $users->name = $request->post('name');
+        $users->email = $request->post('email');
+        $users->password = Hash::make($request->post('password'));
+        
+    //     if ($users->foto && file_exists(storage_path('app/public/'. $users->foto))) {
+    //         Storage::delete('public/'. $users->foto);
+    //     }
+
+    //       $image_name = '';
+    //     if ($request->file('foto')) {
+    //     $image_name = $request->file('foto')->store('images', 'public');
+    // }
+    //     $barangs->foto = $image_name;
+        $users->save();
+
+        
+       
+        
+        //jika data berhasil diupdate, akan kembali ke halaman utama
+        return redirect()->route('pembeli.index')
+            ->with('success', 'Barang Berhasil Diupdate');
     }
 
     /**

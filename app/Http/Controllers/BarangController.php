@@ -127,35 +127,34 @@ class BarangController extends Controller
      */
     public function update(Request $request, $nama_barang)
     {
-         //melakukan validasi data
+        //  melakukan validasi data
          $request->validate([
             'nama_barang' => 'required',
             'harga' => 'required',
             'stok' => 'required',
             'keterangan' => 'required',
-            'foto'=> 'required',
+            'foto'=> 'nullable',
         ]);
+     $image_name = '';
+     $data= array(
+        'nama_barang'=>$request->post('nama_barang'),
+        'harga'=>$request->post('harga'),
+        'stok'=>$request->post('stok'),
+        'keterangan'=>$request->post('keterangan'),
+     );
+     if ($request->file('foto')) {
+        $image_name = $request->file('foto')->store('images', 'public'); 
+        $data=array_merge($data,array('foto'=>$image_name));
+     }
 
-        $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
-        $barangs->nama_barang = $request->get('nama_barang');
-        $barangs->harga = $request->get('harga');
-        $barangs->stok = $request->get('stok');
-        $barangs->keterangan = $request->get('keterangan');
-        
-        if ($barangs->foto && file_exists(storage_path('app/public/'. $barangs->foto))) {
-            Storage::delete('public/'. $barangs->foto);
+     Barang::where('nama_barang', $nama_barang)->update($data);
+
+        if ($request->file('foto') && file_exists(storage_path('app/public/'. $request->file('foto')))) {
+            Storage::delete('public/'. $request->file('foto'));
         }
 
-          $image_name = '';
-        if ($request->file('foto')) {
-        $image_name = $request->file('foto')->store('images', 'public');
-    }
-        $barangs->foto = $image_name;
-        $barangs->save();
-
-        
-       
-        
+                    
+              
         //jika data berhasil diupdate, akan kembali ke halaman utama
         return redirect()->route('barang.index')
             ->with('success', 'Barang Berhasil Diupdate');

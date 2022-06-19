@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
          return $this->hasMany(Pesanan::class,'user_id', 'id');
     }
+
+    public function countUser() 
+	{
+	     return User::count(); 
+	}
 }

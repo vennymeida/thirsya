@@ -72,6 +72,13 @@ Coded by www.creative-tim.com
   <script src="{{ URL::asset('assets/demo/demo.js') }}"></script>
   <script>
     $(document).ready(function() {
+      $("#password_").hide();
+      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js') }}
+      demo.initChartsPages();
+    });
+
+    $(document).ready(function() {
+      $("#gambar").hide();
       // Javascript method's body can be found in assets/assets-for-demo/js/demo.js') }}
       demo.initChartsPages();
     });
