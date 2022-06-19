@@ -130,14 +130,21 @@ class ShopController extends Controller
         {
             $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();
             $update_pesanan = Pesanan::where('id_pesanans', $pesanans->id_pesanans);
+
             $alamat_id = AlamatPengiriman::where('user_id', Auth::user()->id)->where('status', '1')->first();
+            if(!empty($alamat_id)){
             $update_pesanan->update([
              "status_cart" => "1",
              "alamat_pengiriman_id" => $alamat_id->id
+             
             ]);
+            return view('user.order', ['cart' => $cart, 'pesanans' => $pesanans, 'orders' => $orders]);
+        }else{
+            return back();
+        }
         }
         //dd($orders);
-        return view('user.order', ['cart' => $cart, 'pesanans' => $pesanans, 'orders' => $orders]);
+        
     }
 
     public function delete($id)
