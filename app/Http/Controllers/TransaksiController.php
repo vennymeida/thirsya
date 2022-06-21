@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pesanan;
 use App\Models\Barang;
 use App\Models\User;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use PDF;
@@ -126,10 +127,18 @@ class TransaksiController extends Controller
         return redirect()->route('admin.transaksi');
     }
 
-    // public function cetak_pdf()
-    // {
-    //     $transaksi = Transaksi:all();
-    //     $pdf = PDF:loadview('transaksi.transaksi_pdf',['transaksi'=>$transaksi]);
-    //     return->stream();
-    // }
+    public function cetak()
+    {
+        $data = [];
+        $data = Pesanan::select('*')->first();
+       
+        //$cart = [];
+        $barangs = $data->cart;
+
+    
+        
+        //dd($data);
+        $pdf = PDF::loadview('admin.cetakT', ['data' => $data, 'barangs'=>$barangs])->setPaper('a4', 'potrait');
+        return $pdf->stream();
+    }
 }

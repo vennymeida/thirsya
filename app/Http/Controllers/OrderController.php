@@ -175,4 +175,6 @@ class OrderController extends Controller
         $pdf = PDF::loadview('user.cetak', ['data' => $data, 'barangs'=>$barangs])->setPaper('a4', 'potrait');
         return $pdf->stream();
     }
+
+    
 }

@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
   // Route::get('/barang', [BarangController::class, 'create']);
   // Route::get('/pembeli', [AdminController::class, 'pembeli'])->name('Adminpembeli');
   // Route::get('/transaksi', [AdminController::class, 'transaksi'])->name('Admintransaksi');
-  Route::get('/transaksi/cetak_pdf', [TransaksiController::class, 'cetak_transaksi'])->name('cetak_transaksi');
+  Route::get('cetak', [TransaksiController::class, 'cetak'])->name('transaksi.cetak');
   Route::get('/searchBarang', [BarangController::class, 'searchBarang'])->name('searchBarang');
   Route::get('/search', [KategoriController::class, 'search'])->name('search');
   Route::get('/searchUser', [PembeliController::class, 'searchUser'])->name('searchUser');

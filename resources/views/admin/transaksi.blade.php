@@ -10,7 +10,7 @@
                 <h4 class="card-title"> Table Transaksi Pembelian</h4>
               </div>
               <div class="card-body">
-            <a class="btn btn-warning btn-sm" href="{{ route('cetak_transaksi') }}">Cetak PDF</a>
+            <a class="btn btn-warning btn-sm" href="{{ route('transaksi.cetak') }}">Cetak PDF</a>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">

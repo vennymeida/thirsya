@@ -13,30 +13,81 @@
         }
         </style>
     </head>
+    @foreach($barangs as $datas)
     <body>
         <center>
             <h3 class="text-center mb-5">WAROENKQU</h3>
         </center>
+        
         <div class="container">
-            <p><b>Id Transaksi : </b> {{ $transaksi->transaksi->id }}</p>
-            <p><b>Pembeli : </b> {{ $transaksi-transaksi->users->name }}</p>
+            <p><b>Invoce : </b> {{ $datas->kode}}</p>
+            <p><b>Nama Akun : </b> {{ $data->user->username }}</p>
+            <p><b>Nama Pembeli : </b> {{ $data->user->name }}</p>
+            <p><b>Email : </b> {{ $data->user->email }}</p>
         <table class="table table-bordered" style="width:95%;margin:0 auto;">
         <tr>
-            <th>Id Transaksi</th>
-            <th>Id Pembeli</th>
-            <th>Id Barang</th>
+            
+            <th>Nama Barang</th>
+            <th>Harga</th>
             <th>Jumlah</th>
-            <th>Total</th>
+            
         </tr>
-            @foreach ($transaksi as $tr)
+        
                 <tr>
-                    <td>{{ $tr->transaksi->id }}</td>&emsp
-                    <td>{{ $tr->users->id}}</td>&emsp
-                    <td>{{ $tr->barangs->id }}</td>&emsp
-                    <td>{{ $tr->transaksi->jumlah }}</td>&emsp
-                    <td>{{ $tr->transaksi->total }}</td>&emsp
+                @foreach($barangs as $dt)
+                    <td>{{ $dt->barang->nama_barang }}</td>&emsp
+                    <td>Rp {{ number_format($dt->barang->harga)}}</td>&emsp
+                    <td>{{ $dt->jumlah }}</td>&emsp
+                    
                 </tr>
             @endforeach
+            <tr class="total heading">
+            <td style="font-weight: bold">TOTAL</td>
+                <td></td>
+                <td></td>
+                
+                
+                <td style="font-weight: bold">Rp. {{ number_format($data->jumlah_harga, 0, ',', '.')}}</td>
+            </tr>
+
+            <tr><td><b>Data Alamat</td></tr>
+            <tr>
+                                        <th>Nama Penerima</th>
+                                        <th>Alamat</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                   
+                                    
+                                
+                                    <tr>
+                                        <td>
+                                            <span class="font-weight-bold">
+                                                {{$data->alamat_pengiriman->nama_penerima}}
+                                            </span>
+                                            <br>
+                                            <span>No. HP :
+                                                {{$data->alamat_pengiriman->no_tlp}}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {{$data->alamat_pengiriman->alamat}},
+                                            <br>
+                                            {{$data->alamat_pengiriman->kelurahan}} - {{$data->alamat_pengiriman->kecamatan}} - {{$data->alamat_pengiriman->kota}} - {{$data->alamat_pengiriman->provinsi}}
+                                            <br>
+                                            <span>
+                                                Kodepos :
+                                                {{$data->alamat_pengiriman->kodepos}}
+                                            </span>
+                                        </td>
+                                        <td>
+                                        {{$data->alamat_pengiriman->status}}
+                                          
+                                        </td>
+                                        
+                                    </tr>
         </table>
+        
 </body>
+@endforeach
 </html> 
