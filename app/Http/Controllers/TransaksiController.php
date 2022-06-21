@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pesanan;
 use App\Models\Barang;
+use App\Models\AlamatPengiriman;
 use App\Models\User;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Storage;
@@ -129,16 +130,8 @@ class TransaksiController extends Controller
 
     public function cetak()
     {
-        $data = [];
-        $data = Pesanan::select('*')->first();
-       
-        //$cart = [];
-        $barangs = $data->cart;
-
-    
-        
-        //dd($data);
-        $pdf = PDF::loadview('admin.cetakT', ['data' => $data, 'barangs'=>$barangs])->setPaper('a4', 'potrait');
+        $orders = Pesanan::where(array('status_cart'=>2))->get();
+        $pdf = PDF::loadview('admin.cetakT', ['orders'=>$orders])->setPaper('a4', 'potrait');
         return $pdf->stream();
     }
 }

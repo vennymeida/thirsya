@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\RoleUser;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -58,7 +59,7 @@ class PembeliController extends Controller
     public function show($id)
     {
         $users = User::all()->where('id', $id)->first();
-        return view('admin.detailP',['users'=>$users]);
+        // return view('admin.detailP',['users'=>$users]);
     }
 
     /**
@@ -130,13 +131,14 @@ class PembeliController extends Controller
 
     public function listUserRole($id)
     {
-
-        $user_query = Role_User::with('role')->where('role_id', $id);
-        $paginate = $user_query->paginate(3);
-        $role_user = $user_query->get();
-        $role = Role::all();
-
-        return view('admin.barang', ['role_users' => $role_users, 'paginate' => $paginate, 'role' => $role]);
+        if (request()->user()->hasRole('admin')) {
+            $users = RoleUser::leftJoin('users', 'users.id', '=', 'role_users.user_id')->where('role_users.role_id', '=',$id)->get();
+            $role = Role::all();
+            $paginate = RoleUser::leftJoin('users', 'users.id', '=', 'role_users.user_id')->where('role_users.role_id', '=',$id)->paginate(3);
+           return view('admin.pembeli', ['users' => $users ,'paginate'=>$paginate, 'role' => $role]);
+        } else {
+            return redirect('/');
+        } 
     }
 
     public function getUserFilter(Request $request, $role)
@@ -150,9 +152,14 @@ class PembeliController extends Controller
     public function searchUser(Request $request)
     {
         $keyword = $request->searchUser;
-        $paginate = User::where('username', 'like', '%' . request('searchUser') . '%')->paginate(3);
-        return view('admin.pembeli', ['paginate'=>$paginate]);
+        if (request()->user()->hasRole('admin')) {
+            $users = User::where('username', 'like', "%" . $keyword . "%")->get();
+            $paginate = User::orderBy('id', 'asc')->paginate(3);
+            $role = Role::all();
+           return view('admin.pembeli', ['users' => $users ,'paginate'=>$paginate, 'role' => $role]);
+        } else {
+            return redirect('/');
+        } 
     }
-
    
 }

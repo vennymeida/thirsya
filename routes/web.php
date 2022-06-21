@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
   // Route::get('/pembeli', [AdminController::class, 'pembeli'])->name('Adminpembeli');
   // Route::get('/transaksi', [AdminController::class, 'transaksi'])->name('Admintransaksi');
   Route::get('cetak', [TransaksiController::class, 'cetak'])->name('transaksi.cetak');
-  Route::get('/searchBarang', [BarangController::class, 'searchBarang'])->name('searchBarang');
+  Route::get('searchBarang', [BarangController::class, 'searchBarang'])->name('searchBarang');
   Route::get('/search', [KategoriController::class, 'search'])->name('search');
   Route::get('/searchUser', [PembeliController::class, 'searchUser'])->name('searchUser');
 

@@ -193,23 +193,16 @@ class BarangController extends Controller
       
         return view('admin.barang', ['barangs' => $barangs, 'paginate' => $paginate, 'kategori' => $kategori]);
     }
-    // public function listBarangKategori(Request $request, $nama_barang)
-    // {
-    //     // $barangs = Barang::where('kategori_id', $id)->with('kategori')->latest()->paginate(8);
-    //     // $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
-        
-    //     $kategoris = Barang::where('nama_barang', $nama_barang)->get();
-    //     $paginate = Kategori::paginate(3);
-    //     return view('admin.barang', ['kategoris' => $kategoris, 'paginate'=>$paginate, 'nama_barang' => $nama_barang ]);
-    // }
+
 
     public function searchBarang(Request $request)
     {
         $keyword = $request->searchBarang;
-        $paginate = Barang::where('nama_barang', 'like', '%' . request('searchBarang') . '%')->paginate(3);
-        $kategori = Kategori::where('nama', 'like', "%" . $keyword . "%")->paginate(3);
-        // return view('admin.kategori', compact('paginate'))->with('i', (request()->input('page', 1) - 1) * 3);
-        return view('admin.barang', ['paginate'=>$paginate]);
+        $barang_query = Barang::with('kategori')->where('nama_barang', 'like', "%" . $keyword . "%");
+        $paginate = $barang_query->paginate(3);
+        $barangs = $barang_query->get();
+        $kategori = Kategori::all();
+        return view('admin.barang', ['barangs' => $barangs, 'paginate' => $paginate, 'kategori' => $kategori]);
     }
    
 }

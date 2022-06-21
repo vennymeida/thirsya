@@ -8,7 +8,11 @@
         <div class="card">
           <div class="card-header">
             <h4 class="card-title"> Table User</h4>
-           
+            <form class="form" method="get" action="{{route('searchUser')}}">
+              <div class="form-group w-100 mb-3">
+                  <input type="text" name="searchUser" class="form-control w-80 d-inline" id="searchUser" placeholder="Search User...">
+              </div>
+          </form>
           </div>
             <div class="card-body">
             <a class="btn btn-danger btn-sm" href="{{ route('pembeli.index') }}">Refresh</a>

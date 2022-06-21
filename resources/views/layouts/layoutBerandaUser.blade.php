@@ -54,7 +54,6 @@
 						<nav class="main-menu">
 							<ul>
 								<li class="current-list-item"><a href="{{route('user.index')}}" method="post">Home</a></li>
-									<li><a href="#" method="post">About</a></li>
 									<li><a href="{{route('order.index')}}" method="post">Order</a></li>
 									<li><a href="{{route('shop.index')}}" method="post">Shop</a></li>
 									<li><a href="{{ route('logout') }}"
@@ -70,6 +69,8 @@
 										<a class="shopping-cart" href="/cart" method="post"><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
+
+								
 							</ul>
 						</nav>
 						<div class="mobile-menu"></div>

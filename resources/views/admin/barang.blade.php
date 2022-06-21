@@ -8,7 +8,7 @@
         <div class="card">
           <div class="card-header">
             <h4 class="card-title"> Table Barang</h4>
-            <form class="form" method="get" action="{{ route('searchBarang') }}">
+            <form class="form" method="get" action="{{route('searchBarang')}}">
               <div class="form-group w-100 mb-3">
                   <input type="text" name="searchBarang" class="form-control w-80 d-inline" id="searchBarang" placeholder="Search Barang...">
               </div>

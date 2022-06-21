@@ -12,82 +12,80 @@
             font-size: 9pt;
         }
         </style>
+        <style>
+.page-break {
+    page-break-after: always;
+}
+</style>
     </head>
-    @foreach($barangs as $datas)
     <body>
         <center>
             <h3 class="text-center mb-5">WAROENKQU</h3>
         </center>
-        
+        @foreach($orders as $order)
         <div class="container">
-            <p><b>Invoce : </b> {{ $datas->kode}}</p>
-            <p><b>Nama Akun : </b> {{ $data->user->username }}</p>
-            <p><b>Nama Pembeli : </b> {{ $data->user->name }}</p>
-            <p><b>Email : </b> {{ $data->user->email }}</p>
-        <table class="table table-bordered" style="width:95%;margin:0 auto;">
+            <p><b>Invoce : {{$order->kode}}</b></p>
+            <p><b>Nama Akun : {{$order->user->username}} </b> </p>
+            <p><b>Nama Pembeli : {{$order->user->name}}</b> </p>
+            <p><b>Email : {{$order->user->email}}</b> </p>
+        <table class="table table-bordered" style="width:100%;">
         <tr>
-            
             <th>Nama Barang</th>
             <th>Harga</th>
             <th>Jumlah</th>
-            
         </tr>
-        
+        @foreach(App\Models\Cart::where(array('pesanan_id' => $order->id_pesanans))->get() as $dt)
                 <tr>
-                @foreach($barangs as $dt)
-                    <td>{{ $dt->barang->nama_barang }}</td>&emsp
-                    <td>Rp {{ number_format($dt->barang->harga)}}</td>&emsp
-                    <td>{{ $dt->jumlah }}</td>&emsp
+               
+                    <td>{{ $dt->barang->nama_barang }}</td>
+                    <td>Rp {{ number_format($dt->barang->harga, 0, ',', '.')." * ".$dt->jumlah}}</td>
+                    <td>Rp {{ number_format($dt->jumlah_harga, 0, ',', '.')}}</td>
                     
                 </tr>
             @endforeach
             <tr class="total heading">
-            <td style="font-weight: bold">TOTAL</td>
+                <td style="font-weight: bold">TOTAL</td>
                 <td></td>
-                <td></td>
-                
-                
-                <td style="font-weight: bold">Rp. {{ number_format($data->jumlah_harga, 0, ',', '.')}}</td>
+                <!-- <td></td> -->
+                <td style="font-weight: bold">Rp. {{ number_format($order->jumlah_harga, 0, ',', '.')}}</td>
             </tr>
-
-            <tr><td><b>Data Alamat</td></tr>
             <tr>
-                                        <th>Nama Penerima</th>
-                                        <th>Alamat</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                   
-                                    
-                                
-                                    <tr>
-                                        <td>
-                                            <span class="font-weight-bold">
-                                                {{$data->alamat_pengiriman->nama_penerima}}
-                                            </span>
-                                            <br>
-                                            <span>No. HP :
-                                                {{$data->alamat_pengiriman->no_tlp}}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            {{$data->alamat_pengiriman->alamat}},
-                                            <br>
-                                            {{$data->alamat_pengiriman->kelurahan}} - {{$data->alamat_pengiriman->kecamatan}} - {{$data->alamat_pengiriman->kota}} - {{$data->alamat_pengiriman->provinsi}}
-                                            <br>
-                                            <span>
-                                                Kodepos :
-                                                {{$data->alamat_pengiriman->kodepos}}
-                                            </span>
-                                        </td>
-                                        <td>
-                                        {{$data->alamat_pengiriman->status}}
-                                          
-                                        </td>
-                                        
-                                    </tr>
+                <td colspan='3'><b>Data Alamat</td>
+            </tr>
+            <tr>
+                <th>Nama Penerima</th>
+                <th>Alamat</th>
+                <th>Status</th>
+                <!-- <th>Aksi</th> -->
+            </tr>
+            <tr>
+                <td>
+                    <span class="font-weight-bold">
+                        {{$order->alamat_pengiriman->nama_penerima}}
+                    </span>
+                    <br>
+                    <span>No. HP :
+                        {{$order->alamat_pengiriman->no_tlp}}
+                    </span>
+                </td>
+                <td>
+                    {{$order->alamat_pengiriman->alamat}},
+                    <br>
+                    {{$order->alamat_pengiriman->kelurahan}} - {{$order->alamat_pengiriman->kecamatan}} - {{$order->alamat_pengiriman->kota}} - {{$order->alamat_pengiriman->provinsi}}
+                    <br>
+                    <span>
+                        Kodepos :
+                        {{$order->alamat_pengiriman->kodepos}}
+                    </span>
+                </td>
+                <td>
+                {{$order->status_cart}}
+                </td>
+                
+            </tr>
         </table>
-        
+      
+        <div class="page-break"></div>
+        @endforeach
 </body>
-@endforeach
 </html> 

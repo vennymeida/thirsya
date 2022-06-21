@@ -90,7 +90,9 @@ class ProfilController extends Controller
         $users->username= $request->post('username');
         $users->name = $request->post('name');
         $users->email = $request->post('email');
-        $users->password = Hash::make($request->post('password'));
+        if($request->post('password')){
+            $users->password = Hash::make($request->post('password'));
+        }
         $users->save();
         return redirect()->route('Adminprofil');
     }

@@ -63,6 +63,7 @@ class ShopController extends Controller
 	    	$cart->pesanan_id = $pesanan_baru->id_pesanans;
 	    	$cart->jumlah = $request->jumlah_pesan;
 	    	$cart->jumlah_harga = $barangs->harga*$request->jumlah_pesan;
+            $cart->user_id = Auth::user()->id;
 	    	$cart->save();
     	}else 
     	{
