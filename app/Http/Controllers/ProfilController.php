@@ -83,10 +83,10 @@ class ProfilController extends Controller
             'username' => 'required',
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'nullable',
         ]);
 
-        $users = User::all()->where('id', $request->post('id'))->first();
+        $users = User::where('id', $request->post('id'))->first();
         $users->username= $request->post('username');
         $users->name = $request->post('name');
         $users->email = $request->post('email');
