@@ -16,7 +16,7 @@
           </div>
             <div class="card-body">
             <a class="btn btn-danger btn-sm" href="{{ route('pembeli.index') }}">Refresh</a>
-            <a class="btn btn-warning btn-sm" href="#">Tambah</a> 
+            <a class="btn btn-warning btn-sm" href="{{ route('pembeli.create') }}">Tambah</a> 
 
             @foreach($role as $item)
                 <a href="{{ route('list.role', $item->id)}}" class="btn btn-primary btn-sm">{{$item->name}}</a>

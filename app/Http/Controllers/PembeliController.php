@@ -36,7 +36,8 @@ class PembeliController extends Controller
      */
     public function create()
     {
-        //
+        $pembeli = User::all();
+        return view('admin.createP',['pembeli' => $pembeli]);
     }
 
     /**
@@ -47,7 +48,31 @@ class PembeliController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'username' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+           
+        //fungsi eloquent untuk menambah data
+        $pembeli= new User;
+        $pembeli->username = $request->get('username');
+        $pembeli->name = $request->get('name');
+        $pembeli->email = $request->get('email');
+        $pembeli->password = Hash::make($request->get('password'));
+        // $pembeli->save();
+        
+        //Fungsi eloquent untuk menambah data dengan relasi belongsTo
+        
+        $pembeli->save();
+    
+    
+        // Mahasiswa::create($request->all());
+    
+        //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->route('pembeli.index')
+            ->with('success', 'User Berhasil Ditambahkan');
     }
 
     /**
@@ -126,7 +151,9 @@ class PembeliController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pembeli = User::all()->where('id', $id)->first();
+        $pembeli->delete($pembeli);
+        return redirect()->route('pembeli.index');
     }
 
     public function listUserRole($id)
