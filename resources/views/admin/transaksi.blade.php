@@ -32,8 +32,9 @@
                     <td>{{ $trn ->tanggal }}</td>
                     <td>
                  
-                 
-            
+                    
+                    <a class="btn btn-warning btn-sm" href="{{ route('transaksi.cetak1',$trn->id_pesanans) }}">Cetak</a>
+                    <br><br>
                     @if($trn->status_cart == '2')
                     <form action="{{ route('transaksi.update',['transaksi'=>$trn->id_pesanans]) }}" method="POST">
                     @csrf
@@ -55,8 +56,7 @@
                         
                           @csrf
                           @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah {{$trn->id_pesanans}} akan dihapus?')">Delete</button>
-                      </form> 
+                       </form> 
                     </td>
                     </tr>
                     @endforeach

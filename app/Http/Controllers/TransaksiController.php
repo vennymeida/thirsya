@@ -136,4 +136,13 @@ class TransaksiController extends Controller
         $pdf = PDF::loadview('admin.cetakT', ['orders'=>$orders])->setPaper('a4', 'potrait');
         return $pdf->stream();
     }
+
+    public function cetak1(Request $request, $id)
+    {
+        $data = Pesanan::where('id_pesanans', $id)->first();
+        $barangs = $data->cart;
+        //dd($data->alamat_pengiriman);
+        $pdf = PDF::loadview('user.cetak', ['data' => $data, 'barangs'=>$barangs])->setPaper('a4', 'potrait');
+        return $pdf->stream();
+    }
 }

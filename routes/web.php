@@ -50,9 +50,11 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('/doupdate', [ProfilController::class, 'doupdate'])->name('doUpdateProfil');
   Route::get('pembeli/role/{id}', [PembeliController::class, 'listUserRole'])->name('list.role');
   Route::get('cetak', [TransaksiController::class, 'cetak'])->name('transaksi.cetak');
+  Route::get('cetaksatu/{id}', [TransaksiController::class, 'cetak1'])->name('transaksi.cetak1');
   Route::get('searchBarang', [BarangController::class, 'searchBarang'])->name('searchBarang');
   Route::get('/search', [KategoriController::class, 'search'])->name('search');
   Route::get('/searchUser', [PembeliController::class, 'searchUser'])->name('searchUser');
+  
   
 
   Route::group(['middleware' => 'auth'], function () {

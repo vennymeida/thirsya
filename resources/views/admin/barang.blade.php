@@ -30,6 +30,7 @@
                 <table class="table">
                   <thead class="text-primary">
                     <tr>
+                        <th>No</th>
                         <th>Kategori</th>
                         <th>Nama Barang</th>
                         <th>Harga</th>
@@ -40,9 +41,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    
+                  <?php $no = 1; ?>
                     @foreach ($barangs as $brg)
                     <tr>
+                      <td>{{$no++}}</td>
                     <td>{{ $brg ->Kategori -> nama}}</td>
                     <td>{{ $brg ->nama_barang }}</td>
                     <td>{{ $brg ->harga }}</td>

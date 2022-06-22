@@ -37,6 +37,16 @@
                     <label for="password">Password</label>
                     <input type="password" name="password" class="form-control" id="password" ariadescribedby="password" >
                 </div>
+                
+                <div class="form-group">
+                        <label for="role_id">RoleUser</label>
+                        <select class="form-control" name="role_id">
+                            
+                                <option value="1" >User </option>
+                                <option value="2" >Admin </option>
+                           
+                        </select>
+                    </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

@@ -25,30 +25,31 @@
                 <table class="table">
                   <thead class="text-primary">
                     <tr>
-                        <th>Id</th>
+                        <th>No</th>
                         <th>Username</th>
                         <th>Nama</th>
                         <th>Email</th>
-                        <th>Password</th>
+                        
                         <th width="250px">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                    
-                    @foreach ($users as $pem)
+                  <?php $no = 1; ?>
+
+                    @foreach ($paginate as $pem)
                     <tr>
-                    <td>{{ $pem ->id }}</td>
+                    <td>{{ $no++ }}</td>
                     <td>{{ $pem ->username }}</td>
                     <td>{{ $pem ->name }}</td>
                     <td>{{ $pem ->email }}</td>
-                    <td>{{ $pem ->password }}</td>
+                    
                     <td>
-                      <!-- <form action="{{ route('pembeli.destroy',['pembeli'=>$pem->username]) }}" method="POST"> -->
+                      <form action="{{ route('pembeli.destroy',['pembeli'=>$pem->id]) }}" method="POST">
                       <a class="btn btn-primary btn-sm" href="{{ route('pembeli.edit',$pem->id) }}">Edit</a>
                           @csrf
                           @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah {{$pem->username}} akan dihapus?')">Delete</button>
-                      <!-- </form>  -->
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah {{$pem->id}} akan dihapus?')">Delete</button>
+                      </form> 
                     </td>
                     </tr>
                     @endforeach

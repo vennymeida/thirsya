@@ -59,6 +59,9 @@ class User extends Authenticatable
     {
          return $this->hasMany(Pesanan::class,'user_id', 'id');
     }
-
+    public function roleuser()
+    {
+        return $this->hasMany(RoleUser::class, 'user_id');
+    }
 
 }

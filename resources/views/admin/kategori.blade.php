@@ -20,18 +20,22 @@
           @endif
               </div>
               <div class="card-body">
+              <a class="btn btn-danger btn-sm" href="{{ route('kategori.index') }}">Refresh</a>
               <a class="btn btn-warning btn-sm" href="{{ route('kategori.create') }}">Tambah</a> 
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
-                      <th>nama</th>
+                    <th>No</th>
+                      <th>Nama</th>
                       <th width="250px">
                         Aksi
                       </th>
                     </thead>
                     <tbody>
+                    <?php $no = 1; ?>
                     @foreach ($paginate as $ktg)
                     <tr>
+                    <td>{{ $no++ }}</td>
                     <td>{{ $ktg ->nama }}</td>
                     <td>
                       <form action="{{ route('kategori.destroy',['kategori'=>$ktg->nama]) }}" method="POST">

@@ -21,7 +21,7 @@ class PembeliController extends Controller
     {
         if (request()->user()->hasRole('admin')) {
             $users = User::all();
-            $paginate = User::orderBy('id', 'asc')->paginate(3);
+            $paginate = User::orderBy('id', 'asc')->paginate(10);
             $role = Role::all();
            return view('admin.pembeli', ['users' => $users ,'paginate'=>$paginate, 'role' => $role]);
         } else {
@@ -53,19 +53,33 @@ class PembeliController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
+            'role_id' => 'required',
         ]);
            
         //fungsi eloquent untuk menambah data
+
+        
         $pembeli= new User;
+        
+        
+        //$roleuser->user()->associate($pembeli->id);
+        //$roleuser->save();
         $pembeli->username = $request->get('username');
         $pembeli->name = $request->get('name');
         $pembeli->email = $request->get('email');
         $pembeli->password = Hash::make($request->get('password'));
+        $pembeli->save();
+
+        //$roleuser = new RoleUser;
+        $roleuser = RoleUser::create([
+            'user_id' => $pembeli->id,
+            'role_id' => $request -> role_id
+        ]);
         // $pembeli->save();
         
         //Fungsi eloquent untuk menambah data dengan relasi belongsTo
         
-        $pembeli->save();
+        
     
     
         // Mahasiswa::create($request->all());
