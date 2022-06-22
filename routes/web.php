@@ -37,7 +37,11 @@ Route::get('/login', function () {
 });
 
 Auth::routes();
-Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+//Route::resource('beranda',  BerandaController::class);
+Route::get('/', [BerandaController::class, 'index'])->name('berandaindex');
+Route::get('/shopBeranda', [BerandaController::class, 'shop'])->name('berandashop');
+// Route::get('/shop', [BerandaController::class, 'index'])->name('beranda.index');
+//Route::resource('shop',  ShopController::class);
 
 //Route edit profil admin
 // Route::post('update-profile-info',[ProfilController::class, 'updateInfo'])->name('adminUpdateInfo');

@@ -53,10 +53,11 @@
 						<!-- menu start -->
 						<nav class="main-menu">
 							<ul>
-								<li class="current-list-item"><a href="#" method="post">Home</a></li>
+								<li class="current-list-item"><a href="{{route('berandaindex')}}" method="post">Home</a></li>
 									<!-- <li><a href="#" method="post">About</a></li>
 									<li><a href="#" method="post">Contact</a></li>
 									<li><a href="#" method="post">Shop</a></li> -->
+									<li><a href="{{route('berandashop')}}" method="post">Shop</a></li>
 
 									@if (Route::has('login'))
 											<li class="nav-item">
