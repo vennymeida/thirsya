@@ -60,6 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('searchBarang', [BarangController::class, 'searchBarang'])->name('searchBarang');
   Route::get('/search', [KategoriController::class, 'search'])->name('search');
   Route::get('/searchUser', [PembeliController::class, 'searchUser'])->name('searchUser');
+  Route::get('/dashboardU', [UserController::class, 'dashboardU'])->name('user');
 
   Route::group(['middleware' => 'auth'], function () {
     Route::resource('shop',  ShopController::class);

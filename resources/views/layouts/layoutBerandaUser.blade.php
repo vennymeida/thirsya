@@ -43,6 +43,14 @@
 	<script src="{{ URL::asset('asset/js/main.js') }}"></script>
 	</head>
 <body>
+
+	<!--PreLoader-->
+	<div class="loader">
+			<div class="loader-inner">
+				<div class="circle"></div>
+			</div>
+    	</div>
+    <!--PreLoader Ends-->
     <!-- header -->
 	<div class="top-header-area" id="sticker">
 		<div class="container">
@@ -53,7 +61,7 @@
 						<!-- menu start -->
 						<nav class="main-menu">
 							<ul>
-								<li class="current-list-item"><a href="{{route('user.index')}}" method="post">Home</a></li>
+								<li><a href="{{route('user.index')}}" method="post">Home</a></li>
 									<li><a href="{{route('order.index')}}" method="post">Order</a></li>
 									<li><a href="{{route('shop.index')}}" method="post">Shop</a></li>
 									<li><a href="{{ route('logout') }}"
@@ -83,40 +91,40 @@
 	<!-- end header -->
     @yield('content')
 	<!-- footer -->
-<div class="footer-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box about-widget">
-						<h2 class="widget-title">About us</h2>
-						<p>WaroenkQu merupakan ecommerce yang menyediakan berbagai sembako.</p>
+	<div class="footer-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6">
+						<div class="footer-box about-widget">
+							<h2 class="widget-title">About us</h2>
+							<p>WaroenkQu merupakan ecommerce yang menyediakan berbagai sembako.</p>
+						</div>
 					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box get-in-touch">
-						<h2 class="widget-title">Get in Touch</h2>
-						<ul>
-							<li>Di jalan Semar</li>
-							<li>WaroenkQu@WaroenkQu.com</li>
-							<li>+62 123 456 7890</li>
-						</ul>
+					<div class="col-lg-3 col-md-6">
+						<div class="footer-box get-in-touch">
+							<h2 class="widget-title">Get in Touch</h2>
+							<ul>
+								<li>Bersama WaroenkQu Membangun Kebahagiaan</li>
+								<li>WaroenkQu@WaroenkQu.com</li>
+								<li>+62 123 456 7890</li>
+							</ul>
+						</div>
 					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box pages">
-						<h2 class="widget-title">Pages</h2>
-						<ul>
-							<li><a href="#" method="post">Home</a></li>
-							<li><a href="#" method="post">About</a></li>
-							<li><a href="#" method="post">Contact</a></li>
-							<li><a href="#" method="post">Shop</a>
-						</ul>
+					<div class="col-lg-3 col-md-6">
+						<div class="footer-box pages">
+							<h2 class="widget-title">Pages</h2>
+							<ul>
+								<li><a href="{{route('user.index')}}" method="post">Home</a></li>
+								<li><a href="{{route('order.index')}}"  method="post">Order</a></li>
+								<li><a href="{{route('shop.index')}}" method="post">Shop</a>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- end footer -->
+		<!-- end footer -->
+
 
     <!-- copyright -->
 	<div class="copyright">
