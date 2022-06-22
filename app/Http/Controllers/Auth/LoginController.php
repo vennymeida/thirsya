@@ -47,12 +47,7 @@ class LoginController extends Controller
     {
         return 'username';
     }
-//     protected function redirectTo()
-// {
-//     if(\Auth::user()->hasRole('usr')){
-//         return '/user/index';
-//     }       
-// }
+
     public function redirectTo (){
 
     if (auth()->user()->hasRole('user')){
@@ -63,14 +58,4 @@ class LoginController extends Controller
         return '/dashboard';
     }
 }
-
-
-        // protected function redirectTo(){
-        // if(Auth::check()){
-        //     if (Auth::user()->role=='adm') {
-        //         return redirect ('/admin');
-        //     } else {
-        //         return redirect ('/user');
-        //     }
-        // }
         }

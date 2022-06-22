@@ -9,26 +9,16 @@ class BerandaController extends Controller
 {
     public function index()
     {
-       
             return view('beranda.index');
-        
     }
 
     public function shop(){
-       
-        
             $barangs = Barang::all();
            return view('beranda.shopBeranda', ['barangs' => $barangs]);
-       
-        
         }
 
         public function about(){
-       
-        
-               return view('beranda.aboutBeranda');
-           
-            
+                return view('beranda.aboutBeranda');
             }
     }
 

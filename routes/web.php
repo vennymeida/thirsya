@@ -13,6 +13,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AlamatPengirimanController;
 use App\Http\Controllers\OrderController;
 
@@ -32,37 +33,30 @@ use App\Http\Controllers\OrderController;
 
 
 Auth::routes();
-
+Route::get('/register', [RegisterController::class, 'redirectTo']);
 Route::get('/', [BerandaController::class, 'index'])->name('berandaindex');
 Route::get('/shopBeranda', [BerandaController::class, 'shop'])->name('berandashop');
 Route::get('/aboutBeranda', [BerandaController::class, 'about'])->name('berandaabout');
 
 
 Route::group(['middleware' => 'auth'], function () {
-  // Route::resource('profil', ProfilController::class);
   Route::resource('barang',  BarangController::class);
   Route::resource('transaksi',  TransaksiController::class);
   Route::resource('pembeli',  PembeliController::class);
   Route::resource('kategori',  KategoriController::class);
   Route::get('barang/kategori/{id}', [BarangController::class, 'listBarangKategori'])->name('list.withCategory');
-  //Route::get('/dashboard', [AdminController::class,'dashboard'])->name('admin');
   Route::resource('dashboard', AdminController::class);
   Route::get('/profil', [AdminController::class, 'profil'])->name('Adminprofil');
   Route::post('/doupdate', [ProfilController::class, 'doupdate'])->name('doUpdateProfil');
   Route::get('pembeli/role/{id}', [PembeliController::class, 'listUserRole'])->name('list.role');
-  // Route::get('userfilter/{id}', [PembeliController::class, 'getUserFilter'])->name('pembeli.filter');
-  // Route::patch('/profil/update', [ProfilController::class, 'update'])->name('profil.update');
-  // Route::get('/barang', [BarangController::class, 'index'])->name('Adminbarang');
-  // Route::get('/barang', [BarangController::class, 'create']);
-  // Route::get('/pembeli', [AdminController::class, 'pembeli'])->name('Adminpembeli');
-  // Route::get('/transaksi', [AdminController::class, 'transaksi'])->name('Admintransaksi');
   Route::get('cetak', [TransaksiController::class, 'cetak'])->name('transaksi.cetak');
   Route::get('searchBarang', [BarangController::class, 'searchBarang'])->name('searchBarang');
   Route::get('/search', [KategoriController::class, 'search'])->name('search');
   Route::get('/searchUser', [PembeliController::class, 'searchUser'])->name('searchUser');
-  Route::get('/dashboardU', [UserController::class, 'dashboardU'])->name('user');
+  
 
   Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboardU', [UserController::class, 'dashboardU'])->name('user');
     Route::resource('shop',  ShopController::class);
     Route::resource('user',  UserController::class);
     Route::get('shop/{id}',[ShopController::class,'index']);
@@ -78,9 +72,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cetak/{id}', [OrderController::class, 'cetak'])->name('order.cetak');
   });
 });
-
-
-
-
-// Route::get('admin', function () { return view('admin'); })->middleware('checkRole:admin');
-// Route::get('user', function () { return view('user'); })->middleware(['checkRole:user,admin']);
