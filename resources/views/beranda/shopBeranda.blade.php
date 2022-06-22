@@ -28,7 +28,7 @@
 							<p class="product-price">Rp. {{$brg->harga }} </p>
 							<form method="post" action="{{ url('add-to-cart') }}/{{ $brg->id }}" >
                                             @csrf
-											@if($brg->stok == 0)
+											@if($brg->stok == 0 || $brg->stok < 0)
 												<input type="text" name="jumlah_pesan" class="form-control is-invalid" required="" style="border-radius: 50px;"disabled>
 												@else
 												<input type="text" name="jumlah_pesan" class="form-control" required="" style="border-radius: 50px;" >

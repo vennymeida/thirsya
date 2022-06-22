@@ -23,14 +23,19 @@
 							<div class="product-image">
 								<a href="shop/{{$brg->id}}"><img src="{{asset('storage/'.$brg->foto)}}" class="card-img-top" height="175px" alt=""></a>
 							</div>
+							@if($brg->stok == 0 || $brg->stok < 0)
 							<h3>{{$brg->nama_barang }}</h3>
-							<h5>Stok : {{$brg->stok }}</h3>
+							<h5>Stok : {{$brg->stok = 0 }}</h3>
 							<p class="product-price">Rp. {{$brg->harga }} </p>
 							<form method="post" action="{{ url('add-to-cart') }}/{{ $brg->id }}" >
                                             @csrf
-											@if($brg->stok == 0)
+											
 												<input type="text" name="jumlah_pesan" class="form-control is-invalid" required="" style="border-radius: 50px;"disabled>
 												@else
+												<h3>{{$brg->nama_barang }}</h3>
+							<h5>Stok : {{$brg->stok }}</h3>
+							<p class="product-price">Rp. {{$brg->harga }} </p>
+							<form method="post" action="{{ url('add-to-cart') }}/{{ $brg->id }}" >
 												<input type="text" name="jumlah_pesan" class="form-control" required="" style="border-radius: 50px;" >
 
 												@endif
