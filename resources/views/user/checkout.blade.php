@@ -124,7 +124,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<a href="{{route('placeorder')}}" type="submit" form="finalize" class="boxed-btn" value="Place Order"></a>
+						<a href="{{route('placeorder')}}" type="submit" form="finalize" class="boxed-btn" value="Place Order">Place Order</a>
 					</div>
 				</div>
 			</div>

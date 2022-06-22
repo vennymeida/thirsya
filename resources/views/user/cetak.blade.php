@@ -143,7 +143,7 @@
             <tr><td></td></tr>
             <tr><td><b>Data Barang</td></tr>
             <td>No Invoice</td>
-            <td><span style="font-weight: bold;">#{{$data->id_pesanans}}</span></td>
+            <td><span style="font-weight: bold;">#{{$data->kode}}</span></td>
             <tr class="heading">
             
 									<td>Nama Barang</td>

@@ -36,6 +36,7 @@
 							<h5>Stok : {{$brg->stok }}</h3>
 							<p class="product-price">Rp. {{$brg->harga }} </p>
 							<form method="post" action="{{ url('add-to-cart') }}/{{ $brg->id }}" >
+							@csrf
 												<input type="text" name="jumlah_pesan" class="form-control" required="" style="border-radius: 50px;" >
 
 												@endif

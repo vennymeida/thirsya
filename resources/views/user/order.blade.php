@@ -24,7 +24,7 @@
                         <thead>
                             <tr>
                             <tr>
-                            <th>#</th>
+                            <th>Proses Admin</th>
                                  <th>No. Invoice</th>
                                 <!-- <th>Gambar Produk</th>
                                 <th>Nama Produk</th>
@@ -42,35 +42,51 @@
                                 <td class="py-2 px-5  font-weight-bold">
                                  
                                     @if ($order->bukti_pesanan == "")
-                                    <button href="javascript:void(0)" onclick="batalOrder({{$order->id}})">
-                                        <span class="button button-danger py-2 px-3 my-1">Batalkan Order</span>
-                                    </button>
+                                    <span class="button button-warning py-2 px-3 my-1">Belum Bayar</span>
+                                    </td><td>
+                                        Tidak Ada Nomer Invoice
                                     @endif
                                     @if ($order->status_cart === '1' && $order->bukti_pesanan != "")
                                     <span class="button button-warning py-2 px-3 my-1">Proses Verifikasi Admin</span>
+                                    </td><td>
+                                    {{$order->kode}}
                                     @endif
                                     @if ($order->status_cart === '2' && $order->bukti_pesanan != "")
 <span class="button button-success py-2 px-3 my-1">Pengiriman</span>
+</td><td>
+                                    {{$order->kode}}
                                     @endif
-                                    </td><td>
-                                    {{$order->id_pesanans}}
-                                </td>
-                          
-                                <td>
+                                    <td>
+                                @if ($order->bukti_pesanan == "")
+                                    Tidak Bisa Cetak
+                                    @endif
+                                    @if ($order->status_cart === '1' && $order->bukti_pesanan != "")
+                                    
                                     <a type="submit" href="{{route('order.cetak', $order->id_pesanans)}}" >Cetak</a>
+                                    @endif
+                                    @if ($order->status_cart === '2' && $order->bukti_pesanan != "")
+                                   
+                                    <a type="submit" href="{{route('order.cetak', $order->id_pesanans)}}" >Cetak</a>
+                                    @endif
+                                   
                                 </td>
+                                </td>
+                               
+                                
                                 <td class="py-2 font-weight-bold ">
                                 
                                     @if ($order->bukti_pesanan == "")
                                     <a href="{{route('showupload', $order->id_pesanans)}}">
+                                       
                                         <span class="button button-danger py-2 px-3 my-1">Belum Bayar ( Upload )</span>
 </a>
                                     @endif
                                     @if ($order->status_cart === '1' && $order->bukti_pesanan != "")
+                                    
                                     <span class="button button-warning py-2 px-3 my-1">Verifikasi</span>
                                     @endif
                                     @if ($order->status_cart === '2' && $order->bukti_pesanan != "")
-
+                                   
                                     <span class="button button-success py-2 px-3 my-1">Sudah Bayar</span>
                                     @endif
                                 
@@ -92,25 +108,4 @@
     </div>
 </div>
 <!-- cart area end -->
-@endsection
-
-@section('script')
-<script>
-    function batalOrder(id) {
-        $.ajax({
-            type: "DELETE"
-            , url: `${APP_URL}/order/${id}`
-            , data: {
-                id: id
-            }
-            , success: function(res) {
-                window.location.href = `${APP_URL}/order`;
-            }
-            , error: function(err) {
-                alert(err.responseJSON.msg)
-            }
-        });
-    }
-
-</script>
 @endsection

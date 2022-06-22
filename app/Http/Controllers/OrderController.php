@@ -114,9 +114,9 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        $order = Order::findOrFail($id);
+        $order = Pesanan::findOrFail($id);
         $order->cart->update([
-            "status_cart" => "cart"
+            "status_cart" => "3"
         ]);
         $order->delete();
         return response()->json(['success' => true], 200);

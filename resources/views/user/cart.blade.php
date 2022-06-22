@@ -48,7 +48,7 @@
                                     <form action="{{ url('cart') }}/{{ $isiKeranjang->id_cart }}" method="post">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin akan menghapus data ?');"><i class="bi bi-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin akan menghapus data ?');"><i class="bi bi-trash"></i>Delete</button>
                                     </form>
                                 </td>
                             </tr>
