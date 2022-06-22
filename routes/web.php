@@ -29,28 +29,14 @@ use App\Http\Controllers\OrderController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('beranda.index');
-// });
-Route::get('/login', function () {
-  return view('auth/login');
-});
+
 
 Auth::routes();
-//Route::resource('beranda',  BerandaController::class);
+
 Route::get('/', [BerandaController::class, 'index'])->name('berandaindex');
 Route::get('/shopBeranda', [BerandaController::class, 'shop'])->name('berandashop');
-// Route::get('/shop', [BerandaController::class, 'index'])->name('beranda.index');
-//Route::resource('shop',  ShopController::class);
+Route::get('/aboutBeranda', [BerandaController::class, 'about'])->name('berandaabout');
 
-//Route edit profil admin
-// Route::post('update-profile-info',[ProfilController::class, 'updateInfo'])->name('adminUpdateInfo');
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//Route::get('/admin', 'AdminController@index');
-//Route::get('/user', 'UserController@index');
-// Route::get('/home', [HomeController::class, 'index']);
-Route::get('/dashboardU', [UserController::class, 'dashboardU'])->name('user');
 
 Route::group(['middleware' => 'auth'], function () {
   // Route::resource('profil', ProfilController::class);

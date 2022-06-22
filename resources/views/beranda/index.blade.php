@@ -17,13 +17,7 @@
 </head>
 <body>
 	
-	<!--PreLoader-->
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="circle"></div>
-        </div>
-    </div>
-    <!--PreLoader Ends-->
+	
 	
 	
 
@@ -62,13 +56,12 @@
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-					<div class="list-box d-flex align-items-center">
-						<div class="list-icon">
-							<i class="fas fa-phone-volume"></i>
+					<div class="">
+						<div class="">
+							<i class=""></i>
 						</div>
 						<div class="content">
-							<h3>Layanan 24/7</h3>
-							<p>Dapatkan layanan sepanjang hari</p>
+				
 						</div>
 					</div>
 				</div>
@@ -78,8 +71,8 @@
 							<i class="fas fa-sync"></i>
 						</div>
 						<div class="content">
-							<h3>Pengembalian Dana</h3>
-							<p>Dapatkan dukungan sepanjang hari!</p>
+						<h3>Layanan 24/7</h3>
+							<p>Dapatkan layanan sepanjang hari</p>
 						</div>
 					</div>
 				</div>

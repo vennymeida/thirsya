@@ -22,5 +22,13 @@ class BerandaController extends Controller
        
         
         }
+
+        public function about(){
+       
+        
+               return view('beranda.aboutBeranda');
+           
+            
+            }
     }
 
