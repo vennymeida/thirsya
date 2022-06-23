@@ -130,8 +130,8 @@ class TransaksiController extends Controller
 
     public function cetak()
     {
-        // $orders = Pesanan::where(array('status_cart'=>2))->get();
-        $orders = Pesanan::all();
+        $orders = Pesanan::where(array('status_cart'=>2))->get();
+        // $orders = Pesanan::all();
         //dd($orders);
         $pdf = PDF::loadview('admin.cetakT', ['orders'=>$orders])->setPaper('a4', 'potrait');
         return $pdf->stream();

@@ -35,10 +35,11 @@
     <div class="form-group">
         <label for="email">Email</label> 
         <input type="text" name="email" class="form-control" id="email" aria-describedby="email" value="{{ $users->email }}"> 
+        <br><label><input type="checkbox" name="checkfield" id="g01-01"  onchange="doalert(this)" /> Ganti password</label>
     </div>
-    <div class="form-group">
-        <label for="password">Password</label> 
-        <input type="text" name="password" class="form-control" id="password" aria-describedby="password" value="{{ $users->password}}" > 
+    <div class="form-group" id='passwordU'>
+        <label>Password</label>
+        <input type="password" class="form-control" placeholder="Password" name='password'>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -46,4 +47,13 @@
     </div>
     </div>
 </div>
+<script>
+    function doalert(checkboxElem) {
+  if (checkboxElem.checked) {
+    $("#passwordU").show();
+  } else {   
+    $("#passwordU").hide();
+  }
+}
+  </script>
 @endsection

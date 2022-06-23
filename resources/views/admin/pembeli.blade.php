@@ -45,6 +45,7 @@
                     
                     <td>
                       <form action="{{ route('pembeli.destroy',['pembeli'=>$pem->id]) }}" method="POST">
+                      <a class="btn btn-info btn-sm" href="{{ route('pembeli.show',$pem->id) }}">Show</a>
                       <a class="btn btn-primary btn-sm" href="{{ route('pembeli.edit',$pem->id) }}">Edit</a>
                           @csrf
                           @method('DELETE')

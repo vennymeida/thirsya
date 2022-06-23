@@ -10,7 +10,7 @@
                 <h4 class="card-title"> Table Transaksi Pembelian</h4>
               </div>
               <div class="card-body">
-            <a class="btn btn-warning btn-sm" href="{{ route('transaksi.cetak') }}">Cetak PDF</a>
+            <a class="btn btn-warning btn-sm" href="{{ route('transaksi.cetak') }}" target="_blank">Cetak PDF</a>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
@@ -33,7 +33,7 @@
                     <td>
                  
                     
-                    <a class="btn btn-warning btn-sm" href="{{ route('transaksi.cetak1',$trn->id_pesanans) }}">Cetak</a>
+                    <!-- <a class="btn btn-warning btn-sm" href="{{ route('transaksi.cetak1',$trn->id_pesanans) }}">Cetak</a> -->
                     <br><br>
                     @if($trn->status_cart == '2')
                     <form action="{{ route('transaksi.update',['transaksi'=>$trn->id_pesanans]) }}" method="POST">

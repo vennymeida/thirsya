@@ -10,6 +10,7 @@
             </div>
             <div class="card-body">
             <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Kategori: </b>{{$barangs->kategori->nama}}</li>
                 <li class="list-group-item"><b>Nama Barang: </b>{{$barangs->nama_barang}}</li>
                 <li class="list-group-item"><b>Harga: </b>{{$barangs->harga}}</li>
                 <li class="list-group-item"><b>Stok: </b>{{$barangs->stok}}</li>

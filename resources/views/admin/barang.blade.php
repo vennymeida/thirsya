@@ -44,7 +44,7 @@
                   <?php $no = 1; ?>
                     @foreach ($barangs as $brg)
                     <tr>
-                      <td>{{$no++}}</td>
+                    <td>{{$no++}}</td>
                     <td>{{ $brg ->Kategori -> nama}}</td>
                     <td>{{ $brg ->nama_barang }}</td>
                     <td>{{ $brg ->harga }}</td>
@@ -52,9 +52,9 @@
                     <td>{{ $brg ->keterangan }}</td>
                     <td><img style="width: 80px; height: 80px; overflow: hidden" class="rounded-circle" src="{{asset('storage/'.$brg->foto)}}"></td>
                     <td>
-                      <form action="{{ route('barang.destroy',['barang'=>$brg->nama_barang]) }}" method="POST">
-                        <a class="btn btn-info btn-sm" href="{{ route('barang.show',$brg->nama_barang) }}">Show</a>
-                        <a class="btn btn-primary btn-sm" href="{{ route('barang.edit',$brg->nama_barang) }}">Edit</a>
+                      <form action="{{ route('barang.destroy',['barang'=>$brg->id]) }}" method="POST">
+                        <a class="btn btn-info btn-sm" href="{{ route('barang.show',$brg->id) }}">Show</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('barang.edit',$brg->id) }}">Edit</a>
                           @csrf
                           @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah {{$brg->nama_barang}} akan dihapus?')">Delete</button>

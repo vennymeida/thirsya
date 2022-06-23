@@ -82,6 +82,12 @@ Coded by www.creative-tim.com
       // Javascript method's body can be found in assets/assets-for-demo/js/demo.js') }}
       demo.initChartsPages();
     });
+
+    $(document).ready(function() {
+      $("#passwordU").hide();
+      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js') }}
+      demo.initChartsPages();
+    });
   </script>
 </body>
 

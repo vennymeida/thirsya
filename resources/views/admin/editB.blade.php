@@ -23,6 +23,14 @@
         @csrf
         @method('PUT')
         <div class="form-group">
+                        <label for="Kategori">Kategori</label>
+                        <select class="form-control" name="kategori" id="kategori" value="{{$barangs->kategori }}">
+                            @foreach($kategoris as $ktg)
+                                <option value="{{$ktg->id}}" >{{$ktg->nama}} </option>
+                            @endforeach
+                        </select>
+                    </div>
+        <div class="form-group">
             <label for="nama_barang">nama_barang</label>
             <input type="text" name="nama_barang" class="form-control" id="nama_barang" value="{{ $barangs->nama_barang }}" aria-describedby="nama_barang" >
         </div>

@@ -98,7 +98,7 @@ class PembeliController extends Controller
     public function show($id)
     {
         $users = User::all()->where('id', $id)->first();
-        // return view('admin.detailP',['users'=>$users]);
+        return view('admin.detailP',['users'=>$users]);
     }
 
     /**
@@ -136,7 +136,10 @@ class PembeliController extends Controller
         $users->username= $request->post('username');
         $users->name = $request->post('name');
         $users->email = $request->post('email');
-        $users->password = Hash::make($request->post('password'));
+        // $users->password = Hash::make($request->post('password'));
+        if($request->post('password')){
+            $users->password = Hash::make($request->post('password'));
+        }
         
     //     if ($users->foto && file_exists(storage_path('app/public/'. $users->foto))) {
     //         Storage::delete('public/'. $users->foto);

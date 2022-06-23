@@ -6,7 +6,7 @@
         <div class="row justify-content-center align-items-center">          
             <div class="card" style="width: 24rem; margin-top: 50px;">
             <div class="card-header">
-            Detail Barang
+            Detail Transaksi
             </div>
             <div class="card-body">
             <ul class="list-group list-group-flush">

@@ -99,11 +99,11 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nama_barang)
+    public function show($id)
     {
-        $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
-        
-        return view('admin.detailB',['barangs'=>$barangs]);
+        $barangs = Barang::all()->where('id', $id)->first();
+        $kategoris = Kategori::all();
+        return view('admin.detailB',['barangs'=>$barangs, 'kategoris'=>$kategoris]);
     }
 
     /**
@@ -112,10 +112,11 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($nama_barang)
+    public function edit($id)
     {
-        $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
-        return view('admin.editB',['barangs'=>$barangs]);   
+        $kategoris = Kategori::all();
+        $barangs = Barang::all()->where('id', $id)->first();
+        return view('admin.editB',['barangs'=>$barangs,'kategoris'=>$kategoris]);   
     }
 
     /**
@@ -129,6 +130,7 @@ class BarangController extends Controller
     {
         //  melakukan validasi data
          $request->validate([
+            'kategori' => 'required',
             'nama_barang' => 'required',
             'harga' => 'required',
             'stok' => 'required',
@@ -137,6 +139,7 @@ class BarangController extends Controller
         ]);
      $image_name = '';
      $data= array(
+        'kategori_id'=>$request->post('kategori'),
         'nama_barang'=>$request->post('nama_barang'),
         'harga'=>$request->post('harga'),
         'stok'=>$request->post('stok'),

@@ -33,7 +33,7 @@ use App\Http\Controllers\OrderController;
 
 
 Auth::routes();
-Route::get('/register', [RegisterController::class, 'redirectTo']);
+Route::get('/home', [BerandaController::class, 'layoutBeranda']);
 Route::get('/', [BerandaController::class, 'index'])->name('berandaindex');
 Route::get('/shopBeranda', [BerandaController::class, 'shop'])->name('berandashop');
 Route::get('/aboutBeranda', [BerandaController::class, 'about'])->name('berandaabout');
