@@ -50,7 +50,7 @@ class KategoriController extends Controller
         $kategoris= new Kategori;
         $kategoris->nama = $request->get('nama');
         $kategoris->save();
-       
+        Alert::success('Sukses', 'Berhasil Tambah Kategori');
         return redirect()->route('kategori.index')
             ->with('success', 'Kategori Berhasil Ditambahkan');
         
@@ -103,6 +103,7 @@ class KategoriController extends Controller
        
         
         //jika data berhasil diupdate, akan kembali ke halaman utama
+        Alert::success('Sukses', 'Berhasil Ubah Kategori');
         return redirect()->route('kategori.index')
             ->with('success', 'Kategori Berhasil Diupdate');
     }
@@ -117,6 +118,7 @@ class KategoriController extends Controller
     {
         $kategoris = Kategori::all()->where('nama', $nama)->first();
         $kategoris->delete($kategoris);
+        Alert::success('Sukses', 'Berhasil Hapus Kategori');
         return redirect()->route('kategori.index');
     }
 

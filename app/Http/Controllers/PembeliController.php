@@ -85,6 +85,7 @@ class PembeliController extends Controller
         // Mahasiswa::create($request->all());
     
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        Alert::success('Sukses', 'Berhasil Tambah User');
         return redirect()->route('pembeli.index')
             ->with('success', 'User Berhasil Ditambahkan');
     }
@@ -136,26 +137,17 @@ class PembeliController extends Controller
         $users->username= $request->post('username');
         $users->name = $request->post('name');
         $users->email = $request->post('email');
-        // $users->password = Hash::make($request->post('password'));
+        
         if($request->post('password')){
             $users->password = Hash::make($request->post('password'));
         }
-        
-    //     if ($users->foto && file_exists(storage_path('app/public/'. $users->foto))) {
-    //         Storage::delete('public/'. $users->foto);
-    //     }
-
-    //       $image_name = '';
-    //     if ($request->file('foto')) {
-    //     $image_name = $request->file('foto')->store('images', 'public');
-    // }
-    //     $barangs->foto = $image_name;
         $users->save();
 
         
        
         
         //jika data berhasil diupdate, akan kembali ke halaman utama
+        Alert::success('Sukses', 'Berhasil Ubah Data User');
         return redirect()->route('pembeli.index')
             ->with('success', 'Barang Berhasil Diupdate');
     }
@@ -170,6 +162,7 @@ class PembeliController extends Controller
     {
         $pembeli = User::all()->where('id', $id)->first();
         $pembeli->delete($pembeli);
+        Alert::success('Sukses', 'Berhasil Hapus Data User');
         return redirect()->route('pembeli.index');
     }
 

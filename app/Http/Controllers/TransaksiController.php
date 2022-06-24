@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pesanan;
 use App\Models\Barang;
-use App\Models\AlamatPengiriman;
 use App\Models\User;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Storage;
@@ -29,8 +28,6 @@ class TransaksiController extends Controller
         } else {
             return redirect('/');
         }
-        // $data = array('title' => 'Data Transaksi');
-        // return view('transaksi.index', $data);
     }
 
     /**
@@ -102,12 +99,11 @@ class TransaksiController extends Controller
             ]
             );
         }
-    
         return back();
     }
+
     public function update_belum_bayar(Request $request, $id)
     {
-  
         $pesanans = Pesanan::where('id_pesanans', $id)
         ->update([
             'status_cart' => '1'
@@ -121,6 +117,7 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         $pesanans = Pesanan::all()->where('id_pesanans', $id)->first();
@@ -131,8 +128,6 @@ class TransaksiController extends Controller
     public function cetak()
     {
         $orders = Pesanan::where(array('status_cart'=>2))->get();
-        // $orders = Pesanan::all();
-        //dd($orders);
         $pdf = PDF::loadview('admin.cetakT', ['orders'=>$orders])->setPaper('a4', 'potrait');
         return $pdf->stream();
     }
@@ -141,7 +136,6 @@ class TransaksiController extends Controller
     {
         $data = Pesanan::where('id_pesanans', $id)->first();
         $barangs = $data->cart;
-        //dd($data->alamat_pengiriman);
         $pdf = PDF::loadview('user.cetak', ['data' => $data, 'barangs'=>$barangs])->setPaper('a4', 'potrait');
         return $pdf->stream();
     }

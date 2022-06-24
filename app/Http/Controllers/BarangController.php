@@ -88,6 +88,7 @@ class BarangController extends Controller
     // Mahasiswa::create($request->all());
 
     //jika data berhasil ditambahkan, akan kembali ke halaman utama
+    Alert::success('Sukses', 'Berhasil Tambah Data Barang');
     return redirect()->route('barang.index')
         ->with('success', 'Barang Berhasil Ditambahkan');
     }
@@ -159,6 +160,7 @@ class BarangController extends Controller
                     
               
         //jika data berhasil diupdate, akan kembali ke halaman utama
+        Alert::success('Sukses', 'Berhasil Ubah Data Barang');
         return redirect()->route('barang.index')
             ->with('success', 'Barang Berhasil Diupdate');
     }
@@ -173,6 +175,7 @@ class BarangController extends Controller
     {
         $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
         $barangs->delete($barangs);
+        Alert::success('Sukses', 'Berhasil Hapus Data Barang');
         return redirect()->route('barang.index');
     }
 

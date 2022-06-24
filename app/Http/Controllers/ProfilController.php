@@ -77,8 +77,6 @@ class ProfilController extends Controller
     
     public function doupdate(Request $request)
     {
-        //   echo print_r($request->post()); 
-        // exit;
         $request->validate([
             'username' => 'required',
             'name' => 'required',
@@ -96,6 +94,7 @@ class ProfilController extends Controller
         $users->save();
         return redirect()->route('Adminprofil');
     }
+
     public function update(UpdateProfileRequest $request)
     {
         $request->user()->update(
@@ -110,6 +109,7 @@ class ProfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy($id)
     {
         //

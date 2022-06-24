@@ -81,11 +81,7 @@ class ShopController extends Controller
     	$pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
     	$pesanans->jumlah_harga = $pesanans->jumlah_harga+$barangs->harga*$request->jumlah_pesan;
     	$pesanans->update();
-    	
-        //Alert::success('Pesanan Sukses Masuk Keranjang', 'Success');
-        
-        //alert()->success('Mantab','Pesanan Sukses Masuk Keranjang');
-    	//return redirect('cart');
+
         return redirect('cart');
 
     }
@@ -97,11 +93,9 @@ class ShopController extends Controller
         if(!empty($pesanans))
         {
             $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();
-           
         }else{
             return back()->with('error', 'Keranjang Kosong');
         }
-        
         return view('user.cart', compact('pesanans', 'cart'));
     }
 
@@ -109,21 +103,15 @@ class ShopController extends Controller
         $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
         $cart = [];
         $lastid_pesanans=Pesanan::orderBy('id_pesanans','desc')->first();
-        //$create_pesanans=Pesanan::
-       //dd($lastid_pesanans);
         $alamatpengiriman = AlamatPengiriman::where('user_id', Auth::user()->id)->orderBy('status', 'DESC')->get();
 
        if(!empty($pesanans))
-       {
+        {
            $cart = Cart::where('pesanans_id', $pesanans->id_pesanans)->get();
            $checkout_barang = Cart::where('pesanans_id',NULL);
            $checkout_barang->update( ['pesanans_id'=>($lastid_pesanans->id_pesanans)] );
-  
-
-       }
-      
+        }
         return view('user.checkout', ['cart' => $cart, 'pesanans' => $pesanans, 'alamatpengiriman' => $alamatpengiriman]);
-
     }
 
     public function placeorderPesanan()
@@ -149,8 +137,6 @@ class ShopController extends Controller
             return back();
         }
         }
-        //dd($orders);
-        
     }
 
     public function delete($id)
@@ -160,47 +146,8 @@ class ShopController extends Controller
         $pesanans = Pesanan::where('id_pesanans', $cart->pesanan_id)->first();
         $pesanans->jumlah_harga = $pesanans->jumlah_harga-$cart->jumlah_harga;
         $pesanans->update();
-
-
         $cart->delete();
 
-        // Alert::error('Pesanan Sukses Dihapus', 'Hapus');
         return redirect('cart');
     }
-
-    
-    // public function konfirmasi()
-    // {
-    //     $user = User::where('id', Auth::user()->id)->first();
-
-    //     if(empty($user->alamat))
-    //     {
-    //         Alert::error('Identitasi Harap dilengkapi', 'Error');
-    //         return redirect('profile');
-    //     }
-
-    //     if(empty($user->nohp))
-    //     {
-    //         Alert::error('Identitasi Harap dilengkapi', 'Error');
-    //         return redirect('profile');
-    //     }
-
-    //     $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
-    //     $pesanan_id = $pesanan->id;
-    //     $pesanan->status = 1;
-    //     $pesanan->update();
-
-    //     $pesanan_details = Pesanan_details::where('pesanan_id', $pesanan_id)->get();
-    //     foreach ($pesanan_details as $pesanan_detail) {
-    //         $barang = Barang::where('id', $pesanan_detail->barang_id)->first();
-    //         $barang->stok = $barang->stok-$pesanan_detail->jumlah;
-    //         $barang->update();
-    //     }
-
-
-
-    //     Alert::success('Pesanan Sukses Check Out Silahkan Lanjutkan Proses Pembayaran', 'Success');
-    //     // return redirect('history/'.$pesanan_id);
-
-    // }
 }

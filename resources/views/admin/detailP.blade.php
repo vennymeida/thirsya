@@ -13,10 +13,9 @@
                 <li class="list-group-item"><b>Usermae: </b>{{$users->username}}</li>
                 <li class="list-group-item"><b>Nama: </b>{{$users->name}}</li>
                 <li class="list-group-item"><b>Email: </b>{{$users->email}}</li>
-                <li class="list-group-item"><b>Password: </b>{{$users->password}}</li>
             </ul>
             </div>
-            <a class="btn btn-success mt-3" href="{{ route('barang.index') }}">Kembali</a>
+            <a class="btn btn-success mt-3" href="{{ route('pembeli.index') }}">Kembali</a>
             </div>
         </div>
     </div>
