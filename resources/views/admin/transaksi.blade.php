@@ -32,8 +32,8 @@
                     <td>{{ $trn ->tanggal }}</td>
                     <td>
                  
-                    
-                    <a class="btn btn-warning btn-sm" href="{{ route('transaksi.cetak1',$trn->id_pesanans) }}">Cetak</a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('transaksi.show',$trn->id_pesanans)}}">Show</a>
+                    <a class="btn btn-warning btn-sm" href="{{ route('transaksi.cetak1',$trn->id_pesanans) }}" target="_blank">Cetak</a>
                     <br><br>
                     @if($trn->status_cart == '2')
                     <form action="{{ route('transaksi.update',['transaksi'=>$trn->id_pesanans]) }}" method="POST">
@@ -48,7 +48,6 @@
                     <button type="submit" class="btn btn-succcess btn-sm" onclick="return confirm('Apakah {{$trn->id_pesanans}} sudah terbayar?')">Terbayar</button>
                   
                   @endif
-                  <a class="btn btn-primary btn-sm" href="{{ route('transaksi.show',$trn->id_pesanans)}}">Show</a>
                   </form> 
                       <form action="{{ route('transaksi.destroy',['transaksi'=>$trn->id_pesanans]) }}" method="POST">
                     

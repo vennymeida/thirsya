@@ -18,18 +18,18 @@
 }
 </style>
     </head>
-    <body>
+    <body style="margin : 30px; font-family: Times New Roman, Times, serif; font-style: normal; font-size: 14px;">
+        @foreach($orders as $order)
         <center>
             <h3 class="text-center mb-5">WAROENKQU</h3>
         </center>
-        @foreach($orders as $order)
         <div class="container">
             <p><b>Invoce : {{$order->kode}}</b></p>
             <p><b>Nama Akun : {{$order->user->username}} </b> </p>
             <p><b>Nama Pembeli : {{$order->user->name}}</b> </p>
             <p><b>Email : {{$order->user->email}}</b> </p>
-        <table class="table table-bordered" style="width:100%;">
-        <tr>
+        <table class="table table-bordered" style="width:100%; border:0px;">
+        <tr style="background-color:rgb(21, 174, 221);">
             <th>Nama Barang</th>
             <th>Harga</th>
             <th>Jumlah</th>
@@ -43,16 +43,16 @@
                     
                 </tr>
             @endforeach
-            <tr class="total heading">
+            <tr class="total heading" style="background-color:#ffcccc;">
                 <td style="font-weight: bold">TOTAL</td>
                 <td></td>
                 <!-- <td></td> -->
                 <td style="font-weight: bold">Rp. {{ number_format($order->jumlah_harga, 0, ',', '.')}}</td>
-            </tr>
-            <tr>
+            </tr><br><br>
+            <tr style="background-color:#fff8cc;">
                 <td colspan='3'><b>Data Alamat</td>
             </tr>
-            <tr>
+            <tr style="background-color:rgb(21, 174, 221);">
                 <th>Nama Penerima</th>
                 <th>Alamat</th>
                 <th>Status</th>
