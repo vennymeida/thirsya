@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Barang;
+use Alert;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -171,9 +172,9 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($nama_barang)
+    public function destroy($id)
     {
-        $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
+        $barangs = Barang::all()->where('id', $id)->first();
         $barangs->delete($barangs);
         Alert::success('Sukses', 'Berhasil Hapus Data Barang');
         return redirect()->route('barang.index');

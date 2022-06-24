@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Role;
 use App\Models\User;
+use Alert;
 use App\Http\Request\UpdateProfileRequest;
 use Illuminate\Support\Facades\Hash;
 
@@ -92,7 +93,29 @@ class ProfilController extends Controller
             $users->password = Hash::make($request->post('password'));
         }
         $users->save();
+        Alert::success('Sukses', 'Berhasil Ubah Profil');
         return redirect()->route('Adminprofil');
+    }
+
+    public function doupdate1(Request $request)
+    {
+        $request->validate([
+            'username' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'nullable',
+        ]);
+
+        $users = User::where('id', $request->post('id'))->first();
+        $users->username= $request->post('username');
+        $users->name = $request->post('name');
+        $users->email = $request->post('email');
+        if($request->post('password')){
+            $users->password = Hash::make($request->post('password'));
+        }
+        $users->save();
+        Alert::success('Sukses', 'Berhasil Ubah Profil');
+        return redirect()->route('Userprofil');
     }
 
     public function update(UpdateProfileRequest $request)

@@ -33,7 +33,7 @@ use App\Http\Controllers\OrderController;
 
 
 Auth::routes();
-Route::get('/home', [BerandaController::class, 'layoutBeranda']);
+Route::get('/home', [BerandaController::class, 'index']);
 Route::get('/', [BerandaController::class, 'index'])->name('berandaindex');
 Route::get('/shopBeranda', [BerandaController::class, 'shop'])->name('berandashop');
 Route::get('/aboutBeranda', [BerandaController::class, 'about'])->name('berandaabout');
@@ -72,5 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('upload', [OrderController::class, 'uploadBukti'])->name('uploadBukti');
     Route::resource('order',  OrderController::class);
     Route::get('cetak/{id}', [OrderController::class, 'cetak'])->name('order.cetak');
+    Route::post('/profilUser', [ProfilController::class, 'doupdate1'])->name('doUpdateProfilUser');
+    Route::get('/profilUser', [UserController::class, 'profil'])->name('Userprofil');
   });
 });

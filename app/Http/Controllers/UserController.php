@@ -24,5 +24,7 @@ class UserController extends Controller
         return view('user.dashboardU');
     }
 
-    
+    public function profil(){
+        return view('user.profilUser');
+    }
 }

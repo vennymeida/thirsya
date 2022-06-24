@@ -41,7 +41,8 @@
 	<script src="{{ URL::asset('asset/js/sticker.js') }}"></script>
 	<!-- main js -->
 	<script src="{{ URL::asset('asset/js/main.js') }}"></script>
-	</head>
+</head>
+</head>
 <body>
 @include('sweetalert::alert')
 	<!--PreLoader-->
@@ -64,6 +65,7 @@
 								<li><a href="{{route('user.index')}}" method="post">Home</a></li>
 									<li><a href="{{route('order.index')}}" method="post">Order</a></li>
 									<li><a href="{{route('shop.index')}}" method="post">Shop</a></li>
+									<li><a href="{{route('Userprofil')}}">Profil</a>
 									<li><a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -117,6 +119,7 @@
 								<li><a href="{{route('user.index')}}" method="post">Home</a></li>
 								<li><a href="{{route('order.index')}}"  method="post">Order</a></li>
 								<li><a href="{{route('shop.index')}}" method="post">Shop</a>
+								<li><a href="{{'doUpdateProfilUser'}}" method="post">Profil</a>
 							</ul>
 						</div>
 					</div>

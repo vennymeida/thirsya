@@ -17,7 +17,11 @@
 		<div class="container">
 			
 			<div class="row product-lists justify-content">
+			
 				@foreach($barangs as $brg)
+				
+				
+				
 					<div class="col-md-3 mb-10 text-center strawberry ">
 						<div class="single-product-item card shadow p-4 mb-5 bg-white" style="width: 295px; text-decoration:none; color:black; border-radius: 50px;">
 							<div class="product-image">
@@ -48,7 +52,11 @@
 							
 						</div>
 					</div>
+			
+					
+			
 				@endforeach
+				
 			</div>
 			
 

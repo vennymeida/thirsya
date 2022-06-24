@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use Alert;
 use App\Models\RoleUser;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -130,7 +131,7 @@ class PembeliController extends Controller
             'username' => 'required',
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'nullable',
         ]);
 
         $users = User::all()->where('id', $id)->first();
