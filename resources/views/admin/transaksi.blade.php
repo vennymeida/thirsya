@@ -33,7 +33,7 @@
                     <td>
                  
                     
-                    <!-- <a class="btn btn-warning btn-sm" href="{{ route('transaksi.cetak1',$trn->id_pesanans) }}">Cetak</a> -->
+                    <a class="btn btn-warning btn-sm" href="{{ route('transaksi.cetak1',$trn->id_pesanans) }}">Cetak</a>
                     <br><br>
                     @if($trn->status_cart == '2')
                     <form action="{{ route('transaksi.update',['transaksi'=>$trn->id_pesanans]) }}" method="POST">

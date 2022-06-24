@@ -34,6 +34,7 @@ Coded by www.creative-tim.com
   <link href="{{ URL::asset('assets/demo/demo.css') }}" rel="stylesheet" />
 </head>
 @yield('content')
+@include('sweetalert::alert')
 <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">

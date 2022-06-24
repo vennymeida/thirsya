@@ -43,7 +43,7 @@
 	<script src="{{ URL::asset('asset/js/main.js') }}"></script>
 	</head>
 <body>
-
+@include('sweetalert::alert')
 	<!--PreLoader-->
 	<div class="loader">
 			<div class="loader-inner">

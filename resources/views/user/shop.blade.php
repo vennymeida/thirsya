@@ -1,5 +1,6 @@
 @extends('layouts.layoutBerandaUser')
 @section('content')
+
 <div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
 			<div class="row">

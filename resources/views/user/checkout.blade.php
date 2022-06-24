@@ -20,8 +20,10 @@
 	<div class="checkout-section mt-150 mb-150">
 		<div class="container">
 			<div class="row">
+            
 				
 				<div class="col-md-8 mb-4">
+                <a class="btn btn-danger btn-sm" href="{{ route('checkout') }}">Refresh</a>
                 <div class="cart-tax">
                     <br>
                     <button type="button" class="btn btn-sm btn-primary mb-2" data-toggle="modal" data-target="#tambahAlamatPengirimanModal">

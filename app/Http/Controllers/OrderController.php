@@ -8,6 +8,7 @@ use App\Models\Barang;
 use App\Models\Cart;
 use App\Models\AlamatPengiriman;
 use Auth;
+use Alert;
 use PDF;
 
 use function App\Helpers\uploadFile;
@@ -161,10 +162,11 @@ class OrderController extends Controller
                     ]);
                 }
             }
+            Alert::success('Success', 'Berhasil Upload Gambar');
             return redirect()->route('order.index');
         }
-       
-        return redirect()->back()->with('error', 'Upload gagal');
+        Alert::warning('Warning', 'Gagal Upload Gambar');
+        return redirect()->back();
     }
 
     public function cetak($id)

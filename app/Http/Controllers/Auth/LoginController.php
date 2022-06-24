@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -51,11 +52,13 @@ class LoginController extends Controller
     public function redirectTo (){
 
     if (auth()->user()->hasRole('user')){
-        return '/dashboardU';
+        Alert::success('Sukses Masuk Sebagai Pembeli', 'Success');
+        return '/dashboardU';     
     }
 
     if (auth()->user()->hasRole('admin')){
-        return '/dashboard';
+        Alert::success('Sukses Masuk Sebagai Admin', 'Success');
+        return '/dashboard';   
     }
 }
         }

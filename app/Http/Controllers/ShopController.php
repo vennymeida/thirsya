@@ -8,7 +8,7 @@ use App\Models\Cart;
 use App\Models\Pesanan;
 use App\Models\AlamatPengiriman;
 use Auth;
-// use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -74,6 +74,7 @@ class ShopController extends Controller
     		$harga_pesanan_detail_baru = $barangs->harga*$request->jumlah_pesan;
 	    	$cart->jumlah_harga = $cart->jumlah_harga+$harga_pesanan_detail_baru;
 	    	$cart->update();
+            Alert::success('Pesanan Sukses Masuk Keranjang', 'Success');
     	}
 
     	//jumlah total
@@ -81,8 +82,11 @@ class ShopController extends Controller
     	$pesanans->jumlah_harga = $pesanans->jumlah_harga+$barangs->harga*$request->jumlah_pesan;
     	$pesanans->update();
     	
-        // Alert::success('Pesanan Sukses Masuk Keranjang', 'Success');
-    	return redirect('cart');
+        //Alert::success('Pesanan Sukses Masuk Keranjang', 'Success');
+        
+        //alert()->success('Mantab','Pesanan Sukses Masuk Keranjang');
+    	//return redirect('cart');
+        return redirect('cart');
 
     }
 
@@ -141,6 +145,7 @@ class ShopController extends Controller
             ]);
             return view('user.order', ['cart' => $cart, 'pesanans' => $pesanans, 'orders' => $orders]);
         }else{
+            Alert::warning('Gagal', 'Alamat Opsional semua');
             return back();
         }
         }

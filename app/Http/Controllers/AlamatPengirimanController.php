@@ -7,6 +7,7 @@ use App\Http\Requests\AlamatPengirimanRequest;
 use App\Models\AlamatPengiriman;
 use App\Models\Cart;
 use App\Models\Pesanan;
+use Alert;
 use Auth;
 
 class AlamatPengirimanController extends Controller
@@ -66,7 +67,7 @@ class AlamatPengirimanController extends Controller
                 'alamat_pengiriman_id' => null
             ]);
         }
-        
+        Alert::success('Berhasil', 'Berhasil Menambah Alamat');
         return back()->with('success', 'Alamat pengiriman berhasil disimpan');
     }
 
@@ -138,6 +139,7 @@ class AlamatPengirimanController extends Controller
                 'alamat_pengiriman_id' => null
             ]);
         }
+        Alert::success('Berhasil', 'Berhasil Mengubah Alamat');
         return back()->with('success', 'Alamat pengiriman berhasil disimpan');
     }
 
@@ -168,8 +170,10 @@ class AlamatPengirimanController extends Controller
       
 
         if($Pesanans->alamat_pengiriman_id == $id){
-            return response()->json(['success' => false, 'msg' => 'Alamat pengiriman tidak dapat dihapus. Karena masih dalam proses order lain.'], 500);
+            Alert::warning('Gagal', 'Alamat Masih Digunakan');
+            return response()->json(['success' => false]);
         }else{
+            Alert::success('Berhasil', 'Sukses Menghapus Alamat');
             $alamat = AlamatPengiriman::findOrFail($id);
             $alamat->delete();
             return response()->json(['success' => true], 200);

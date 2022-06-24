@@ -44,7 +44,7 @@
 	</head>
 
 	<body>
-
+	@include('sweetalert::alert')
 		<!--PreLoader-->
 		<div class="loader">
 			<div class="loader-inner">
