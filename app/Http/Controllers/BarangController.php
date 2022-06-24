@@ -34,12 +34,6 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
-    //     $barangs = Barang::all();
-    //     return view('admin.createB',['barang' => $barangs]);
-    // }
-
     public function create()
     {
         $kategoris = Kategori::all();
@@ -54,7 +48,7 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-       //melakukan validasi data
+      
        $request->validate([
         'Kategori' => 'required',
         'nama_barang' => 'required',
@@ -68,7 +62,7 @@ class BarangController extends Controller
     if ($request->file('foto')) {
         $image_name = $request->file('foto')->store('images', 'public');
     }
-    //fungsi eloquent untuk menambah data
+   
     $kategoris = new Kategori;
     $barangs= new Barang;
     $kategoris -> id = $request->get('Kategori');
@@ -79,16 +73,8 @@ class BarangController extends Controller
     $barangs->stok = $request->get('stok');
     $barangs->keterangan = $request->get('keterangan');
     $barangs->foto = $image_name;
-    // $barangs->save();
-    
-    //Fungsi eloquent untuk menambah data dengan relasi belongsTo
-    
     $barangs->save();
 
-
-    // Mahasiswa::create($request->all());
-
-    //jika data berhasil ditambahkan, akan kembali ke halaman utama
     Alert::success('Sukses', 'Berhasil Tambah Data Barang');
     return redirect()->route('barang.index')
         ->with('success', 'Barang Berhasil Ditambahkan');
@@ -130,7 +116,6 @@ class BarangController extends Controller
      */
     public function update(Request $request, $nama_barang)
     {
-        //  melakukan validasi data
          $request->validate([
             'kategori' => 'required',
             'nama_barang' => 'required',
@@ -158,9 +143,6 @@ class BarangController extends Controller
             Storage::delete('public/'. $request->file('foto'));
         }
 
-                    
-              
-        //jika data berhasil diupdate, akan kembali ke halaman utama
         Alert::success('Sukses', 'Berhasil Ubah Data Barang');
         return redirect()->route('barang.index')
             ->with('success', 'Barang Berhasil Diupdate');
@@ -182,25 +164,13 @@ class BarangController extends Controller
 
     public function listBarangKategori($id)
     {
-        DB::enableQueryLog();
-      
-        // $barangs = Barang::where('kategori_id', $id)->with('kategori')->latest()->paginate(8);
-        // $barangs = Barang::all()->where('nama_barang', $nama_barang)->first();
-        //$produk = Barang::with('kategori')->limit(6)->latest()->get()>paginate(3);
-       
-  
-     
         $barang_query = Barang::with('kategori')->where('kategori_id', $id);
         $paginate = $barang_query->paginate(3);
         $barangs = $barang_query->get();
         $kategori = Kategori::all();
 
-        //return view('admin.barang', compact('barangs', 'kategori'));
-   
-      
         return view('admin.barang', ['barangs' => $barangs, 'paginate' => $paginate, 'kategori' => $kategori]);
     }
-
 
     public function searchBarang(Request $request)
     {
@@ -211,5 +181,4 @@ class BarangController extends Controller
         $kategori = Kategori::all();
         return view('admin.barang', ['barangs' => $barangs, 'paginate' => $paginate, 'kategori' => $kategori]);
     }
-   
 }

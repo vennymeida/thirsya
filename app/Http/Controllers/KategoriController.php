@@ -47,7 +47,6 @@ class KategoriController extends Controller
             'nama' => 'required',
         ]);
          
-        //fungsi eloquent untuk menambah data
         $kategoris= new Kategori;
         $kategoris->nama = $request->get('nama');
         $kategoris->save();
@@ -89,21 +88,14 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $nama)
     {
-         //melakukan validasi data
          $request->validate([
             'nama' => 'required',
         ]);
 
         $kategoris = Kategori::all()->where('nama', $nama)->first();
         $kategoris->nama = $request->get('nama');
-        
-        
         $kategoris->save();
-
         
-       
-        
-        //jika data berhasil diupdate, akan kembali ke halaman utama
         Alert::success('Sukses', 'Berhasil Ubah Kategori');
         return redirect()->route('kategori.index')
             ->with('success', 'Kategori Berhasil Diupdate');

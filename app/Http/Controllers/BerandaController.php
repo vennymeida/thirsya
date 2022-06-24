@@ -12,7 +12,7 @@ class BerandaController extends Controller
             return view('beranda.index');
     }
 
-    public function shop(){
+        public function shop(){
             $barangs = Barang::all();
            return view('beranda.shopBeranda', ['barangs' => $barangs]);
         }

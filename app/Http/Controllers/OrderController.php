@@ -24,13 +24,12 @@ class OrderController extends Controller
     {
         $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',1)->first();
         $cart = [];
-       $orders = Pesanan::join('status','status.id','=','pesanans.status_cart')->orderBy('id_pesanans','desc')->get();
+        $orders = Pesanan::join('status','status.id','=','pesanans.status_cart')->orderBy('id_pesanans','desc')->get();
        if(!empty($pesanans))
        {
            $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();
 
        }
-       //dd($orders);
        return view('user.order', ['cart' => $cart, 'pesanans' => $pesanans, 'orders' => $orders]);
     }
 
@@ -56,13 +55,6 @@ class OrderController extends Controller
             ->where('user_id', Auth::user()->id)
             ->first();
         if ($itemcart) {
-            // foreach ($itemcart->detail as $item) {
-            //     if ($item->alamat_pengiriman_id != null) {
-            //         continue;
-            //     } else {
-            //         return redirect()->route('cart.index')->with('error', 'Alamat pengiriman tidak boleh kosong');
-            //     }
-            // }
             $order = Order::create([
                 'cart_id' => $itemcart->id,
                 'user_id' => Auth::user()->id
@@ -173,7 +165,6 @@ class OrderController extends Controller
     {
         $data = Pesanan::where('id_pesanans', $id)->first();
         $barangs = $data->cart;
-        //dd($data->alamat_pengiriman);
         $pdf = PDF::loadview('user.cetak', ['data' => $data, 'barangs'=>$barangs])->setPaper('a4', 'potrait');
         return $pdf->stream();
     }

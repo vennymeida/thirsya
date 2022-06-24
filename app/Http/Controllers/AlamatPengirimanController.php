@@ -167,8 +167,6 @@ class AlamatPengirimanController extends Controller
             ]);
         }
        
-      
-
         if($Pesanans->alamat_pengiriman_id == $id){
             Alert::warning('Gagal', 'Alamat Masih Digunakan');
             return response()->json(['success' => false]);
@@ -179,19 +177,5 @@ class AlamatPengirimanController extends Controller
             return response()->json(['success' => true], 200);
 
         }
-
-        /*
-          $Alamat_Pesanan = Pesanan::where([
-            'user_id' => Auth::user()->id,
-            'status_cart' => "3"
-        ])->get();
-        foreach ($Pesanan as $val) {
-            foreach ($val->detail as $item) {
-                if ($item->alamat_pengiriman_id == $alamat->id) {
-                }
-            }
-        }*/
-        
-
     }
 }

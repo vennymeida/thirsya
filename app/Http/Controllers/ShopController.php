@@ -29,15 +29,15 @@ class ShopController extends Controller
     	$barangs = Barang::where('id', $id)->first();
     	$tanggal = Carbon::now();
 
-    	//validasi apakah melebihi stok
+
     	if($request->jumlah_pesan > $barangs->stok)
     	{
     		return redirect('shop/'.$id);
     	}
 
-    	//cek validasi
+
     	$cek_pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
-    	//simpan ke database pesanan
+
     	if(empty($cek_pesanan))
     	{
     		$pesanans = new Pesanan;
@@ -49,11 +49,8 @@ class ShopController extends Controller
 	    	$pesanans->save();
     	}
     	
-
-    	//simpan ke database pesanan detail
     	$pesanan_baru = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
 
-    	//cek pesanan detail
     	$cek_pesanan_detail = Cart::where('barang_id', $barangs->id)
         ->where('pesanan_id', $pesanan_baru->id_pesanans)->first();
     	if(empty($cek_pesanan_detail))
@@ -70,14 +67,12 @@ class ShopController extends Controller
     		$cart = Cart::where('barang_id', $barangs->id)->where('pesanan_id', $pesanan_baru->id_pesanans)->first();
     		$cart->jumlah = $cart->jumlah+$request->jumlah_pesan;
 
-    		//harga sekarang
     		$harga_pesanan_detail_baru = $barangs->harga*$request->jumlah_pesan;
 	    	$cart->jumlah_harga = $cart->jumlah_harga+$harga_pesanan_detail_baru;
 	    	$cart->update();
             Alert::success('Pesanan Sukses Masuk Keranjang', 'Success');
     	}
 
-    	//jumlah total
     	$pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
     	$pesanans->jumlah_harga = $pesanans->jumlah_harga+$barangs->harga*$request->jumlah_pesan;
     	$pesanans->update();
