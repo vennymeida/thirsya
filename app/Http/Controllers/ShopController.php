@@ -32,7 +32,8 @@ class ShopController extends Controller
 
     	if($request->jumlah_pesan > $barangs->stok)
     	{
-    		return redirect('shop/'.$id);
+            Alert::warning('Gagal', 'Barang yang diinputkan melebihi stok');
+    		return back();
     	}
 
 
@@ -89,6 +90,7 @@ class ShopController extends Controller
         {
             $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();
         }else{
+            Alert::warning('Gagal', 'Masukkan Barang Dulu');
             return back()->with('error', 'Keranjang Kosong');
         }
         return view('user.cart', compact('pesanans', 'cart'));
