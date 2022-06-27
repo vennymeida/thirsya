@@ -85,7 +85,7 @@ class ShopController extends Controller
     public function cart()
     {
         $pesanans = Pesanan::where('user_id', Auth::user()->id)->where('status_cart',3)->first();
- 	    $cart1 = [];
+ 	    $cart = [];
         if(!empty($pesanans))
         {
             $cart = Cart::where('pesanan_id', $pesanans->id_pesanans)->get();

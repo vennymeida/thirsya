@@ -53,7 +53,7 @@
 										<h3>Thirsya Widya Sulaiman</h3>
                     <p>NIM&emsp;&nbsp;: 2041720233<br>
                        Kelas&nbsp;&nbsp;&nbsp;: TI-2G<br>
-                       Absen &nbsp;: 26</p>
+                       Absen &nbsp;: 25</p>
 									</div>
 								</div>
 							</div>
