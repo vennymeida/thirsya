@@ -15,13 +15,13 @@ class KategoriController extends Controller
      */
     public function index()
     {
-            if (request()->user()->hasRole('admin')) {
+            // if (request()->user()->hasRole('admin')) {
                 $kategoris = Kategori::all();
                 $paginate = Kategori::orderBy('id', 'asc')->paginate(3);
             return view('admin.kategori', ['kategoris' => $kategoris ,'paginate'=>$paginate]);
-            } else {
-                return redirect('/');
-            }
+            // } else {
+            //     return redirect('/');
+            // }
     }
 
     /**

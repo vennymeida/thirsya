@@ -52,7 +52,7 @@ class User extends Authenticatable
 
     public function hasRole($role) 
     {
-    return $this->roles()->where('name', $role)->count() == 1;
+    return $this->roles()->where('name', $role)->count();
     }
 
     public function pesanan() 

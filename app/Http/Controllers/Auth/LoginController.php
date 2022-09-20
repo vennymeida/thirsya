@@ -50,15 +50,18 @@ class LoginController extends Controller
     }
 
     public function redirectTo (){
-
+//  dd(auth()->user()->hasRole('admin'));
+//  die;
     if (auth()->user()->hasRole('user')){
         Alert::success('Sukses Masuk Sebagai Pembeli', 'Success');
         return '/dashboardU';     
     }
 
-    if (auth()->user()->hasRole('admin')){
+    else if (auth()->user()->hasRole('admin')){
         Alert::success('Sukses Masuk Sebagai Admin', 'Success');
         return '/dashboard';   
+    } else {
+        return '/dashboard'; 
     }
 }
         }
