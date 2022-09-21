@@ -21,15 +21,15 @@ class BarangController extends Controller
     public function index()
     {
      
-    // if (request()->user()->hasRole('admin')) {
+    if (request()->user()->hasRole('admin')) {
         $barangs = Barang::paginate(3)->all();
         $paginate = Barang::paginate(3);
         // $listbarang = Barang::with('kategori')->latest()->paginate(3);
         $kategori = Kategori::all();
        return view('admin.barang', ['barangs' => $barangs ,'paginate'=>$paginate, 'kategori' => $kategori]);
-    // } else {
-    //     return redirect('/');
-    // }
+    } else {
+        return redirect('/');
+    }
     }
 
     /**
