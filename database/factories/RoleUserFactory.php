@@ -14,7 +14,7 @@ class RoleUserFactory extends Factory
     public function definition()
     {
         return [
-            //
+
         ];
     }
 }
