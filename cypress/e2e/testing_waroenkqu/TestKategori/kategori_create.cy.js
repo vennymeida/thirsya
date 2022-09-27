@@ -10,6 +10,7 @@ describe('Admin can see kategori page', () => {
       cy.get('#username').type("admin123",{ force: true });
       cy.get('#password').type('admin123',{ force: true });
       cy.get('.btn-primary').click({ force: true });
+      cy.get('.swal2-confirm').click({ force: true });
 
     cy.get('.nav > :nth-child(1) > .nav-link > p').should('have.text','Dashboard');
      cy.get(':nth-child(2) > .nav-link > p').should('have.text','Admin Profile');
@@ -20,11 +21,11 @@ describe('Admin can see kategori page', () => {
 
      cy.get(':nth-child(3) > .nav-link > p').click({ force: true });
      cy.get('.card-title').should('have.text',' Tabel Kategori Produk ');
-     cy.get('.btn-danger').should('have.text','Refresh');
+     cy.get('.btn-danger').should('have.text','RefreshDeleteDelete');
      cy.get('.btn-warning').should('have.text','Tambah');
 
-     cy.get('tr > :nth-child(1)').should('have.text','No');
-     cy.get('tr > :nth-child(2)').should('have.text','Nama');
+     cy.get('tr > :nth-child(1)').contains('No').and('be.visible');
+     cy.get('tr > :nth-child(2)').contains('Nama').and('be.visible');
      cy.get('tr > :nth-child(3)').contains('Aksi').and('be.visible');
 
      cy.get('.btn-warning').click({ force: true });

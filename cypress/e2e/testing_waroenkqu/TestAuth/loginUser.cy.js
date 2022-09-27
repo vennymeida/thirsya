@@ -10,5 +10,6 @@ describe('User can see login page', () => {
       cy.get('#username').type("user1234",{ force: true });
       cy.get('#password').type('user1234',{ force: true });
       cy.get('.btn-primary').click({ force: true });
+      cy.get('.swal2-confirm').click({ force: true });
     })
   })

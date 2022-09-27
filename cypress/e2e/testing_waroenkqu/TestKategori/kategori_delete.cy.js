@@ -10,6 +10,7 @@ describe('Admin can see kategori page', () => {
       cy.get('#username').type("admin123",{ force: true });
       cy.get('#password').type('admin123',{ force: true });
       cy.get('.btn-primary').click({ force: true });
+      cy.get('.swal2-confirm').click({ force: true });
 
     cy.get('.nav > :nth-child(1) > .nav-link > p').should('have.text','Dashboard');
      cy.get(':nth-child(2) > .nav-link > p').should('have.text','Admin Profile');
