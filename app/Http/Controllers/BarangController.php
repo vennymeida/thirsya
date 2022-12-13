@@ -113,7 +113,7 @@ class BarangController extends Controller
         $barangs->harga = $request->get('harga');
         $barangs->stok = $request->get('stok');
         $barangs->keterangan = $request->get('keterangan');
-        $barangs->foto = $image_name;
+        $barangs->foto = $filepath;
         $barangs->save();
 
         Alert::success('Sukses', 'Berhasil Tambah Data Barang');
