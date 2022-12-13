@@ -8,6 +8,7 @@ use Alert;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Google\Cloud\Storage\StorageClient;
 
 
 class BarangController extends Controller
@@ -60,11 +61,48 @@ class BarangController extends Controller
         'keterangan' => 'required',
         'foto'=> 'required',
     ]);
-       
         $image_name = '';
-    if ($request->file('foto')) {
-        $image_name = $request->file('foto')->store('images', 'public');
-    }
+        if ($request->file('foto')) {
+            $image_name = $request->file('foto');
+            // $image_name = $request->file('foto')->store('images', 'public');
+            $storage = new StorageClient([
+                'keyFilePath' => '/Users/muhammadghani/Desktop/NGODING/PWL/WaroenkQu/public/key.json',
+            ]);
+
+            $bucketName = env('GOOGLE_CLOUD_BUCKET');
+            $bucket = $storage->bucket($bucketName);
+
+            //get filename with extension
+            $filenamewithextension = pathinfo($request->file('foto')->getClientOriginalName(), PATHINFO_FILENAME);
+            // $filenamewithextension = $request->file('foto')->getClientOriginalName();
+
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+            //get file extension
+            $extension = $request->file('foto')->getClientOriginalExtension();
+
+            //filename to store
+            $filenametostore = $filename.'_'.uniqid().'.'.$extension;
+
+            Storage::put('public/uploads/'. $filenametostore, fopen($request->file('foto'), 'r+'));
+
+            $filepath = storage_path('app/public/uploads/'.$filenametostore);
+
+            $object = $bucket->upload(
+                fopen($filepath, 'r'),
+                [
+                    'predefinedAcl' => 'publicRead'
+                ]
+            );
+
+            // delete file from local disk
+            Storage::delete('public/uploads/'. $filenametostore);
+
+        }
+    // if ($request->file('foto')) {
+    //     $image_name = $request->file('foto')->store('images', 'public');
+    // }
    
     $kategoris = new Kategori;
     $barangs= new Barang;
