@@ -15,8 +15,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AlamatPengirimanController;
 use App\Http\Controllers\OrderController;
-
-
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +31,9 @@ use App\Http\Controllers\OrderController;
 
 
 Auth::routes();
+Route::get('/mysql', function () {
+  Artisan::call('migrate:fresh --seed');
+});
 Route::get('/home', [BerandaController::class, 'index']);
 Route::get('/', [BerandaController::class, 'index'])->name('berandaindex');
 Route::get('/shopBeranda', [BerandaController::class, 'shop'])->name('berandashop');
@@ -53,20 +55,20 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('searchBarang', [BarangController::class, 'searchBarang'])->name('searchBarang');
   Route::get('/search', [KategoriController::class, 'search'])->name('search');
   Route::get('/searchUser', [PembeliController::class, 'searchUser'])->name('searchUser');
-  
-  
+
+
 
   Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboardU', [UserController::class, 'dashboardU'])->name('user');
     Route::resource('shop',  ShopController::class);
     Route::resource('user',  UserController::class);
-    Route::get('shop/{id}',[ShopController::class,'index']);
-    Route::post('add-to-cart/{id}',[ShopController::class,'pesan']);
-    Route::get('cart',[ShopController::class,'cart']);
-    Route::delete('cart/{id}', [ShopController::class,'delete']);
-    Route::get('checkout',[ShopController::class,'checkoutAmount'])->name('checkout');
+    Route::get('shop/{id}', [ShopController::class, 'index']);
+    Route::post('add-to-cart/{id}', [ShopController::class, 'pesan']);
+    Route::get('cart', [ShopController::class, 'cart']);
+    Route::delete('cart/{id}', [ShopController::class, 'delete']);
+    Route::get('checkout', [ShopController::class, 'checkoutAmount'])->name('checkout');
     Route::resource('alamat-pengiriman', AlamatPengirimanController::class);
-    Route::get('placeorder',[ShopController::class,'placeorderPesanan'])->name('placeorder');
+    Route::get('placeorder', [ShopController::class, 'placeorderPesanan'])->name('placeorder');
     Route::get('upload/{id}', [OrderController::class, 'showUpload'])->name('showupload');
     Route::post('upload', [OrderController::class, 'uploadBukti'])->name('uploadBukti');
     Route::resource('order',  OrderController::class);
