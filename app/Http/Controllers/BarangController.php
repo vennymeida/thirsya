@@ -9,6 +9,7 @@ use App\Models\Kategori;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Google\Cloud\Storage\StorageClient;
+use App\Http\URL;
 
 
 class BarangController extends Controller
@@ -21,16 +22,16 @@ class BarangController extends Controller
      */
     public function index()
     {
-     
-    if (request()->user()->hasRole('admin')) {
-        $barangs = Barang::paginate(3)->all();
-        $paginate = Barang::paginate(3);
-        // $listbarang = Barang::with('kategori')->latest()->paginate(3);
-        $kategori = Kategori::all();
-       return view('admin.barang', ['barangs' => $barangs ,'paginate'=>$paginate, 'kategori' => $kategori]);
-    } else {
-        return redirect('/');
-    }
+
+        if (request()->user()->hasRole('admin')) {
+            $barangs = Barang::paginate(3)->all();
+            $paginate = Barang::paginate(3);
+            // $listbarang = Barang::with('kategori')->latest()->paginate(3);
+            $kategori = Kategori::all();
+            return view('admin.barang', ['barangs' => $barangs, 'paginate' => $paginate, 'kategori' => $kategori]);
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -41,7 +42,7 @@ class BarangController extends Controller
     public function create()
     {
         $kategoris = Kategori::all();
-        return view('admin.createB',['kategoris' => $kategoris]);
+        return view('admin.createB', ['kategoris' => $kategoris]);
     }
 
     /**
@@ -52,21 +53,21 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-      
-       $request->validate([
-        'Kategori' => 'required',
-        'nama_barang' => 'required',
-        'harga' => 'required',
-        'stok' => 'required',
-        'keterangan' => 'required',
-        'foto'=> 'required',
-    ]);
+
+        $request->validate([
+            'Kategori' => 'required',
+            'nama_barang' => 'required',
+            'harga' => 'required',
+            'stok' => 'required',
+            'keterangan' => 'required',
+            'foto' => 'required',
+        ]);
         $image_name = '';
         if ($request->file('foto')) {
             $image_name = $request->file('foto');
             // $image_name = $request->file('foto')->store('images', 'public');
             $storage = new StorageClient([
-                'keyFilePath' => '/Users/muhammadghani/Desktop/NGODING/PWL/WaroenkQu/public/key.json',
+                'keyFilePath' => URL::asset('key.json')
             ]);
 
             $bucketName = env('GOOGLE_CLOUD_BUCKET');
@@ -83,11 +84,11 @@ class BarangController extends Controller
             $extension = $request->file('foto')->getClientOriginalExtension();
 
             //filename to store
-            $filenametostore = $filename.'_'.uniqid().'.'.$extension;
+            $filenametostore = $filename . '_' . uniqid() . '.' . $extension;
 
-            Storage::put('public/uploads/'. $filenametostore, fopen($request->file('foto'), 'r+'));
+            Storage::put('public/uploads/' . $filenametostore, fopen($request->file('foto'), 'r+'));
 
-            $filepath = storage_path('app/public/uploads/'.$filenametostore);
+            $filepath = storage_path('app/public/uploads/' . $filenametostore);
 
             $object = $bucket->upload(
                 fopen($filepath, 'r'),
@@ -97,28 +98,27 @@ class BarangController extends Controller
             );
 
             // delete file from local disk
-            Storage::delete('public/uploads/'. $filenametostore);
-
+            Storage::delete('public/uploads/' . $filenametostore);
         }
-    // if ($request->file('foto')) {
-    //     $image_name = $request->file('foto')->store('images', 'public');
-    // }
-   
-    $kategoris = new Kategori;
-    $barangs= new Barang;
-    $kategoris -> id = $request->get('Kategori');
-    $barangs->kategori()->associate($kategoris);
-    
-    $barangs->nama_barang = $request->get('nama_barang');
-    $barangs->harga = $request->get('harga');
-    $barangs->stok = $request->get('stok');
-    $barangs->keterangan = $request->get('keterangan');
-    $barangs->foto = $image_name;
-    $barangs->save();
+        // if ($request->file('foto')) {
+        //     $image_name = $request->file('foto')->store('images', 'public');
+        // }
 
-    Alert::success('Sukses', 'Berhasil Tambah Data Barang');
-    return redirect()->route('barang.index')
-        ->with('success', 'Barang Berhasil Ditambahkan');
+        $kategoris = new Kategori;
+        $barangs = new Barang;
+        $kategoris->id = $request->get('Kategori');
+        $barangs->kategori()->associate($kategoris);
+
+        $barangs->nama_barang = $request->get('nama_barang');
+        $barangs->harga = $request->get('harga');
+        $barangs->stok = $request->get('stok');
+        $barangs->keterangan = $request->get('keterangan');
+        $barangs->foto = $image_name;
+        $barangs->save();
+
+        Alert::success('Sukses', 'Berhasil Tambah Data Barang');
+        return redirect()->route('barang.index')
+            ->with('success', 'Barang Berhasil Ditambahkan');
     }
 
 
@@ -132,7 +132,7 @@ class BarangController extends Controller
     {
         $barangs = Barang::all()->where('id', $id)->first();
         $kategoris = Kategori::all();
-        return view('admin.detailB',['barangs'=>$barangs, 'kategoris'=>$kategoris]);
+        return view('admin.detailB', ['barangs' => $barangs, 'kategoris' => $kategoris]);
     }
 
     /**
@@ -145,7 +145,7 @@ class BarangController extends Controller
     {
         $kategoris = Kategori::all();
         $barangs = Barang::all()->where('id', $id)->first();
-        return view('admin.editB',['barangs'=>$barangs,'kategoris'=>$kategoris]);   
+        return view('admin.editB', ['barangs' => $barangs, 'kategoris' => $kategoris]);
     }
 
     /**
@@ -157,31 +157,31 @@ class BarangController extends Controller
      */
     public function update(Request $request, $nama_barang)
     {
-         $request->validate([
+        $request->validate([
             'kategori' => 'required',
             'nama_barang' => 'required',
             'harga' => 'required',
             'stok' => 'required',
             'keterangan' => 'required',
-            'foto'=> 'nullable',
+            'foto' => 'nullable',
         ]);
-     $image_name = '';
-     $data= array(
-        'kategori_id'=>$request->post('kategori'),
-        'nama_barang'=>$request->post('nama_barang'),
-        'harga'=>$request->post('harga'),
-        'stok'=>$request->post('stok'),
-        'keterangan'=>$request->post('keterangan'),
-     );
-     if ($request->file('foto')) {
-        $image_name = $request->file('foto')->store('images', 'public'); 
-        $data=array_merge($data,array('foto'=>$image_name));
-     }
+        $image_name = '';
+        $data = array(
+            'kategori_id' => $request->post('kategori'),
+            'nama_barang' => $request->post('nama_barang'),
+            'harga' => $request->post('harga'),
+            'stok' => $request->post('stok'),
+            'keterangan' => $request->post('keterangan'),
+        );
+        if ($request->file('foto')) {
+            $image_name = $request->file('foto')->store('images', 'public');
+            $data = array_merge($data, array('foto' => $image_name));
+        }
 
-     Barang::where('nama_barang', $nama_barang)->update($data);
+        Barang::where('nama_barang', $nama_barang)->update($data);
 
-        if ($request->file('foto') && file_exists(storage_path('app/public/'. $request->file('foto')))) {
-            Storage::delete('public/'. $request->file('foto'));
+        if ($request->file('foto') && file_exists(storage_path('app/public/' . $request->file('foto')))) {
+            Storage::delete('public/' . $request->file('foto'));
         }
 
         Alert::success('Sukses', 'Berhasil Ubah Data Barang');
