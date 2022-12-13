@@ -173,7 +173,7 @@ class BarangController extends Controller
             'stok' => $request->post('stok'),
             'keterangan' => $request->post('keterangan'),
         );
-        $barangs = Barang::find($data['nama_barang']);
+        $barangs = Barang::where('nama_barang', $nama_barang)->first();
         $storage = new StorageClient();
         $bucketName = env('GOOGLE_CLOUD_BUCKET');
         $bucket = $storage->bucket($bucketName);
