@@ -9,7 +9,7 @@ use App\Models\Kategori;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Google\Cloud\Storage\StorageClient;
-use App\Http\URL;
+use Illuminate\Support\Facades\URL;
 
 
 class BarangController extends Controller
