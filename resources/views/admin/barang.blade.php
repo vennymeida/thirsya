@@ -50,7 +50,7 @@
                     <td>{{ $brg ->harga }}</td>
                     <td>{{ $brg ->stok }}</td>
                     <td>{{ $brg ->keterangan }}</td>
-                    <td><img style="width: 80px; height: 80px; overflow: hidden" class="rounded-circle" src="{{asset('storage/'.$brg->foto)}}"></td>
+                    <td><img style="width: 80px; height: 80px; overflow: hidden" class="rounded-circle" src="{{ 'https://storage.googleapis.com/ghani1/'.$brg->foto)}}"></td>
                     <td>
                       <form action="{{ route('barang.destroy',['barang'=>$brg->id]) }}" method="POST">
                         <a class="btn btn-info btn-sm" href="{{ route('barang.show',$brg->id) }}">Show</a>
