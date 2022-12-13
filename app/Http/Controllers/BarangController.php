@@ -67,7 +67,7 @@ class BarangController extends Controller
             $image_name = $request->file('foto');
             // $image_name = $request->file('foto')->store('images', 'public');
             $storage = new StorageClient([
-                'keyFilePath' => asset('key.json')
+                'keyFilePath' => public_path('key.json')
             ]);
 
             $bucketName = env('GOOGLE_CLOUD_BUCKET');
