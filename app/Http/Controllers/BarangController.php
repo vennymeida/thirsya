@@ -198,6 +198,16 @@ class BarangController extends Controller
     public function destroy($id)
     {
         $barangs = Barang::all()->where('id', $id)->first();
+        $storage = new StorageClient();
+
+        $bucketName = env('GOOGLE_CLOUD_BUCKET');
+        $bucket = $storage->bucket($bucketName);
+        $bucket = $storage->bucket($bucketName);
+        $object = $bucket->object($barangs->foto);
+
+
+
+        $object->delete();
         $barangs->delete($barangs);
         Alert::success('Sukses', 'Berhasil Hapus Data Barang');
         return redirect()->route('barang.index');
