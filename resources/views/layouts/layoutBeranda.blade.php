@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 		<!-- google font -->
 		<link href="{{ url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700') }}" rel="stylesheet">
 		<link href="{{ url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap') }}" rel="stylesheet">

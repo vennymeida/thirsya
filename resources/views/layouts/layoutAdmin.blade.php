@@ -16,6 +16,7 @@ Coded by www.creative-tim.com
 <html lang="en">
 
 <head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="{{ URL::asset('assets/img/apple-icon.png') }}">
   <link rel="icon" type="image/png" href="{{ URL::asset('assets/img/favicon.png') }}">
