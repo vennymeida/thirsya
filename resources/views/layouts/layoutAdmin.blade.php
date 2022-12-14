@@ -18,8 +18,8 @@ Coded by www.creative-tim.com
 <head>
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="{{ URL::asset('assets/img/apple-icon.png') }}">
-  <link rel="icon" type="image/png" href="{{ URL::asset('assets/img/favicon.png') }}">
+  <link rel="apple-touch-icon" sizes="76x76" href='https://ghani-csisw3i77q-uc.a.run.app/assets/img/apple-icon.png'>
+  <link rel="icon" type="image/png" href='https://ghani-csisw3i77q-uc.a.run.app/assets/img/favicon.png'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Dashboard
@@ -60,19 +60,19 @@ Coded by www.creative-tim.com
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="{{ URL::asset('assets/js/core/jquery.min.js') }}"></script>
-  <script src="{{ URL::asset('assets/js/core/popper.min.js') }}"></script>
-  <script src="{{ URL::asset('assets/js/core/bootstrap.min.js') }}"></script>
-  <script src="{{ URL::asset('assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+  <script src='https://ghani-csisw3i77q-uc.a.run.app/assets/js/core/jquery.min.js'></script>
+  <script src='https://ghani-csisw3i77q-uc.a.run.app/assets/js/core/popper.min.js'></script>
+  <script src='https://ghani-csisw3i77q-uc.a.run.app/assets/js/core/bootstrap.min.js'></script>
+  <script src='https://ghani-csisw3i77q-uc.a.run.app/assets/js/plugins/perfect-scrollbar.jquery.min.js'></script>
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
-  <script src="{{ URL::asset('assets/js/plugins/chartjs.min.js') }}"></script>
+  <script src='https://ghani-csisw3i77q-uc.a.run.app/assets/js/plugins/chartjs.min.js'></script>
   <!--  Notifications Plugin    -->
-  <script src="{{ URL::asset('assets/js/plugins/bootstrap-notify.js') }}"></script>
+  <script src='https://ghani-csisw3i77q-uc.a.run.app/assets/js/plugins/bootstrap-notify.js'></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{ URL::asset('assets/js/paper-dashboard.min.js') }}?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{{ URL::asset('assets/demo/demo.js') }}"></script>
+  <script src='https://ghani-csisw3i77q-uc.a.run.app/assets/js/paper-dashboard.min.js' type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  <script src='https://ghani-csisw3i77q-uc.a.run.app/assets/demo/demo.js'></script>
   <script>
     $(document).ready(function() {
       $("#password_").hide();
