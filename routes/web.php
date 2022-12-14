@@ -32,7 +32,9 @@ use Illuminate\Support\Facades\Artisan;
 
 Auth::routes();
 Route::get('/mysql', function () {
-  Artisan::call('migrate:fresh --seed');
+  // Artisan::call('migrate:rollback', ['--force' => true]);
+  Artisan::call('migrate:fresh', ['--force' => true]);
+  Artisan::call('db:seed', ['--force' => true]);
 });
 Route::get('/home', [BerandaController::class, 'index']);
 Route::get('/', [BerandaController::class, 'index'])->name('berandaindex');
