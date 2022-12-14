@@ -50,7 +50,7 @@
         <div class="form-group" id='gambar'>
             <label for="foto">File</label><br>
             <input type="file" name="foto" value="{{ asset('./storage/'. $barangs->foto) }}" class="form-control" id="foto" aria-describedby="foto" style="opacity:1;position:relative;!important">
-            <img style="width: 100%" src="{{ 'https://storage.googleapis.com/ghani1/'. $barangs->foto) }}" alt="">
+            <img style="width: 100%" src="{{ 'https://storage.googleapis.com/thirsya1/'. $barangs->foto) }}" alt="">
           </div>
        
         <br><button type="submit" class="btn btn-primary">Submit</button>
